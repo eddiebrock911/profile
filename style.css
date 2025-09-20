@@ -1,0 +1,217 @@
+/* General */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0f0f0f;
+  color: #f5f5f5;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+a {
+  color: #00d4ff;
+  text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #141414;
+  padding: 15px 5%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+.logo span {
+  color: #f39c12;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar ul li a {
+  position: relative;
+  color: #f5f5f5;
+  font-weight: 500;
+}
+
+.navbar ul li a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -4px;
+  background: #00d4ff;
+  transition: width 0.3s;
+}
+
+.navbar ul li a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, #1a1a1a, #2c3e50);
+  padding: 120px 20px;
+  text-align: center;
+}
+
+.hero h1 span {
+  color: #00d4ff;
+}
+
+.cta-buttons .btn {
+  margin: 10px;
+}
+
+/* Sections */
+.section {
+  padding: 70px 0;
+  text-align: center;
+}
+
+.bg-dark {
+  background: #1a1a1a;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #00d4ff, #007a99);
+  color: white;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #00d4ff;
+}
+
+.btn.secondary {
+  background: linear-gradient(45deg, #f39c12, #e67e22);
+}
+
+.btn.secondary:hover {
+  box-shadow: 0 0 15px #f39c12;
+}
+
+/* Cards */
+.grid-3, .grid-2 {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.grid-2 {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.card, .project-card {
+  background: #141414;
+  padding: 20px;
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover, .project-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeIn 1.5s ease;
+}
+
+.slide-up {
+  animation: slideUp 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  background: #141414;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+}
+footer a {
+  color: #00d4ff;
+} 
+footer a:hover {
+  text-decoration: underline;
+} 
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+ .contact-icon {
+  text-decoration: none;
+  font-size: 1.1rem;
+  color: #fff; /* white for dark bg */
+  transition: color 0.3s;
+}
+.contact-icon i {
+  margin-right: 8px;
+}
+
+.contact-icon:hover {
+  color: #00acee; /* Twitter-like hover, ya aap custom color */
+}
+
+.contact-icon.instagram:hover {
+  color: #e1306c;
+}
+.contact-icon.linkedin:hover {
+  color: #0077b5;
+}
+.contact-icon.github:hover {
+  color: #6e5494;
+}
+.contact-icon.email:hover {
+  color: #d44638;
+}
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hero {
+    padding: 80px 10px;
+  }
+}
