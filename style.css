@@ -12,6 +12,28 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
+.hero-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap; /* mobile ke liye responsive */
+}
+
+.hero-image img {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  border: 4px solid #00d4ff;
+  box-shadow: 0 0 25px rgba(0,212,255,0.5);
+  object-fit: cover;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+
 a {
   color: #00d4ff;
   text-decoration: none;
