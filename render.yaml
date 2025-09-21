@@ -1,65 +1,11 @@
 # render.yaml
 services:
-  - type: static
+  - type: web
     name: ankit-portfolio
     env: static
     plan: free
     repo: https://github.com/yourusername/ankit-portfolio  # GitHub repo link
     branch: main
     buildCommand: ""      # Static site ke liye kuch build nahi karna
-    publishPath: "/"      # root folder me index.html hai
-    routes:
-      - src: /
-        dest: /index.html
-      - src: /style.css
-        dest: /style.css
-      - src: /script.js
-        dest: /script.js
-      - src: /images/(.*)
-        dest: /images/$1
-    domains:
-      - domain: AnkitAI.com  # Agar aapke paas custom domain hai to yahan add karein
-      - domain: www.AnkitAI.com
-    envVars:
-      - key: NODE_ENV
-        value: production 
-      - key: PORT
-        value: 3000
-    features:
-      - name: autoDeploy
-        enabled: true
-      - name: https
-        enabled: true
-      - name: customDomain
-        enabled: true
-      - name: analytics
-        enabled: true
-      - name: passwordProtection
-        enabled: false
-      - name: webhooks
-        enabled: false
-      - name: environmentVariables
-        enabled: true
-      - name: gitIntegration
-        enabled: true
-      - name: teamCollaboration
-        enabled: false
-      - name: backups
-        enabled: true
-      - name: logs
-        enabled: true
-      - name: cdn
-        enabled: true
-      - name: prerendering  
-        enabled: false
-      - name: imageOptimization
-        enabled: false
-      - name: serverlessFunctions
-        enabled: false
-      - name: database
-
-        enabled: false
-      - name: cronJobs
-        enabled: false
-      - name: monitoring
-        enabled: true
+    staticPublishPath: /
+    autoDeploy: true
