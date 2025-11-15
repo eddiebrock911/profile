@@ -11,7 +11,7 @@ class AIChatbot {
       <!-- Chat Toggle Button -->
       <button id="chat-toggle" class="chat-toggle" aria-label="Open Chat">
         <i class="fas fa-comments"></i>
-        <span class="chat-badge">AI</span>
+        <span class="chat-badge">Baby AI</span>
       </button>
       
       <!-- Chat Window -->
