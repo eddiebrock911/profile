@@ -7,7 +7,7 @@
 
 Aspiring AI Developer & Coder from Patna, Bihar, currently pursuing Class 12 studies. I specialize in **Artificial Intelligence**, **Machine Learning**, and **Python development** with a strong passion for creating intelligent systems that shape the future.
 
-## Live Demo:- https://ankitai.onrender.com/
+## Live Demo :- https://ankitai.onrender.com/
 
 ---
 ### 🎯 Vision
@@ -104,6 +104,7 @@ This portfolio and projects are open for learning and collaboration. Feel free t
 
 
 Made with ❤️ by Ankit Kumar from Patna, Bihar
+
 
 
 
