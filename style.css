@@ -54,7 +54,12 @@ a {
   transition: var(--transition);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 600;
   line-height: 1.2;
 }
@@ -201,8 +206,15 @@ body.light-mode .navbar {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 .hero-flex {
@@ -239,8 +251,15 @@ body.light-mode .navbar {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
 }
 
 .hero-text {
@@ -297,8 +316,15 @@ body.light-mode .navbar {
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-10px);
+  }
 }
 
 @keyframes slideInLeft {
@@ -306,6 +332,7 @@ body.light-mode .navbar {
     opacity: 0;
     transform: translateX(-50px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -818,6 +845,7 @@ footer {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -829,11 +857,259 @@ footer {
     opacity: 0;
     transform: translateY(50px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+/* ========== Download Button Styles ========== */
+.btn.download-btn {
+  background: linear-gradient(135deg, #9b59b6, #e91e63);
+  color: white;
+  box-shadow: 0 5px 20px rgba(155, 89, 182, 0.4);
+  position: relative;
+  overflow: hidden;
+  animation: pulse-download 2s infinite;
+}
+
+.btn.download-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn.download-btn:hover::before {
+  left: 100%;
+}
+
+.btn.download-btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 10px 40px rgba(155, 89, 182, 0.6);
+  background: linear-gradient(135deg, #8e44ad, #c0392b);
+}
+
+.btn.download-btn i {
+  margin-right: 8px;
+  animation: bounce-download 2s infinite;
+}
+
+@keyframes pulse-download {
+
+  0%,
+  100% {
+    box-shadow: 0 5px 20px rgba(155, 89, 182, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 5px 30px rgba(155, 89, 182, 0.7);
+  }
+}
+
+@keyframes bounce-download {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ========== Enhanced Animations ========== */
+
+/* Shimmer effect on section titles */
+.section-title {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+/* Enhanced card hover effects */
+.project-card,
+.skill-card,
+.stat-card,
+.vision-card,
+.contact-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover,
+.vision-card:hover {
+  transform: translateY(-15px) scale(1.02);
+}
+
+.stat-card:hover,
+.skill-card:hover {
+  transform: translateY(-12px) rotate(2deg);
+}
+
+.contact-card:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+/* Glow effect on hover */
+.project-card:hover::after,
+.vision-card:hover::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #00d4ff, #f39c12, #e74c3c, #00d4ff);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.7;
+  filter: blur(10px);
+  animation: glow-rotate 3s linear infinite;
+}
+
+@keyframes glow-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Smooth image loading */
+img {
+  transition: opacity 0.5s ease, transform 0.3s ease;
+}
+
+img:not(.loaded) {
+  opacity: 0.5;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* CTA Buttons stagger animation */
+.cta-buttons .btn:nth-child(1) {
+  animation: slideInLeft 0.8s ease 0.2s both;
+}
+
+.cta-buttons .btn:nth-child(2) {
+  animation: slideInLeft 0.8s ease 0.4s both;
+}
+
+.cta-buttons .btn:nth-child(3) {
+  animation: slideInLeft 0.8s ease 0.6s both;
+}
+
+.cta-buttons .btn:nth-child(4) {
+  animation: slideInLeft 0.8s ease 0.8s both;
+}
+
+/* Gradient animation for primary color elements */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.logo:hover {
+  background: linear-gradient(45deg, #00d4ff, #f39c12, #00d4ff);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Tech tag hover animation */
+.tech-tag {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tech-tag:hover {
+  transform: translateY(-3px) scale(1.1);
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Enhanced scroll indicator */
+.scroll-down {
+  animation: bounce-glow 2s infinite;
+}
+
+@keyframes bounce-glow {
+
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    filter: drop-shadow(0 0 5px var(--primary-color));
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(-15px);
+    filter: drop-shadow(0 0 15px var(--primary-color));
+  }
+}
+
+/* Navbar link active state enhancement */
+.nav-menu li a {
+  transition: all 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  transform: translateY(-2px);
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Kaggle card specific styling */
+.contact-card.kaggle:hover {
+  border-color: #20beff;
+}
+
+.contact-card.kaggle:hover i {
+  color: #20beff;
+}
+
 
 /* ========== Responsive Design ========== */
 @media (max-width: 768px) {
@@ -870,7 +1146,7 @@ footer {
     font-size: 2.5rem;
     overflow-wrap: break-word;
   }
-  
+
   .hero-text h1 .typing {
     display: block;
     white-space: nowrap;
