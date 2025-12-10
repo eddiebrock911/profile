@@ -1,9 +1,12 @@
 name: auto-commit
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"   # हर 30 मिनट (लगभग 48 commits/दिन)
-  workflow_dispatch:         # जरूरत पड़े तो Manual run भी
+    - cron: "*/30 * * * *"
+
+permissions:
+  contents: write
 
 jobs:
   run:
@@ -12,14 +15,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Update file
+      - name: Auto Commit
         run: |
-          echo "Update: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> auto.txt
-
-      - name: Commit and push
-        run: |
-          git config --local user.name "Ankit"
-          git config --local user.email "ankitkumar823089@gmail.com"
-          git add auto.txt
-          git commit -m "auto-commit" || true
+          date >> auto-file.txt
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "auto commit"
           git push
