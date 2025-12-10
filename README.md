@@ -7,6 +7,18 @@
 
 Aspiring AI Developer & Coder from Patna, Bihar, currently pursuing Class 12 studies. I specialize in **Artificial Intelligence**, **Machine Learning**, and **Python development** with a strong passion for creating intelligent systems that shape the future.
 
+## 🎓 Education
+
+**Class 12 Student** - Currently pursuing higher secondary education while building advanced AI projects.
+
+## 📫 Connect With Me
+- Instagram: [[Instagram](https://www.instagram.com/__ankit._.op_/)]
+- 🌐 Portfolio: [ankitai.onrender.com](https://ankitai.onrender.com/)
+- 💼 LinkedIn: [[LinkedIn](https://www.linkedin.com/in/ankit-kumar-364ba537b/)]
+- 🐱 GitHub: [[GitHub](https://github.com/eddiebrock911)]
+
+Feel free to reach out for collaborations, opportunities, or just to discuss AI and technology!
+
 ## Live Demo :- [Go Live](https://ankitai.onrender.com/)
 
 ---
@@ -74,18 +86,6 @@ My flagship project **Baby AI** aims to incorporate:
 
 This project represents the future of human-AI interaction with natural and intuitive features.
 
-## 🎓 Education
-
-**Class 12 Student** - Currently pursuing higher secondary education while building advanced AI projects.
-
-## 📫 Connect With Me
-- Instagram: [[Instagram](https://www.instagram.com/__ankit._.op_/)]
-- 🌐 Portfolio: [ankitai.onrender.com](https://ankitai.onrender.com/)
-- 💼 LinkedIn: [[LinkedIn](https://www.linkedin.com/in/ankit-kumar-364ba537b/)]
-- 🐱 GitHub: [[GitHub](https://github.com/eddiebrock911)]
-
-Feel free to reach out for collaborations, opportunities, or just to discuss AI and technology!
-
 ## 🏆 Goals & Aspirations
 
 - Build production-ready AI systems
@@ -104,6 +104,7 @@ This portfolio and projects are open for learning and collaboration. Feel free t
 
 
 Made with ❤️ by Ankit Kumar from Patna, Bihar
+
 
 
 
