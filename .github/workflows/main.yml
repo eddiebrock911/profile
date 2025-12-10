@@ -1,0 +1,25 @@
+name: auto-commit
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # हर 30 मिनट (लगभग 48 commits/दिन)
+  workflow_dispatch:         # जरूरत पड़े तो Manual run भी
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Update file
+        run: |
+          echo "Update: $(date -u +"%Y-%m-%d %H:%M:%S UTC")" >> auto.txt
+
+      - name: Commit and push
+        run: |
+          git config --local user.name "Ankit"
+          git config --local user.email "ankitkumar823089@gmail.com"
+          git add auto.txt
+          git commit -m "auto-commit" || true
+          git push
