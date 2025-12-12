@@ -3,7 +3,7 @@ name: auto-commit
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "*/2 * * * *"
 
 permissions:
   contents: write
@@ -11,15 +11,20 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Auto Commit
+      - name: Change
+        run: echo "$(date)" >> auto-file.txt
+
+      - name: Commit
         run: |
-          date >> auto-file.txt
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "Ankit"
+          git config --global user.email "ankitkumar823089@gmail.com"
           git add .
-          git commit -m "auto commit"
+          git commit -m "auto commit" || exit 0
           git push
