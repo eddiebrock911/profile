@@ -189,6 +189,9 @@ body.light-mode .navbar {
   align-items: center;
   justify-content: center;
   background: var(--gradient-3);
+  background-image: url('image3.avif');
+  background-size: cover;
+  background-position: center;
   padding: 120px 20px 80px;
   position: relative;
   overflow: hidden;
