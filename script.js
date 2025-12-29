@@ -170,6 +170,102 @@ window.addEventListener('scroll', () => {
   }
 });
 
+// ========== Modern Cursor Trail ==========
+if (window.innerWidth > 1024) {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    cursor.style.cssText = `
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 2px solid #ff274b;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+        mix-blend-mode: difference;
+    `;
+    document.body.appendChild(cursor);
+
+    const cursorDot = document.createElement('div');
+    cursorDot.className = 'cursor-dot';
+    cursorDot.style.cssText = `
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #ff274b;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 10000;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 10px #ff274b;
+        mix-blend-mode: difference;
+    `;
+    document.body.appendChild(cursorDot);
+
+    let mouseX = 0;
+    let mouseY = 0;
+    let cursorX = 0;
+    let cursorY = 0;
+    let dotX = 0;
+    let dotY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function animateCursor() {
+        // Smooth follow for main cursor
+        cursorX += (mouseX - cursorX) * 0.15;
+        cursorY += (mouseY - cursorY) * 0.15;
+        
+        // Faster follow for dot
+        dotX += (mouseX - dotX) * 0.3;
+        dotY += (mouseY - dotY) * 0.3;
+        
+        cursor.style.left = `${cursorX}px`;
+        cursor.style.top = `${cursorY}px`;
+        
+        cursorDot.style.left = `${dotX}px`;
+        cursorDot.style.top = `${dotY}px`;
+        
+        requestAnimationFrame(animateCursor);
+    }
+
+    animateCursor();
+
+    // Add hover effects for interactive elements
+    setTimeout(() => {
+        const interactiveElements = document.querySelectorAll('a, button, .nav-link, .skill-card, .info-card, input, textarea');
+        
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.width = '60px';
+                cursor.style.height = '60px';
+                cursor.style.borderColor = '#00d4ff';
+                cursorDot.style.width = '12px';
+                cursorDot.style.height = '12px';
+                cursorDot.style.background = '#00d4ff';
+                cursorDot.style.boxShadow = '0 0 15px #00d4ff';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.borderColor = '#ff274b';
+                cursorDot.style.width = '8px';
+                cursorDot.style.height = '8px';
+                cursorDot.style.background = '#ff274b';
+                cursorDot.style.boxShadow = '0 0 10px #ff274b';
+            });
+        });
+    }, 1000);
+}
+
+
+
 // ========== Navbar Background on Scroll ==========
 window.addEventListener('scroll', () => {
   const navbar = document.querySelector('.navbar');
