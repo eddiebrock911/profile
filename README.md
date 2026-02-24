@@ -89,7 +89,7 @@ ankit = {
 
 | Project | Description | Tech |
 |---------|-------------|------|
-| 📊 **Interactive Dashboard** | Data visualization + ML models for comprehensive analysis | Python, JS, ML |
+| 📊 **Interactive Dashboard** | Data visualization + ML models for comprehensive analysis | Python, Data Analytics, ML |
 | 📧 **Spam Classifier** | NLP model to classify spam vs. ham with advanced text processing | Python, NLP, sklearn |
 | 💻 **Laptop Price Predictor** | ML-based price predictor trained on Kaggle dataset | Python, Regression |
 | 🏏 **IPL Win Predictor** | Predicts IPL match outcomes using Logistic Regression | Python, Logistic Reg |
@@ -107,7 +107,7 @@ ankit = {
 
 | Project | Description | Tech |
 |---------|-------------|------|
-| 🤖 **AI Chatbot** | Integrated AI chatbot (`ai-chatbot.js`) for portfolio | JS, AI API |
+| 🤖 **AI Chatbot** | Integrated AI chatbot (`ai-chatbot.js`) for portfolio | JS, NLP, AI API |
 | 👤 **Personal Portfolio** | Responsive portfolio with animations & dark/light theme | HTML, CSS, JS |
 
 ---
@@ -213,3 +213,4 @@ This portfolio is open for **learning and collaboration**. Explore, get inspired
 *⭐ Star this repo if it inspired you!*
 
 </div>
+
