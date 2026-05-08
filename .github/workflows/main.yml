@@ -3,7 +3,7 @@ name: auto-commit
 on:
   workflow_dispatch:
   schedule:
-    - cron: "2/1 * * * *"
+    - cron: "*/5 * * * *"
 
 permissions:
   contents: write
