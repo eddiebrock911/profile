@@ -89,7 +89,7 @@ class AIChatbot {
     toggle.addEventListener('click', () => this.toggleChat());
     close.addEventListener('click', () => this.toggleChat());
     send.addEventListener('click', () => this.sendMessage());
-  
+
 
     input.addEventListener('keypress', (e) => {
       if (e.key === 'Enter' && !e.shiftKey) {
@@ -431,17 +431,12 @@ class AIChatbot {
 
     // Goodbye
     else if (msg.match(/^(bye|goodbye|see you|later|cya|ok thik|thik)/i)) {
-      return `Goodbye! 👋 It was wonderful chatting with you!
-      <br><br>
-      Don't be a stranger - come back anytime you want to learn more about Ankit's projects or just want to chat! 💙
-      <br><br>
-      Have an amazing day! ✨`;
       setTimeout(() => {
-        document.getElementById('chat-close').click();
-      }, 800);
+        this.toggleChat();
+      }, 1800); // give user time to read the message
 
-      return `Goodbye! 👋<br><br>Come back anytime!`;
-
+      return `Goodbye! 👋 It was wonderful chatting with you!<br><br>
+      Come back anytime! Have an amazing day! ✨`;
     }
 
     // Name
@@ -461,18 +456,163 @@ class AIChatbot {
       What would you like to explore first? 😊`;
     }
 
+    // What can you do?
+    else if (msg.includes('what can you do') || msg.includes('help') || msg.includes('capabilities')) {
+      return `I can help you with all sorts of things! 😊
+      <br><br>
+      Here's what I can do:
+      <br>• 🎯 Answer questions about Ankit's projects and skills
+      <br>• 📄 Help you download his resume
+      <br>• 🧭 Navigate you through the website
+      <br>• 🛠️ Explain AI, ML, and DL concepts
+      <br>• 🚀 Tell you about his vision and goals
+      <br>• 📧 Show you how to contact him
+      <br>• 🎮 Recommend games to play
+      <br><br>
+      Just ask away! What would you like to do first? 🚀`;
+    }
+
+    // Can you chat for long?
+    else if (msg.includes('chat for long') || msg.includes('long chat') || msg.includes('can we talk')) {
+      return `Yes, absolutely! 😊 I'd love to chat as long as you want! 💙
+      <br><br>
+      Whether you want to talk about Ankit's projects, AI, or anything else, I'm here for you! 💬
+      <br><br>
+      But wait - speaking of long chats, did you know Ankit wants to build AGI (Artificial General Intelligence)? 🤖
+      <br><br>
+      That's the ultimate goal - AI that can understand, learn, and apply knowledge like humans! 🧠
+      <br><br>
+      Want to hear more about his vision for Baby AI? Or would you like to chat about something else? 😊`;
+    }
+
+    // What tech stack?  
+    else if (msg.includes('tech stack') || msg.includes('technologies') || msg.includes('tools') || msg.includes('what do you use')) {
+      return `I'm built using modern web technologies! 💻
+      <br><br>
+      This website uses:
+      <br>• 🔥 HTML5 for structure
+      <br>• 🎨 CSS3 for styling
+      <br>• ⚡ JavaScript for logic and AI features
+      <br>• 🤖 AI Chatbot with natural language processing
+      <br>• 🌌 Particle.js for interactive background
+      <br>• 🎯 Smooth animations and effects
+      <br><br>
+      The AI chatbot uses pattern matching and rule-based responses to understand and reply to your questions!`;
+    }
+
+    // How many languages do you know? 
+    else if (msg.includes('languages') || msg.includes('speak') || msg.includes('understand')) {
+      return `I can understand and communicate in **multiple languages**! 💬
+      <br><br>
+      This website uses JavaScript which supports global communication, but here are some specific languages I can assist you with:
+      <br>• English (Primary) 🇬🇧
+      <br>• Hindi (Primary) 🇮🇳
+      <br>• Hinglish (mix of Hindi and English) 😂
+      <br><br>
+      I'm always learning and improving, just like Ankit! Want to try asking in a different language? 😊`;
+    }
+
+
+    // What's your purpose? 
+    else if (msg.includes('purpose') || msg.includes('why are you here') || msg.includes('created')) {
+      return `I was created with a special purpose! 😊
+      <br><br>
+      I'm here to:
+      <br>• 🎯 Help visitors learn about Ankit's work
+      <br>• 📄 Answer questions about his projects and skills
+      <br>• 🧭 Guide you through the website
+      <br>• 🛠️ Explain AI, ML, and DL concepts
+      <br>• 🚀 Share his vision and goals
+      <br>• 📧 Show you how to contact him
+      <br>• 🎮 Entertain you with jokes and fun facts
+      <br><br>
+      Think of me as your friendly AI assistant! What would you like to explore? 🚀`;
+    }
+
+    else if (msg.includes('can you play') || msg.includes('recommend') || msg.includes('suggest')) {
+      return `I can recommend things! 😊
+      <br><br>
+      Here are some things I can recommend:
+      <br>• 🎯 Projects and achievements
+      <br>• 🛠️ Technical skills
+      <br>• 📧 Contact information
+      <br>• 🚀 Future vision and goals
+      <br>• 📄 How to download the resume
+      <br>• 🗺️ Website navigation
+      <br><br>
+      What would you like to explore first? 🚀`;
+    }
+
+    // Can you play games? 
+    else if (msg.includes('play') || msg.includes('game')) {
+      return `Yes, I can play games! 😊
+      <br><br>
+      This website uses JavaScript which supports global communication, but here are some specific games I can assist you with:
+      <br>1• Tic-Tac-Toe 🎯
+      <br>
+       <a href="https://tickit-rht5.onrender.com/">Tic-Tac-Toe! 🎯</a>
+      ;
+      <br></br>
+      <br>2• Space Shooter 🚀
+      <br>
+      <a href="https://space-shooter-1l7o.onrender.com/">Space Shooter! 🚀</a>`
+    }
+    
+
     // Compliments
-    else if (msg.includes('smart') || msg.includes('intelligent') || msg.includes('good bot') || msg.includes('nice')) {
-      return `Aww, thank you! 🥰 You're making me blush (if robots could blush! 😊)
+    else if(msg.includes('smart') || msg.includes('intelligent') || msg.includes('good bot') || msg.includes('nice')) {
+     return `Aww, thank you! 🥰 You're making me blush (if robots could blush! 😊)
       <br><br>
       I try my best to be helpful! Ankit built me to assist visitors like you. Your kind words motivate me! 💙
       <br><br>
       Is there anything else I can help you with? 🎯`;
-    }
+}
 
-    // Default
-    else {
-      return `Hmm, that's an interesting question! 🤔
+    // AI Knowledge
+    else if (msg.includes('artificial intelligence') || (msg.includes('what is') && msg.includes('ai'))) {
+      return `**Artificial Intelligence (AI)** is the simulation of human intelligence processes by machines, especially computer systems. 🧠
+      <br><br>
+      Ankit is very passionate about AI! It includes learning (acquiring information and rules), reasoning (using rules to reach conclusions), and self-correction. 🚀`;
+}
+
+// Machine Learning
+else if (msg.includes('machine learning') || msg.includes('ml')) {
+  return `**Machine Learning (ML)** is a subset of AI that focuses on building systems that learn—or improve performance—based on the data they consume. 📊
+      <br><br>
+      Ankit has built over 10 ML projects, including a Spam Classifier and a Laptop Price Predictor! 💻`;
+}
+
+// Deep Learning
+else if (msg.includes('deep learning') || msg.includes('dl') || msg.includes('neural network')) {
+  return `**Deep Learning (DL)** is a type of machine learning based on artificial neural networks in which multiple layers of processing are used to extract progressively higher level features from data. 🧬
+      <br><br>
+      This is the technology behind advanced systems like self-driving cars and large language models (like me)!`;
+}
+
+// Python
+else if (msg.includes('python') || msg.includes('coding language')) {
+  return `**Python** 🐍 is Ankit's primary and favorite programming language! 
+      <br><br>
+      It is widely used for AI, Data Science, and Web Development because of its simplicity and powerful libraries like Pandas, NumPy, and TensorFlow.`;
+}
+
+// Hobbies / Free time
+else if (msg.includes('hobby') || msg.includes('hobbies') || msg.includes('free time')) {
+  return `When Ankit isn't coding or building AI models, he enjoys playing logic games, learning about space tech, and exploring biology! 🚀🧬
+      <br><br>
+      You can even play his Tic Tac Toe or Space Shooter games in the Projects section! 🎮`;
+}
+
+// Creator / Who made you
+else if (msg.includes('creator') || msg.includes('who made you') || msg.includes('father') || msg.includes('developer')) {
+  return `I was designed and developed by **Ankit Kumar**! 👨‍💻
+      <br><br>
+      He built me using JavaScript to be his personal portfolio assistant. My goal is to eventually evolve into a fully capable **Baby AI**! 🤖`;
+}
+
+// Default
+else {
+  return `Hmm, that's an interesting question! 🤔
       <br><br>
       I'm still learning, but I'm designed to help you with information about Ankit's portfolio!
       <br><br>
@@ -485,53 +625,53 @@ class AIChatbot {
       <br>• 🗺️ Navigating the website
       <br><br>
       Try asking me something like "Tell me about the projects" or "How can I contact Ankit?" 😊`;
-    }
+}
   }
 
-  formatMessage(text) {
-    // Convert markdown-style formatting to HTML
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>');
-  }
+formatMessage(text) {
+  // Convert markdown-style formatting to HTML
+  return text
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>');
+}
 
-  escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
+escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
 
-  scrollToBottom() {
-    const messagesContainer = document.getElementById('chat-messages');
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-  }
+scrollToBottom() {
+  const messagesContainer = document.getElementById('chat-messages');
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
 
-  saveChatHistory() {
-    try {
-      const history = this.messages.slice(-20); // Keep last 20 messages
-      localStorage.setItem('chatHistory', JSON.stringify(history));
-    } catch (e) {
-      console.warn('Could not save chat history');
-    }
+saveChatHistory() {
+  try {
+    const history = this.messages.slice(-20); // Keep last 20 messages
+    localStorage.setItem('chatHistory', JSON.stringify(history));
+  } catch (e) {
+    console.warn('Could not save chat history');
   }
+}
 
-  loadChatHistory() {
-    try {
-      const history = localStorage.getItem('chatHistory');
-      if (history) {
-        const messages = JSON.parse(history);
-        // Don't reload welcome message if history exists
-        if (messages.length > 0) {
-          document.getElementById('chat-messages').innerHTML = '';
-          messages.forEach(msg => {
-            this.addMessage(msg.type, msg.text);
-          });
-        }
+loadChatHistory() {
+  try {
+    const history = localStorage.getItem('chatHistory');
+    if (history) {
+      const messages = JSON.parse(history);
+      // Don't reload welcome message if history exists
+      if (messages.length > 0) {
+        document.getElementById('chat-messages').innerHTML = '';
+        messages.forEach(msg => {
+          this.addMessage(msg.type, msg.text);
+        });
       }
-    } catch (e) {
-      console.warn('Could not load chat history');
     }
+  } catch (e) {
+    console.warn('Could not load chat history');
   }
+}
 }
 
 // Initialize chatbot when DOM is ready
@@ -550,66 +690,72 @@ const chatStyles = `
   position: fixed;
   top: 590px;
   right: 30px;
-  width: 60px;
-  height: 60px;
+  width: 65px;
+  height: 65px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #00d4ff, #007a99);
-  border: none;
+  background: radial-gradient(circle at 30% 30%, #00ffff, #007a99);
+  border: 2px solid rgba(0, 255, 255, 0.4);
   cursor: pointer;
-  box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6);
   z-index: 9998;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 28px;
   color: white;
-  transition: all 0.3s ease;
-  animation: pulse-chat 2s infinite;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulse-ai-core 2.5s infinite alternate;
 }
 
 .chat-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.7);
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 0 0 40px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.8);
 }
 
 .chat-toggle.active {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+  border-color: rgba(255, 77, 77, 0.4);
+  animation: none;
+  box-shadow: 0 0 30px rgba(255, 77, 77, 0.6);
 }
 
 .chat-badge {
   position: absolute;
-  top: -5px;
-  right: -5px;
-  background: #e74c3c;
+  top: -8px;
+  right: -8px;
+  background: var(--gradient-2);
   color: white;
-  font-size: 10px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  font-weight: 600;
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(243, 156, 18, 0.6);
 }
 
-@keyframes pulse-chat {
-  0%, 100% { box-shadow: 0 5px 20px rgba(0, 212, 255, 0.5); }
-  50% { box-shadow: 0 5px 30px rgba(0, 212, 255, 0.8); }
+@keyframes pulse-ai-core {
+  0% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6); transform: scale(1); }
+  100% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.8); transform: scale(1.05); }
 }
 
 .chat-window {
   position: fixed;
   bottom: 100px;
   right: 30px;
-  width: 380px;
+  width: 400px;
   max-width: calc(100vw - 40px);
   height: 600px;
   max-height: calc(100vh - 120px);
-  background: var(--bg-card);
+  background: rgba(15, 15, 15, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.1);
   z-index: 9997;
   display: none;
   flex-direction: column;
   overflow: hidden;
-  border: 2px solid var(--primary-color);
-  animation: slideUp 0.3s ease;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .chat-window.open {
@@ -628,7 +774,8 @@ const chatStyles = `
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #00d4ff, #007a99);
+  background: rgba(0, 212, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
   padding: 20px;
   color: white;
   display: flex;
@@ -643,14 +790,16 @@ const chatStyles = `
 }
 
 .chat-avatar {
-  width: 40px;
-  height: 40px;
-  background: white;
+  width: 45px;
+  height: 45px;
+  background: rgba(0, 212, 255, 0.2);
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
 }
 
 .chat-header h4 {
@@ -734,15 +883,18 @@ const chatStyles = `
 }
 
 .bot-message .message-text {
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(0, 212, 255, 0.15);
+  border: 1px solid rgba(0, 212, 255, 0.3);
   color: var(--text-primary);
   border-bottom-left-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .user-message .message-text {
-  background: var(--primary-color);
+  background: var(--gradient-1);
   color: white;
   border-bottom-right-radius: 5px;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
 }
 
 .message-time {
