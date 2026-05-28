@@ -546,7 +546,7 @@ class AIChatbot {
     // Can you play games? 
     else if (msg.includes('play') || msg.includes('game')) {
       return `Yes, I can play games! 😊
-      <br><br>
+      <br><br>https://spacekit.onrender.com/
       This website uses JavaScript which supports global communication, but here are some specific games I can assist you with:
       <br>1• Tic-Tac-Toe 🎯
       <br>
@@ -555,7 +555,7 @@ class AIChatbot {
       <br></br>
       <br>2• Space Shooter 🚀
       <br>
-      <a href="https://space-shooter-1l7o.onrender.com/">Space Shooter! 🚀</a>`
+      <a href="https://spacekit.onrender.com/">Space Shooter! 🚀</a>`
     }
     
 

@@ -157,18 +157,7 @@ function scrollToTop() {
   });
 }
 
-// Show/hide back to top button
-window.addEventListener('scroll', () => {
-  const backToTopBtn = document.querySelector('.back-to-top');
-  
-  if (backToTopBtn) {
-    if (window.pageYOffset > 300) {
-      backToTopBtn.classList.add('show');
-    } else {
-      backToTopBtn.classList.remove('show');
-    }
-  }
-});
+// Show/hide back to top button visibility is now handled by the Consolidated Scroll Handler.
 
 // ========== Modern Cursor Trail ==========
 if (window.innerWidth > 1024) {
@@ -266,18 +255,89 @@ if (window.innerWidth > 1024) {
 
 
 
-// ========== Navbar Background on Scroll ==========
-window.addEventListener('scroll', () => {
+// ========== Consolidated High-Performance Scroll Handler ==========
+(function initScrollHandler() {
+  // Cache DOM elements to prevent expensive layout calculation on scroll
   const navbar = document.querySelector('.navbar');
-  
-  if (window.scrollY > 50) {
-    navbar.style.padding = '10px 5%';
-    navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
-  } else {
-    navbar.style.padding = '15px 5%';
-    navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+  const backToTopBtn = document.querySelector('.back-to-top');
+  const progressBar = document.querySelector('.scroll-progress-bar');
+  let sections = [];
+  let navLinks = [];
+
+  // Update sections and links cache
+  function updateDOMCache() {
+    sections = document.querySelectorAll('section[id]');
+    navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
   }
-});
+  
+  window.addEventListener('DOMContentLoaded', updateDOMCache);
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    updateDOMCache();
+  }
+
+  let scrollScheduled = false;
+
+  function handleScroll() {
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // 1. Dynamic Navbar Styling
+    if (navbar) {
+      if (scrollY > 50) {
+        navbar.style.padding = '10px 5%';
+        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
+      } else {
+        navbar.style.padding = '15px 5%';
+        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.3)';
+      }
+    }
+
+    // 2. Back to Top Button Visibility
+    if (backToTopBtn) {
+      if (scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+
+    // 3. Scroll Progress Indicator Update
+    if (progressBar) {
+      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+      progressBar.style.width = `${scrolled}%`;
+    }
+
+    // 4. Active Navigation Link on Scroll
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      const sectionHeight = section.offsetHeight;
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    if (navLinks.length > 0) {
+      navLinks.forEach(link => {
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }
+
+    scrollScheduled = false;
+  }
+
+  // Use passive listener and requestAnimationFrame for 60fps/120fps scrolling
+  window.addEventListener('scroll', () => {
+    if (!scrollScheduled) {
+      requestAnimationFrame(handleScroll);
+      scrollScheduled = true;
+    }
+  }, { passive: true });
+})();
 
 // ========== Project Cards Hover Effect ==========
 document.querySelectorAll('.project-card').forEach(card => {
@@ -384,30 +444,7 @@ function validateForm(formElement) {
   return isValid;
 }
 
-// ========== Active Nav Link on Scroll ==========
-window.addEventListener('scroll', () => {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-menu a[href^="#"]');
-  
-  let current = '';
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    const sectionHeight = section.offsetHeight;
-    
-    if (window.pageYOffset >= sectionTop && 
-        window.pageYOffset < sectionTop + sectionHeight) {
-      current = section.getAttribute('id');
-    }
-  });
-  
-  navLinks.forEach(link => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === `#${current}`) {
-      link.classList.add('active');
-    }
-  });
-});
+// Active navigation link styling updates are now handled by the Consolidated Scroll Handler.
 
 // Add active link style
 const navStyle = document.createElement('style');
@@ -579,3 +616,5 @@ cards.forEach(card => {
         }, 300);
     });
 });
+
+// Scroll progress bar DOM updates are now handled by the Consolidated Scroll Handler.

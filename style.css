@@ -205,7 +205,7 @@ body.light-mode .navbar {
   align-items: center;
   justify-content: center;
   background: var(--gradient-3);
-  background-image: url('image3.avif');
+  background-image: var(--primary-color);
   background-size: cover;
   background-position: center;
   padding: 120px 20px 80px;
@@ -253,20 +253,22 @@ body.light-mode .navbar {
   justify-content: center;
 }
 
-.hero-image img {
-  width: 320px;
-  height: 320px;
+.hero-image-wrapper img {
+  position: relative;
+  z-index: 2;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
-  border: 5px solid var(--primary-color);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.6);
+  border: 4px solid var(--primary-color);
+  box-shadow: 0 0 35px rgba(0, 212, 255, 0.5);
   object-fit: cover;
-  animation: float 3s ease-in-out infinite;
+  animation: float-profile 3.5s ease-in-out infinite;
   transition: var(--transition);
 }
 
-.hero-image img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 60px rgba(0, 212, 255, 0.8);
+.hero-image-wrapper img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 50px rgba(0, 212, 255, 0.7);
 }
 
 @keyframes float {
@@ -603,6 +605,40 @@ body.light-mode .navbar {
   transform: translateY(-10px);
   box-shadow: var(--shadow-hover);
   border-color: var(--primary-color);
+}
+
+.project-image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.project-image-container svg,
+.project-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card:hover .project-image-container svg,
+.project-card:hover .project-image-container img {
+  transform: scale(1.06);
+}
+
+/* Light mode adjustments for the image container */
+body.light-mode .project-image-container {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 240, 240, 0.5));
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .project-icon {
@@ -1360,9 +1396,9 @@ img.loaded {
     font-size: 1.1rem;
   }
 
-  .hero-image img {
-    width: 250px;
-    height: 250px;
+  .hero-image-wrapper img {
+    width: 230px;
+    height: 230px;
   }
 
   .section-title {
@@ -1394,5 +1430,163 @@ img.loaded {
   .btn {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+}
+
+/* ========== Advanced Premium Styles ========== */
+
+/* Custom Glassmorphic Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  border-radius: 5px;
+  border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #007a99, #e67e22);
+}
+
+/* Scroll Progress Bar styling */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.1);
+}
+.scroll-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary-color), #9b59b6, var(--secondary-color));
+  box-shadow: 0 0 10px var(--primary-color), 0 0 20px #9b59b6;
+  transition: width 0.1s ease;
+}
+
+/* Floating Ambient Cosmic Aurora Background Blobs */
+.aurora-blob {
+  position: fixed;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: -2;
+  mix-blend-mode: screen;
+  animation: float-aurora 25s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+body.light-mode .aurora-blob {
+  opacity: 0.03; /* Lower opacity in light mode to prevent washout */
+  mix-blend-mode: multiply;
+  filter: blur(180px);
+}
+.cyan-blob {
+  background: #00d4ff;
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+.orange-blob {
+  background: #f39c12;
+  bottom: -150px;
+  right: -150px;
+  width: 550px;
+  height: 550px;
+  animation-delay: -6s;
+}
+.purple-blob {
+  background: #9b59b6;
+  top: 35%;
+  left: 45%;
+  width: 380px;
+  height: 380px;
+  animation-delay: -12s;
+}
+@keyframes float-aurora {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(120px, 80px) scale(1.12);
+  }
+  66% {
+    transform: translate(-60px, 140px) scale(0.9);
+  }
+}
+
+/* Hero Profile Image wrapper & Spinning HUD Rings */
+.hero-image-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+  height: 370px;
+}
+.tech-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2.5px dashed rgba(0, 212, 255, 0.25);
+  pointer-events: none;
+  z-index: 1;
+}
+.ring-1 {
+  width: 360px;
+  height: 360px;
+  animation: rotate-clockwise 18s linear infinite;
+  border-top-color: var(--primary-color);
+  border-bottom-color: var(--secondary-color);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+}
+.ring-2 {
+  width: 335px;
+  height: 335px;
+  animation: rotate-counter 12s linear infinite;
+  border-left-color: var(--primary-color);
+  border-right-color: var(--accent-color);
+  opacity: 0.6;
+}
+@keyframes rotate-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes rotate-counter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes float-profile {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Responsive adjustments for new elements */
+@media (max-width: 768px) {
+  .hero-image-wrapper {
+    width: 290px;
+    height: 290px;
+  }
+  .tech-ring {
+    border-width: 1.5px;
+  }
+  .ring-1 {
+    width: 280px;
+    height: 280px;
+  }
+  .ring-2 {
+    width: 260px;
+    height: 260px;
   }
 }

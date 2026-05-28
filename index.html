@@ -40,6 +40,16 @@
 </head>
 
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
+
+  <!-- Cosmic Aurora Background Blobs -->
+  <div class="aurora-blob cyan-blob"></div>
+  <div class="aurora-blob orange-blob"></div>
+  <div class="aurora-blob purple-blob"></div>
+
   <!-- Particle Background -->
   <canvas id="particles-canvas"></canvas>
 
@@ -72,7 +82,11 @@
     <div class="container hero-flex fade-in">
       <!-- Left side: Photo -->
       <div class="hero-image">
-        <img src="ankit.jpeg" alt="Ankit Kumar - AI Developer" loading="lazy">
+        <div class="hero-image-wrapper">
+          <div class="tech-ring ring-1"></div>
+          <div class="tech-ring ring-2"></div>
+          <img src="ankit.jpeg" alt="Ankit Kumar - AI Developer" loading="lazy">
+        </div>
       </div>
 
       <!-- Right side: Text -->
@@ -248,7 +262,65 @@
 
         <!-- Project 1 -->
         <div class="project-card">
-          <div class="project-icon">🏅</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="olympic-project-svg">
+              <defs>
+                <linearGradient id="ol-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#050a12" />
+                  <stop offset="100%" stop-color="#0f2038" />
+                </linearGradient>
+                <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffe066" />
+                  <stop offset="100%" stop-color="#f39c12" />
+                </linearGradient>
+                <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#005b7f" />
+                </linearGradient>
+                <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ol-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="300" y1="0" x2="300" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="500" y1="0" x2="500" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Bar Chart Visual -->
+              <g fill="rgba(0, 212, 255, 0.15)" stroke="#00d4ff" stroke-width="2">
+                <rect x="150" y="280" width="40" height="100" rx="4" />
+                <rect x="220" y="220" width="40" height="160" rx="4" />
+                <rect x="290" y="150" width="40" height="230" rx="4" fill="rgba(0, 212, 255, 0.3)" />
+                <rect x="360" y="100" width="40" height="280" rx="4" fill="rgba(243, 156, 18, 0.3)" stroke="#f39c12" />
+              </g>
+              <!-- Gold Medal Graphic -->
+              <g transform="translate(560, 200)" filter="url(#glow-gold)">
+                <!-- Ribbon -->
+                <path d="M -30 -100 L 0 -40 L 30 -100 Z" fill="#e74c3c" />
+                <path d="M -15 -100 L 0 -40 L 15 -100 Z" fill="#ffffff" />
+                <!-- Medal -->
+                <circle cx="0" cy="0" r="50" fill="url(#gold-grad)" stroke="#fff" stroke-width="2" />
+                <circle cx="0" cy="0" r="40" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 2" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="24" fill="#fff" text-anchor="middle">1st</text>
+                <!-- Laurels -->
+                <path d="M -25 10 Q -35 -10 -20 -25" fill="none" stroke="#fff" stroke-width="2" />
+                <path d="M 25 10 Q 35 -10 20 -25" fill="none" stroke="#fff" stroke-width="2" />
+              </g>
+              <!-- Title Text overlay -->
+              <text x="50" y="80" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff">OLYMPIC DATA</text>
+              <text x="50" y="115" font-family="'Poppins', sans-serif" font-weight="600" font-size="16" fill="#00d4ff">ANALYSIS DASHBOARD</text>
+            </svg>
+          </div>
           <h3>Olympic Data Dashboard</h3>
           <p>Interactive dashboard with data visualization & ML models for analyzing Olympic data trends.</p>
           <div class="tech-stack">
@@ -271,7 +343,71 @@
 
         <!-- Project 2 -->
         <div class="project-card">
-          <div class="project-icon">📧</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="spam-project-svg">
+              <defs>
+                <linearGradient id="spam-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0b0505" />
+                  <stop offset="100%" stop-color="#1e0c0c" />
+                </linearGradient>
+                <linearGradient id="red-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff4d4d" />
+                  <stop offset="100%" stop-color="#b30000" />
+                </linearGradient>
+                <linearGradient id="green-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2ecc71" />
+                  <stop offset="100%" stop-color="#27ae60" />
+                </linearGradient>
+                <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#spam-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Left Side: Red Spam Card -->
+              <g transform="translate(120, 150)">
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(255, 77, 77, 0.05)" />
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 10, 10, 0.85)" stroke="url(#red-glow)" stroke-width="2" filter="url(#glow-red)" />
+                <path d="M 30 40 L 110 90 L 190 40" fill="none" stroke="url(#red-glow)" stroke-width="2" />
+                <rect x="30" y="30" width="160" height="90" rx="4" fill="none" stroke="url(#red-glow)" stroke-width="2" />
+                <circle cx="110" cy="110" r="18" fill="#ff4d4d" />
+                <text x="110" y="115" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff" text-anchor="middle">SPAM</text>
+              </g>
+              <!-- Center: Scanning / Classification divider -->
+              <g transform="translate(400, 225)">
+                <circle cx="0" cy="0" r="45" fill="rgba(0,0,0,0.5)" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
+                <path d="M -20 -15 L 20 15 M 20 -15 L -20 15" stroke="#ffe066" stroke-width="3" stroke-linecap="round" />
+                <text x="0" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="10" fill="#ffe066" text-anchor="middle">CLASSIFIED</text>
+              </g>
+              <!-- Right Side: Green Ham Card -->
+              <g transform="translate(460, 150)">
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(46, 204, 113, 0.05)" />
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(10, 15, 10, 0.85)" stroke="url(#green-glow)" stroke-width="2" filter="url(#glow-green)" />
+                <path d="M 30 40 L 110 90 L 190 40" fill="none" stroke="url(#green-glow)" stroke-width="2" />
+                <rect x="30" y="30" width="160" height="90" rx="4" fill="none" stroke="url(#green-glow)" stroke-width="2" />
+                <circle cx="110" cy="110" r="18" fill="#2ecc71" />
+                <path d="M 102 110 L 107 115 L 118 104" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+              </g>
+            </svg>
+          </div>
           <h3>Spam Classifier AI</h3>
           <p>NLP model to classify spam vs. ham messages using machine learning algorithms.</p>
           <div class="tech-stack">
@@ -296,7 +432,47 @@
 
         <!-- Project 3 -->
         <div class="project-card">
-          <div class="project-icon">💻</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="laptop-project-svg">
+              <defs>
+                <linearGradient id="laptop-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0715" />
+                  <stop offset="100%" stop-color="#140d2d" />
+                </linearGradient>
+                <linearGradient id="purple-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#00d4ff" />
+                </linearGradient>
+                <filter id="glow-pc" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#laptop-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Floating Laptop wireframe -->
+              <g transform="translate(250, 110)" filter="url(#glow-pc)">
+                <!-- Screen -->
+                <rect x="20" y="20" width="260" height="160" rx="10" fill="rgba(15,10,35,0.85)" stroke="url(#purple-cyan)" stroke-width="2" />
+                <!-- Keyboard Base -->
+                <path d="M 0 180 L 300 180 L 320 210 L -20 210 Z" fill="rgba(15,10,35,0.95)" stroke="url(#purple-cyan)" stroke-width="2" />
+                <!-- Trackpad -->
+                <rect x="110" y="190" width="80" height="15" rx="3" fill="none" stroke="url(#purple-cyan)" stroke-width="1" />
+                <!-- Price tag prediction visual on screen -->
+                <path d="M 40 140 L 90 90 L 140 120 L 200 60 L 250 80" fill="none" stroke="#ffe066" stroke-width="3" />
+                <circle cx="200" cy="60" r="5" fill="#ffe066" />
+                <text x="130" y="50" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#00d4ff">PREDICTED: $1,299</text>
+              </g>
+            </svg>
+          </div>
           <h3>Laptop Price Predictor</h3>
           <p>Kaggle dataset-based Price Predictor using ML regression models.</p>
           <div class="tech-stack">
@@ -320,7 +496,51 @@
 
         <!-- Project 4 -->
         <div class="project-card">
-          <div class="project-icon">🏏</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="ipl-project-svg">
+              <defs>
+                <linearGradient id="ipl-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#050a1b" />
+                  <stop offset="100%" stop-color="#0b1638" />
+                </linearGradient>
+                <linearGradient id="stadium-lights" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#00d4ff" />
+                </linearGradient>
+                <filter id="glow-gold2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ipl-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Cricket Bat & Ball -->
+              <g transform="translate(240, 220) rotate(-35)" filter="url(#glow-gold2)">
+                <!-- Bat -->
+                <rect x="-10" y="-120" width="20" height="180" rx="3" fill="#ffe066" stroke="#f39c12" stroke-width="2" />
+                <rect x="-6" y="-180" width="12" height="60" rx="2" fill="#fff" stroke="#f39c12" stroke-width="1.5" />
+              </g>
+              <!-- Cricket Ball -->
+              <circle cx="340" cy="220" r="24" fill="#e74c3c" stroke="#fff" stroke-width="2" filter="url(#glow-gold2)" />
+              <path d="M 326 202 Q 340 220 354 202" fill="none" stroke="#fff" stroke-dasharray="2 2" stroke-width="2" />
+              <path d="M 326 238 Q 340 220 354 238" fill="none" stroke="#fff" stroke-dasharray="2 2" stroke-width="2" />
+              <!-- Win Probability Gauge -->
+              <g transform="translate(560, 220)">
+                <circle cx="0" cy="0" r="70" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10" />
+                <!-- Arc for 78% -->
+                <path d="M 0 -70 A 70 70 0 1 1 -52 46" fill="none" stroke="url(#stadium-lights)" stroke-width="10" stroke-linecap="round" filter="url(#glow-gold2)" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff" text-anchor="middle">78%</text>
+                <text x="0" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="10" fill="#00d4ff" letter-spacing="1" text-anchor="middle">WIN PROBABILITY</text>
+              </g>
+            </svg>
+          </div>
           <h3>IPL Win Predictor</h3>
           <p>IPL Win Predictor using ML (Logistic Regression) to predict match outcomes.</p>
           <div class="tech-stack">
@@ -344,7 +564,56 @@
 
         <!-- Project 5 -->
         <div class="project-card">
-          <div class="project-icon">📚</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="book-project-svg">
+              <defs>
+                <linearGradient id="book-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0b12" />
+                  <stop offset="100%" stop-color="#141c2d" />
+                </linearGradient>
+                <linearGradient id="orange-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#e67e22" />
+                </linearGradient>
+                <filter id="glow-book" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#book-bg)" />
+              <!-- Background grid lines -->
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- 3D Stack of books -->
+              <g transform="translate(180, 150)" filter="url(#glow-book)">
+                <!-- Book 3 (Bottom) -->
+                <path d="M 0 100 L 180 80 L 220 100 L 40 120 Z" fill="rgba(155, 89, 182, 0.85)" stroke="#9b59b6" stroke-width="1.5" />
+                <rect x="180" y="80" width="40" height="20" fill="#fff" />
+                <!-- Book 2 (Middle) -->
+                <path d="M 10 70 L 190 50 L 230 70 L 50 90 Z" fill="rgba(0, 212, 255, 0.85)" stroke="#00d4ff" stroke-width="1.5" />
+                <rect x="190" y="50" width="40" height="20" fill="#fff" />
+                <!-- Book 1 (Top) -->
+                <path d="M 20 40 L 200 20 L 240 40 L 60 60 Z" fill="url(#orange-glow)" stroke="#f39c12" stroke-width="1.5" />
+                <rect x="200" y="20" width="40" height="20" fill="#fff" />
+              </g>
+              <!-- Recommendation arrows/nodes -->
+              <g transform="translate(560, 220)" filter="url(#glow-book)">
+                <circle cx="0" cy="0" r="50" fill="rgba(0, 212, 255, 0.05)" stroke="#00d4ff" stroke-width="2" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#00d4ff" text-anchor="middle">RECOMMEND</text>
+                <!-- Outer Recommended Nodes -->
+                <circle cx="100" cy="-60" r="12" fill="#f39c12" />
+                <line x1="35" y1="-21" x2="88" y2="-52" stroke="#f39c12" stroke-width="2" stroke-dasharray="3 3" />
+                <circle cx="110" cy="20" r="12" fill="#9b59b6" />
+                <line x1="50" y1="7" x2="98" y2="17" stroke="#9b59b6" stroke-width="2" stroke-dasharray="3 3" />
+              </g>
+            </svg>
+          </div>
           <h3>Book Recommendation System</h3>
           <p>Book Recommendation System using collaborative filtering and ML.</p>
           <div class="tech-stack">
@@ -368,7 +637,53 @@
 
         <!-- Project 6 -->
         <div class="project-card">
-          <div class="project-icon">🎬</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="movie-project-svg">
+              <defs>
+                <linearGradient id="movie-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0101" />
+                  <stop offset="100%" stop-color="#240505" />
+                </linearGradient>
+                <linearGradient id="cinema-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#e74c3c" />
+                  <stop offset="100%" stop-color="#962d22" />
+                </linearGradient>
+                <filter id="glow-red2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#movie-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Clapperboard Graphic -->
+              <g transform="translate(180, 120)" filter="url(#glow-red2)">
+                <!-- Lower Board -->
+                <rect x="0" y="60" width="220" height="120" rx="8" fill="rgba(20,20,20,0.95)" stroke="url(#cinema-glow)" stroke-width="2.5" />
+                <!-- Upper Clapper (Open) -->
+                <g transform="rotate(-20, 0, 60)">
+                  <rect x="0" y="20" width="220" height="36" fill="rgba(20,20,20,0.95)" stroke="url(#cinema-glow)" stroke-width="2.5" />
+                  <!-- Diagonal stripes -->
+                  <path d="M 20 20 L 40 56 M 60 20 L 80 56 M 100 20 L 120 56 M 140 20 L 160 56 M 180 20 L 200 56" stroke="#fff" stroke-width="6" />
+                </g>
+                <circle cx="110" cy="120" r="28" fill="#e74c3c" />
+                <!-- Play symbol inside clapperboard -->
+                <path d="M 102 106 L 124 120 L 102 134 Z" fill="#fff" />
+              </g>
+              <!-- Connected Recommendation Movies (Right side) -->
+              <g transform="translate(480, 180)">
+                <rect x="0" y="0" width="200" height="120" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+                <text x="20" y="40" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff">RECOMMENDED</text>
+                <text x="20" y="70" font-family="'Poppins', sans-serif" font-weight="500" font-size="12" fill="#00d4ff">★ Interstellar (98%)</text>
+                <text x="20" y="95" font-family="'Poppins', sans-serif" font-weight="500" font-size="12" fill="#00d4ff">★ Inception (94%)</text>
+              </g>
+            </svg>
+          </div>
           <h3>Movie Recommendation System</h3>
           <p>Movie Recommendation System using content-based filtering and ML.</p>
           <div class="tech-stack">
@@ -392,7 +707,54 @@
 
         <!-- Project 7 -->
         <div class="project-card">
-          <div class="project-icon">👨‍💻</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="job-project-svg">
+              <defs>
+                <linearGradient id="job-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#040b08" />
+                  <stop offset="100%" stop-color="#0a1d14" />
+                </linearGradient>
+                <linearGradient id="green-glow2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2ecc71" />
+                  <stop offset="100%" stop-color="#1abc9c" />
+                </linearGradient>
+                <filter id="glow-green2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#job-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Left side: Candidate Resume Concept -->
+              <g transform="translate(100, 130)">
+                <rect x="0" y="0" width="220" height="180" rx="16" fill="rgba(15, 25, 20, 0.85)" stroke="url(#green-glow2)" stroke-width="2" filter="url(#glow-green2)" />
+                <circle cx="50" cy="50" r="24" fill="rgba(46, 204, 113, 0.15)" />
+                <!-- Abstract avatar lines -->
+                <path d="M 40 85 Q 50 75 60 85" stroke="url(#green-glow2)" stroke-width="2.5" fill="none" />
+                <circle cx="50" cy="48" r="8" fill="none" stroke="url(#green-glow2)" stroke-width="2.5" />
+                <!-- Resume textual mock lines -->
+                <line x1="90" y1="40" x2="190" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
+                <line x1="90" y1="55" x2="170" y2="55" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
+                <line x1="30" y1="105" x2="190" y2="105" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+                <line x1="30" y1="125" x2="150" y2="125" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+                <line x1="30" y1="145" x2="180" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+              </g>
+              <!-- Connected Job Cards with matching scores -->
+              <g transform="translate(460, 130)" filter="url(#glow-green2)">
+                <rect x="0" y="0" width="240" height="180" rx="16" fill="rgba(15, 25, 20, 0.85)" stroke="url(#green-glow2)" stroke-width="2" />
+                <text x="25" y="40" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff">RECOMMENDED JOBS</text>
+                <text x="25" y="75" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ AI Developer - 95% Match</text>
+                <text x="25" y="110" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ ML Engineer - 91% Match</text>
+                <text x="25" y="145" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ Data Scientist - 88% Match</text>
+              </g>
+            </svg>
+          </div>
           <h3>AI Job Recommendation System</h3>
           <p>AI Job Recommendation System using Random Forest algorithm.</p>
           <div class="tech-stack">
@@ -415,7 +777,216 @@
 
         <!-- Project 8 -->
         <div class="project-card">
-          <div class="project-icon">🌐</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="quora-project-svg">
+              <defs>
+                <!-- Background Gradient -->
+                <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0b10" />
+                  <stop offset="100%" stop-color="#141724" />
+                </linearGradient>
+                
+                <!-- Neon Gradients -->
+                <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#007a99" />
+                </linearGradient>
+                <linearGradient id="orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#d35400" />
+                </linearGradient>
+                <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#8e44ad" />
+                </linearGradient>
+
+                <!-- Glowing Filters -->
+                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-badge" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Background Rect -->
+              <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+              <!-- Abstract Tech Grid Lines -->
+              <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="400" x2="800" y2="400" stroke="rgba(255,255,255,0.02)" />
+                
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="200" y1="0" x2="200" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="300" y1="0" x2="300" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="500" y1="0" x2="500" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="600" y1="0" x2="600" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+
+              <!-- Neural Network Connections Background -->
+              <g stroke="rgba(0, 212, 255, 0.1)" stroke-width="1.5" fill="none">
+                <path d="M 150 150 Q 250 80 400 150" stroke-dasharray="5 5" />
+                <path d="M 400 150 Q 550 80 650 150" stroke-dasharray="5 5" />
+                <path d="M 150 300 Q 250 370 400 300" stroke-dasharray="5 5" />
+                <path d="M 400 300 Q 550 370 650 300" stroke-dasharray="5 5" />
+              </g>
+
+              <!-- Dynamic Connection Line between the Questions -->
+              <path d="M 280 225 C 340 180, 460 180, 520 225" fill="none" stroke="url(#cyan-grad)" stroke-width="3" filter="url(#glow-cyan)" />
+              <path d="M 280 225 C 340 270, 460 270, 520 225" fill="none" stroke="url(#orange-grad)" stroke-width="3" filter="url(#glow-orange)" />
+              
+              <!-- Neural Nodes on the connection curve -->
+              <circle cx="340" cy="205" r="4" fill="#00d4ff" filter="url(#glow-cyan)" />
+              <circle cx="460" cy="205" r="4" fill="#00d4ff" filter="url(#glow-cyan)" />
+              <circle cx="340" cy="245" r="4" fill="#f39c12" filter="url(#glow-orange)" />
+              <circle cx="460" cy="245" r="4" fill="#f39c12" filter="url(#glow-orange)" />
+
+              <!-- Question 1 Bubble (Left Side) -->
+              <g transform="translate(40, 150)">
+                <!-- Glow behind card -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(0, 212, 255, 0.03)" />
+                <!-- Main Card Body -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 15, 20, 0.85)" stroke="url(#cyan-grad)" stroke-width="2" filter="url(#glow-cyan)" />
+                
+                <!-- User/Question Header -->
+                <circle cx="28" cy="28" r="12" fill="rgba(0, 212, 255, 0.2)" />
+                <text x="28" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#00d4ff" text-anchor="middle">Q1</text>
+                <text x="48" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="11" fill="rgba(255,255,255,0.7)">User_A</text>
+                
+                <!-- Separator -->
+                <line x1="15" y1="52" x2="205" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                
+                <!-- Question Text -->
+                <text x="15" y="78" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">How do I learn</text>
+                <text x="15" y="98" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">Machine Learning</text>
+                <text x="15" y="118" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">effectively?</text>
+              </g>
+
+              <!-- Question 2 Bubble (Right Side) -->
+              <g transform="translate(540, 150)">
+                <!-- Glow behind card -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(243, 156, 18, 0.03)" />
+                <!-- Main Card Body -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 15, 20, 0.85)" stroke="url(#orange-grad)" stroke-width="2" filter="url(#glow-orange)" />
+                
+                <!-- User/Question Header -->
+                <circle cx="28" cy="28" r="12" fill="rgba(243, 156, 18, 0.2)" />
+                <text x="28" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#f39c12" text-anchor="middle">Q2</text>
+                <text x="48" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="11" fill="rgba(255,255,255,0.7)">User_B</text>
+                
+                <!-- Separator -->
+                <line x1="15" y1="52" x2="205" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                
+                <!-- Question Text -->
+                <text x="15" y="78" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">What is the best way</text>
+                <text x="15" y="98" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">to study ML and NLP</text>
+                <text x="15" y="118" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">efficiently?</text>
+              </g>
+
+              <!-- Similarity/NLP Match Badge in the Center -->
+              <g transform="translate(400, 225)">
+                <!-- Outer Glow Circle -->
+                <circle cx="0" cy="0" r="54" fill="rgba(15, 15, 20, 0.9)" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                
+                <!-- Dashed Ring -->
+                <circle cx="0" cy="0" r="46" fill="none" stroke="#9b59b6" stroke-width="2.5" stroke-dasharray="6 4" filter="url(#glow-badge)" />
+                
+                <!-- Glowing Status Ring -->
+                <circle cx="0" cy="0" r="38" fill="rgba(0, 212, 255, 0.05)" />
+                
+                <!-- Match Percentage Text -->
+                <text x="0" y="-10" font-family="'Poppins', sans-serif" font-weight="bold" font-size="9" fill="rgba(255, 255, 255, 0.6)" letter-spacing="1" text-anchor="middle">SIMILARITY</text>
+                <text x="0" y="10" font-family="'Poppins', sans-serif" font-weight="bold" font-size="18" fill="#00d4ff" filter="url(#glow-cyan)" text-anchor="middle">97.8%</text>
+                <text x="0" y="24" font-family="'Poppins', sans-serif" font-weight="800" font-size="8" fill="#5cb85c" letter-spacing="0.5" text-anchor="middle">DUPLICATE</text>
+              </g>
+            </svg>
+          </div>
+          <h3>Quora Question Pair</h3>
+          <p>Quora Question Pair classification using NLP techniques.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Machine Learning</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/eddiebrock911/Quora-Question-pair" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="web-project-svg">
+              <defs>
+                <linearGradient id="web-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#060515" />
+                  <stop offset="100%" stop-color="#120c29" />
+                </linearGradient>
+                <linearGradient id="pink-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ec4899" />
+                  <stop offset="100%" stop-color="#8b5cf6" />
+                </linearGradient>
+                <filter id="glow-pink" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#web-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Wireframe Web Window -->
+              <g transform="translate(180, 110)" filter="url(#glow-pink)">
+                <rect x="0" y="0" width="440" height="250" rx="16" fill="rgba(15,10,35,0.85)" stroke="url(#pink-purple)" stroke-width="2" />
+                <!-- Web Header Bar -->
+                <rect x="0" y="0" width="440" height="40" rx="16" fill="rgba(255,255,255,0.05)" />
+                <circle cx="20" cy="20" r="6" fill="#ef4444" />
+                <circle cx="40" cy="20" r="6" fill="#f59e0b" />
+                <circle cx="60" cy="20" r="6" fill="#10b981" />
+                <!-- Text mocks / layouts inside wireframe -->
+                <rect x="30" y="65" width="200" height="25" rx="5" fill="rgba(255,255,255,0.1)" />
+                <rect x="30" y="105" width="380" height="15" rx="3" fill="rgba(255,255,255,0.05)" />
+                <rect x="30" y="130" width="280" height="15" rx="3" fill="rgba(255,255,255,0.05)" />
+                <!-- Glassmorphic Grid blocks representing modern cards -->
+                <rect x="30" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+                <rect x="165" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+                <rect x="300" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+              </g>
+            </svg>
+          </div>
           <h3>Build landing page</h3>
           <p>Build a responsive landing page using modern web technologies.</p>
           <div class="tech-stack">
@@ -435,9 +1006,68 @@
           </div>
         </div>
 
-        <!-- Project 9 -->
+        <!-- Project 10 -->
         <div class="project-card">
-          <div class="project-icon">🎮</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="ttt-project-svg">
+              <defs>
+                <linearGradient id="ttt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#080c14" />
+                  <stop offset="100%" stop-color="#141c2c" />
+                </linearGradient>
+                <linearGradient id="cyan-glow-g" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#0088cc" />
+                </linearGradient>
+                <linearGradient id="pink-glow-g" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff007f" />
+                  <stop offset="100%" stop-color="#b30059" />
+                </linearGradient>
+                <filter id="glow-x" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-o" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ttt-bg)" />
+              
+              <!-- Game Grid lines -->
+              <g stroke="rgba(255, 255, 255, 0.1)" stroke-width="4" stroke-linecap="round">
+                <line x1="330" y1="80" x2="330" y2="370" />
+                <line x1="470" y1="80" x2="470" y2="370" />
+                <line x1="200" y1="170" x2="600" y2="170" />
+                <line x1="200" y1="280" x2="600" y2="280" />
+              </g>
+              
+              <!-- X Symbols (Winning state for X along the diagonal) -->
+              <!-- Top Left X -->
+              <path d="M 235 95 L 295 155 M 295 95 L 235 155" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              <!-- Center X -->
+              <path d="M 370 195 L 430 255 M 430 195 L 370 255" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              <!-- Bottom Right X -->
+              <path d="M 505 295 L 565 355 M 565 295 L 505 355" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              
+              <!-- O Symbols -->
+              <!-- Top Right O -->
+              <circle cx="535" cy="125" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              <!-- Center Left O -->
+              <circle cx="265" cy="225" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              <!-- Bottom Left O -->
+              <circle cx="265" cy="325" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              
+              <!-- Winning strike-through diagonal line (Pulsing neon line) -->
+              <line x1="210" y1="70" x2="590" y2="380" stroke="#ffe066" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+            </svg>
+          </div>
           <h3>Tic Tac Toe Game</h3>
           <p>Fun Tic Tac Toe game built with JavaScript featuring AI opponent.</p>
           <div class="tech-stack">
@@ -455,9 +1085,60 @@
           </div>
         </div>
 
-        <!-- Project 10 -->
+        <!-- Project 11 -->
         <div class="project-card">
-          <div class="project-icon">🚀</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="space-project-svg">
+              <defs>
+                <linearGradient id="space-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#020108" />
+                  <stop offset="100%" stop-color="#0a0522" />
+                </linearGradient>
+                <linearGradient id="laser-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#39ff14" />
+                  <stop offset="100%" stop-color="#198a08" />
+                </linearGradient>
+                <filter id="glow-laser" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#space-bg)" />
+              <!-- Starfield particles -->
+              <g fill="#fff">
+                <circle cx="80" cy="60" r="1.5" opacity="0.8" />
+                <circle cx="150" cy="180" r="1" opacity="0.5" />
+                <circle cx="280" cy="90" r="2" opacity="0.9" />
+                <circle cx="430" cy="240" r="1" opacity="0.6" />
+                <circle cx="560" cy="110" r="1.5" opacity="0.7" />
+                <circle cx="680" cy="310" r="1.5" opacity="0.4" />
+                <circle cx="720" cy="150" r="2.5" opacity="0.9" />
+                <circle cx="310" cy="340" r="1" opacity="0.8" />
+                <circle cx="90" cy="290" r="2" opacity="0.5" />
+              </g>
+              <!-- Player Space Ship -->
+              <g transform="translate(400, 360)">
+                <path d="M 0 -45 L -25 15 L -10 10 L 0 25 L 10 10 L 25 15 Z" fill="#00d4ff" stroke="#fff" stroke-width="1.5" />
+                <circle cx="0" cy="-5" r="8" fill="#fff" />
+                <!-- Jet Flame -->
+                <path d="M -10 25 L 0 50 L 10 25 Z" fill="#ff4d4d" />
+              </g>
+              <!-- Laser Beams -->
+              <line x1="390" y1="310" x2="390" y2="180" stroke="url(#laser-grad)" stroke-width="4" stroke-linecap="round" filter="url(#glow-laser)" />
+              <line x1="410" y1="310" x2="410" y2="180" stroke="url(#laser-grad)" stroke-width="4" stroke-linecap="round" filter="url(#glow-laser)" />
+              <!-- Enemy Space Ship / Asteroids -->
+              <g transform="translate(400, 100)">
+                <path d="M 0 35 L -35 -10 L -15 -5 L 0 -20 L 15 -5 L 35 -10 Z" fill="#e74c3c" stroke="#fff" stroke-width="1.5" />
+                <circle cx="-10" cy="0" r="3" fill="#fff" />
+                <circle cx="10" cy="0" r="3" fill="#fff" />
+                <!-- Shield warning grid -->
+                <circle cx="0" cy="5" r="45" fill="none" stroke="rgba(231,76,60,0.3)" stroke-width="1.5" stroke-dasharray="4 2" />
+              </g>
+            </svg>
+          </div>
           <h3>Space Shooter Game</h3>
           <p>Fun Space Shooter game built with JavaScript and HTML5 Canvas.</p>
           <div class="tech-stack">
@@ -475,9 +1156,49 @@
           </div>
         </div>
 
-        <!-- Project 11 -->
+        <!-- Project 12 -->
         <div class="project-card">
-          <div class="project-icon">🌐</div>
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="custom-app-svg">
+              <defs>
+                <linearGradient id="custom-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#03040c" />
+                  <stop offset="100%" stop-color="#0c0e21" />
+                </linearGradient>
+                <linearGradient id="neon-spiral" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="50%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#ff007f" />
+                </linearGradient>
+                <filter id="glow-spiral" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#custom-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Sleek High-tech interface visualizer -->
+              <g transform="translate(400, 225)" filter="url(#glow-spiral)">
+                <!-- Rotating core rings -->
+                <circle cx="0" cy="0" r="100" fill="none" stroke="url(#neon-spiral)" stroke-width="2" stroke-dasharray="10 5 2 5" />
+                <circle cx="0" cy="0" r="75" fill="none" stroke="url(#neon-spiral)" stroke-width="1.5" stroke-dasharray="5 15" />
+                <circle cx="0" cy="0" r="50" fill="none" stroke="url(#neon-spiral)" stroke-width="3" stroke-dasharray="40 10" />
+                <!-- Core sphere -->
+                <circle cx="0" cy="0" r="25" fill="rgba(0, 212, 255, 0.15)" stroke="#00d4ff" stroke-width="1.5" />
+                <text x="0" y="5" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">AGI</text>
+              </g>
+              <text x="50" y="80" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff">CUSTOM WEB</text>
+              <text x="50" y="115" font-family="'Poppins', sans-serif" font-weight="600" font-size="16" fill="#00d4ff">APPLICATION LAYER</text>
+            </svg>
+          </div>
           <h3>Custom Web Application</h3>
           <p>Custom web application built with modern technologies and design principles.</p>
           <div class="tech-stack">
