@@ -45,6 +45,22 @@ ankit = {
 
 ---
 
+# 📸 Preview
+
+<p align="center">
+
+<img src="image/Screenshot1.png" width="500">
+
+<img src="image/Screenshot2.png" width="500">
+
+<img src="image/Screenshot3.png" width="500">
+
+<img src="image/Screenshot4.png" width="500">
+
+<img src="image/Screenshot5.png" width="500">
+
+</p>
+
 ## 🛠️ Tech Stack
 
 <div align="center">
