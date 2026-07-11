@@ -1,1047 +1,801 @@
-// ========== AI Chatbot ==========
-class AIChatbot {
-  constructor() {
-    this.isOpen = false;
-    this.messages = [];
-    this.createChatInterface();
-  }
+// ========== Advanced Baby AI Chatbot for AnkitAI Portfolio ==========
+// Drop-in replacement for ai-chatbot.js | Vanilla JS, no backend required
 
-  createChatInterface() {
-    const chatHTML = `
-      <!-- Chat Toggle Button -->
-      <button id="chat-toggle" class="chat-toggle" aria-label="Open Chat">
-        <i class="fas fa-comments"></i>
-        <span class="chat-badge">Baby AI</span>
-      </button>
-      
-      <!-- Chat Window -->
-      <div id="chat-window" class="chat-window">
-        <div class="chat-header">
-          <div class="chat-header-info">
-            <div class="chat-avatar">🤖</div>
-            <div>
-              <h4>Baby AI Assistant</h4>
-              <span class="chat-status">
-                <span class="status-dot"></span> Online
-              </span>
+(function () {
+  'use strict';
+
+  class AdvancedBabyAI {
+    constructor(options = {}) {
+      this.options = {
+        storageKey: 'babyAI.chat.v2',
+        themeKey: 'babyAI.theme',
+        maxHistory: 40,
+        ownerName: 'Ankit Kumar',
+        email: 'ankitkumar823089@gmail.com',
+        github: 'https://github.com/eddiebrock911',
+        linkedin: 'https://www.linkedin.com/in/eddiebrock-364ba537b/',
+        instagram: 'https://www.instagram.com/__ankit._.op_/',
+        kaggle: 'https://www.kaggle.com/ankitkumar8252',
+        ...options
+      };
+
+      this.isOpen = false;
+      this.isMuted = JSON.parse(localStorage.getItem('babyAI.muted') || 'true');
+      this.messages = [];
+      this.context = { lastIntent: null, lastProject: null };
+      this.recognition = null;
+      this.isListening = false;
+
+      this.knowledge = this.createKnowledgeBase();
+      this.createChatInterface();
+      this.attachEventListeners();
+      this.loadChatHistory();
+
+      if (!this.messages.length) this.addWelcomeMessage();
+      this.initVoiceRecognition();
+      window.BabyAI = this;
+    }
+
+    createKnowledgeBase() {
+      return {
+        projects: [
+          {
+            name: 'Olympic Data Dashboard',
+            tags: ['olympic', 'dashboard', 'streamlit', 'data', 'analytics'],
+            desc: 'Interactive dashboard with ML/data visualization for Olympic data trends.',
+            demo: 'https://olympikit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Olympics-analysis-app',
+            stack: ['Python', 'Streamlit', 'ML', 'Pandas', 'Data Visualization']
+          },
+          {
+            name: 'Spam Classifier AI',
+            tags: ['spam', 'classifier', 'nlp', 'email', 'sms'],
+            desc: 'NLP model that classifies messages as spam or ham.',
+            demo: 'https://antispamkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/sms-email-classification-',
+            stack: ['Python', 'NLP', 'Streamlit', 'Pandas', 'NumPy']
+          },
+          {
+            name: 'Laptop Price Predictor',
+            tags: ['laptop', 'price', 'regression', 'predictor'],
+            desc: 'ML regression app for predicting laptop prices from specs.',
+            demo: 'https://laptoprikit-vvle.onrender.com/',
+            code: 'https://github.com/eddiebrock911/laptop-price-predictor-website-',
+            stack: ['Python', 'Regression', 'Pandas', 'NumPy', 'Streamlit']
+          },
+          {
+            name: 'IPL Win Predictor',
+            tags: ['ipl', 'cricket', 'win', 'probability', 'classification'],
+            desc: 'Cricket match win-probability predictor using Logistic Regression.',
+            demo: 'https://iplwinprokit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/IPL-Win-Probability-Predictor-Project',
+            stack: ['Python', 'ML', 'Classification', 'Cricket', 'NumPy']
+          },
+          {
+            name: 'Book Recommendation System',
+            tags: ['book', 'recommendation', 'recommender', 'collaborative'],
+            desc: 'Book recommender using collaborative filtering.',
+            demo: 'https://bookreckit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Books-Recommender-Systems-',
+            stack: ['Python', 'Flask', 'Recommendation', 'Pandas']
+          },
+          {
+            name: 'Movie Recommendation System',
+            tags: ['movie', 'recommendation', 'tmdb', 'content'],
+            desc: 'Content-based movie recommendation system powered by TMDb data.',
+            demo: 'https://movieskit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/movies-recommendation-system-',
+            stack: ['Python', 'Content-Based Filtering', 'TMDb', 'Pandas']
+          },
+          {
+            name: 'AI Job Recommendation System',
+            tags: ['job', 'salary', 'recommendation', 'random forest'],
+            desc: 'AI job recommendation and salary prediction using Random Forest.',
+            demo: 'https://aijobprekit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/AI-job-salary-prediction',
+            stack: ['Python', 'Random Forest', 'Pandas', 'ML']
+          },
+          {
+            name: 'Quora Question Pair',
+            tags: ['question', 'pair', 'nlp', 'classification'],
+            desc: 'Question pair classification for Quora dataset.',
+            demo: 'https://quorakit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Quora-Question-pair',
+            stack: ['Python', 'NLP', 'Scikit-learn', 'Pandas']
+          },
+          {
+            name: 'Tic Tac Toe Game',
+            tags: ['tic', 'toe', 'game', 'javascript'],
+            desc: 'Fun Tic Tac Toe game built in JavaScript with AI opponent.',
+            demo: 'https://tickiton.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe',
+            stack: ['JavaScript', 'HTML5', 'CSS3']
+          },
+          {
+            name: 'Space Shooter Game',
+            tags: ['space', 'shooter', 'game', 'canvas'],
+            desc: 'Space Shooter game built with JavaScript and HTML5 Canvas.',
+            demo: 'https://spacekit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Space-Shooters-Game',
+            stack: ['JavaScript', 'Canvas', 'Game Dev','HTML5', 'CSS3']
+          }
+        ],
+        skills: {
+          languages: ['Python', 'JavaScript', 'SQL'],
+          ai: ['Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Transformers'],
+          web: ['HTML5', 'CSS3', 'Flask', 'Responsive Design'],
+          tools: ['Git & GitHub', 'Pandas', 'NumPy', 'Streamlit', 'Data Visualization']
+        },
+        sections: [
+          { label: 'About', id: 'about', emoji: '👤' },
+          { label: 'Skills', id: 'skills', emoji: '🛠️' },
+          { label: 'Projects', id: 'projects', emoji: '💼' },
+          { label: 'Vision', id: 'vision', emoji: '🚀' },
+          { label: 'Contact', id: 'contact', emoji: '📧' }
+        ]
+      };
+    }
+
+    createChatInterface() {
+      if (document.getElementById('baby-ai-root')) return;
+
+      const root = document.createElement('div');
+      root.id = 'baby-ai-root';
+      root.innerHTML = `
+        <button id="chat-toggle" class="baby-ai-toggle" aria-label="Open Baby AI Chat" title="Ask Baby AI">
+          <span class="orb-ring"></span>
+          <span class="orb-face">🤖</span>
+          <span class="chat-badge">Baby AI</span>
+        </button>
+
+        <section id="chat-window" class="baby-ai-window" aria-live="polite" aria-label="Baby AI Assistant">
+          <header class="baby-ai-header">
+            <div class="baby-ai-title-wrap">
+              <div class="baby-ai-avatar">🤖</div>
+              <div>
+                <h4>Baby AI Assistant</h4>
+                <span class="baby-ai-status"><span class="status-dot"></span> Online • Portfolio Guide</span>
+              </div>
             </div>
+            <div class="baby-ai-actions">
+              <button id="chat-voice-toggle" class="icon-btn" title="Voice reply on/off" aria-label="Toggle voice replies">${this.isMuted ? '🔇' : '🔊'}</button>
+              <button id="chat-clear" class="icon-btn" title="Clear chat" aria-label="Clear chat">🧹</button>
+              <button id="chat-close" class="icon-btn" title="Close" aria-label="Close chat">✕</button>
+            </div>
+          </header>
+
+          <div class="baby-ai-toolbar" id="baby-ai-toolbar">
+            <button class="tool-chip" data-action="nav:projects">💼 Projects</button>
+            <button class="tool-chip" data-action="nav:skills">🛠️ Skills</button>
+            <button class="tool-chip" data-action="contact">📧 Contact</button>
+            <button class="tool-chip" data-action="games">🎮 Games</button>
           </div>
-          <button id="chat-close" class="chat-close" aria-label="Close Chat">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        
-        <div id="chat-messages" class="chat-messages"></div>
-        
-        <div class="chat-suggestions" id="chat-suggestions">
-          <button class="suggestion-btn" data-message="What is your name?">
-            🙋‍♂️ Your Name
-          </button>
-          <button class="suggestion-btn" data-message="Tell me about Ankit's projects">
-            💼 Projects
-          </button>
-          <button class="suggestion-btn" data-message="What are Ankit's skills?">
-            🛠️ Skills
-          </button>
-          <button class="suggestion-btn" data-message="How can I contact Ankit?">
-            📧 Contact
-          </button>
-          <button class="suggestion-btn" data-message="What is Baby AI?">
-            🤖 Baby AI
-          </button>
-        </div>
-        
-        <div class="chat-input-container">
-          <input 
-            id="chat-input" 
-            type="text" 
-            placeholder="Ask me anything..." 
-            autocomplete="off"
-            maxlength="500"
-          >
-          <button id="chat-send" class="chat-send" aria-label="Send Message">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </div>
-        
-        <div class="chat-footer">
-          <small>Powered by Ankit ❤️</small>
-        </div>
-      </div>
-    `;
 
-    const container = document.createElement('div');
-    container.innerHTML = chatHTML;
-    document.body.appendChild(container);
+          <main id="chat-messages" class="baby-ai-messages"></main>
 
-    this.attachEventListeners();
-    this.addWelcomeMessage();
-    this.loadChatHistory();
-  }
+          <div class="baby-ai-suggestions" id="chat-suggestions">
+            <button class="suggestion-btn" data-message="Best project kaunsa hai?">🏆 Best Project</button>
+            <button class="suggestion-btn" data-message="Ankit ke AI ML skills batao">🧠 AI/ML Skills</button>
+            <button class="suggestion-btn" data-message="How can I hire Ankit?">🤝 Hire</button>
+            <button class="suggestion-btn" data-message="Baby AI kya hai?">🤖 Baby AI</button>
+            <button class="suggestion-btn" data-message="Show project links">🔗 Links</button>
+          </div>
 
-  attachEventListeners() {
-    const toggle = document.getElementById('chat-toggle');
-    const close = document.getElementById('chat-close');
-    const send = document.getElementById('chat-send');
-    const input = document.getElementById('chat-input');
-    const suggestions = document.querySelectorAll('.suggestion-btn');
+          <form class="baby-ai-input-row" id="chat-form">
+            <button type="button" id="chat-mic" class="mic-btn" aria-label="Voice input" title="Voice input">🎙️</button>
+            <input id="chat-input" type="text" placeholder="Ask anything... Hindi/English/Hinglish" autocomplete="off" maxlength="500" />
+            <button id="chat-send" class="send-btn" type="submit" aria-label="Send message">➤</button>
+          </form>
 
-    toggle.addEventListener('click', () => this.toggleChat());
-    close.addEventListener('click', () => this.toggleChat());
-    send.addEventListener('click', () => this.sendMessage());
+          <footer class="baby-ai-footer">
+            <span>Powered by Ankit ❤️</span>
+            <button id="chat-export" class="footer-link" type="button">Export Chat</button>
+          </footer>
+        </section>
+      `;
+      document.body.appendChild(root);
+      this.injectStyles();
+    }
 
-
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && !e.shiftKey) {
+    attachEventListeners() {
+      const $ = (id) => document.getElementById(id);
+      $('chat-toggle').addEventListener('click', () => this.toggleChat(true));
+      $('chat-close').addEventListener('click', () => this.toggleChat(false));
+      $('chat-form').addEventListener('submit', (e) => {
         e.preventDefault();
         this.sendMessage();
-      }
-    });
-
-    suggestions.forEach(btn => {
-      btn.addEventListener('click', () => {
-        input.value = btn.dataset.message;
-        this.sendMessage();
       });
-    });
+      $('chat-clear').addEventListener('click', () => this.clearChat());
+      $('chat-export').addEventListener('click', () => this.exportChat());
+      $('chat-voice-toggle').addEventListener('click', () => this.toggleVoiceReplies());
+      $('chat-mic').addEventListener('click', () => this.toggleListening());
 
-    // Close on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.isOpen) {
-        this.toggleChat();
-      }
-    });
-  }
-
-  toggleChat() {
-    const window = document.getElementById('chat-window');
-    const toggle = document.getElementById('chat-toggle');
-
-    this.isOpen = !this.isOpen;
-
-    if (this.isOpen) {
-      window.classList.add('open');
-      toggle.classList.add('active');
-      document.getElementById('chat-input').focus();
-    } else {
-      window.classList.remove('open');
-      toggle.classList.remove('active');
-    }
-  }
-
-  addWelcomeMessage() {
-    const welcomeMsg = `Hi! 👋 I'm Baby AI assistant. I can help you learn about his projects, skills, and more. What would you like to know?`;
-    this.addMessage('bot', welcomeMsg);
-  }
-
-  sendMessage() {
-    const input = document.getElementById('chat-input');
-    const message = input.value.trim();
-
-    if (!message) return;
-
-    // Hide suggestions after first message
-    document.getElementById('chat-suggestions').style.display = 'none';
-
-    this.addMessage('user', message);
-    input.value = '';
-
-    // Show typing indicator
-    this.showTypingIndicator();
-
-    // Simulate AI thinking time
-    setTimeout(() => {
-      this.removeTypingIndicator();
-      const response = this.generateResponse(message);
-      this.addMessage('bot', response);
-      this.saveChatHistory();
-    }, 800 + Math.random() * 1200);
-  }
-
-  addMessage(type, text) {
-    const messagesContainer = document.getElementById('chat-messages');
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `chat-message ${type}-message`;
-
-    const time = new Date().toLocaleTimeString('en-US', {
-      hour: '2-digit',
-      minute: '2-digit'
-    });
-
-    if (type === 'bot') {
-      messageDiv.innerHTML = `
-        <div class="message-avatar">🤖</div>
-        <div class="message-content">
-          <div class="message-text">${this.formatMessage(text)}</div>
-          <div class="message-time">${time}</div>
-        </div>
-      `;
-    } else {
-      messageDiv.innerHTML = `
-        <div class="message-content">
-          <div class="message-text">${this.escapeHtml(text)}</div>
-          <div class="message-time">${time}</div>
-        </div>
-      `;
-    }
-
-    messagesContainer.appendChild(messageDiv);
-    this.scrollToBottom();
-
-    // Store message
-    this.messages.push({ type, text, time });
-  }
-
-  showTypingIndicator() {
-    const messagesContainer = document.getElementById('chat-messages');
-    const indicator = document.createElement('div');
-    indicator.className = 'chat-message bot-message typing-indicator';
-    indicator.id = 'typing-indicator';
-    indicator.innerHTML = `
-      <div class="message-avatar">🤖</div>
-      <div class="message-content">
-        <div class="typing-dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    `;
-    messagesContainer.appendChild(indicator);
-    this.scrollToBottom();
-  }
-
-  removeTypingIndicator() {
-    const indicator = document.getElementById('typing-indicator');
-    if (indicator) indicator.remove();
-  }
-
-  generateResponse(message) {
-    const msg = message.toLowerCase();
-
-    // Resume/CV
-    if (msg.includes('resume') || msg.includes('cv') || msg.includes('download')) {
-      return `📄 Want to download Ankit's resume? Easy! 
-      <br><br>
-      Just scroll to the top of the page and click the <strong>"Download Resume"</strong> button in the hero section. It's right there with the purple gradient! 💜
-      <br><br>
-      You can also find it by scrolling up to see the main introduction area. The resume includes all his skills, projects, and achievements!`;
-    }
-
-    // Website Features
-    else if (msg.includes('website') || msg.includes('site') || msg.includes('design') || msg.includes('build')) {
-      return `This portfolio is pretty cool, right? 😎
-      <br><br>
-      ✨ <strong>Features:</strong>
-      <br>• Smooth animations and transitions
-      <br>• Dark/Light mode toggle
-      <br>• Fully responsive design
-      <br>• Interactive chatbot (that's me! 🤖)
-      <br>• Dynamic typing animation
-      <br>• Smooth scroll navigation
-      <br><br>
-      Built with <strong>HTML, CSS, and JavaScript</strong> - no heavy frameworks, just pure vanilla code for maximum performance! 🚀`;
-    }
-
-    // Navigation Help
-    else if (msg.includes('navigate') || msg.includes('section') || msg.includes('find') || msg.includes('where')) {
-      return `Let me help you navigate! 📍
-      <br><br>
-      The website has these sections:
-      <br>• <a href="#about">About</a> - Learn about Ankit
-      <br>• <a href="#skills">Skills</a> - Technical expertise
-      <br>• <a href="#projects">Projects</a> - Amazing work showcase
-      <br>• <a href="#vision">Vision</a> - Future goals (Baby AI!)
-      <br>• <a href="#contact">Contact</a> - Get in touch
-      <br><br>
-      Just click on any link above or use the navigation menu at the top! 🎯`;
-    }
-
-    // How are you / Feelings
-    else if (msg.includes('how are you') || msg.includes('how r u') || msg.includes('whatsup') || msg.includes('kya haal hai') || msg.includes('sub thik') || msg.includes("what's up")) {
-      const responses = [
-        `I'm doing great! 😊 Thanks for asking! I'm excited to help you learn about Ankit's work. What can I help you with?`,
-        `Fantastic! 🎉 I'm having a great time chatting with visitors like you. How can I assist you today?`,
-        `I'm wonderful! 🌟 Always ready to share information about Ankit's awesome projects. What would you like to know?`
-      ];
-      return responses[Math.floor(Math.random() * responses.length)];
-    }
-
-    // What can you do
-    else if (msg.includes('what can you') || msg.includes('help me') || msg.includes('can you')) {
-      return `I can help you with lots of things! 🎯
-      <br><br>
-      💬 <strong>Chat:</strong> Have a friendly conversation
-      <br>📋 <strong>Information:</strong> Tell you about Ankit's projects, skills, and goals
-      <br>🗺️ <strong>Navigation:</strong> Guide you through the website
-      <br>📄 <strong>Resume:</strong> Help you download his resume
-      <br>🔧 <strong>Tech Info:</strong> Explain technologies used
-      <br><br>
-      Just ask me anything! I'm here to make your visit awesome! ✨`;
-    }
-
-    // Animations
-    else if (msg.includes('animation') || msg.includes('effect') || msg.includes('cool')) {
-      return `Glad you noticed the animations! 🎨
-      <br><br>
-      This site features:
-      <br>✨ Typing effect in the hero section
-      <br>🌊 Floating profile image
-      <br>🎯 Hover effects on cards
-      <br>📜 Scroll reveal animations
-      <br>💫 Smooth transitions everywhere
-      <br>🎭 Theme toggle animation
-      <br><br>
-      Everything is crafted with CSS and JavaScript for buttery-smooth performance! The dark mode is especially stylish! 🌙`;
-    }
-
-    // Projects
-    if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio')) {
-      return `Ankit has built <strong>10+ amazing projects</strong>! Here are the highlights: 🌟
-      <br><br>
-      🏅 <strong>Olympic Data Dashboard</strong> - Interactive ML-powered analytics with Streamlit
-      <br>
-      📧 <strong>Spam Classifier AI</strong> - NLP-based email classification system
-      <br>
-      💻 <strong>Laptop Price Predictor</strong> - ML regression model with 90%+ accuracy
-      <br>
-      🏏 <strong>IPL Win Predictor</strong> - Cricket match outcome prediction
-      <br>
-      📚 <strong>Book Recommender</strong> - Collaborative filtering system
-      <br>
-      🎬 <strong>Movie Recommender</strong> - Content-based recommendation
-      <br>
-      🎮 <strong>Games</strong> - Tic Tac Toe & Space Shooter
-      <br><br>
-      Scroll down to the <a href="#projects">Projects section</a> to see live demos and code! 🚀`;
-    }
-
-    // Skills
-    else if (msg.includes('skill') || msg.includes('tech') || msg.includes('language') || msg.includes('know')) {
-      return `Ankit is a multi-talented developer! 💪
-      <br><br>
-      🐍 <strong>Python Expert</strong> - Primary programming language
-      <br>
-      🧠 <strong>AI/ML Specialist</strong> - Machine Learning, Deep Learning, NLP
-      <br>
-      📊 <strong>Data Science</strong> - Pandas, NumPy, Visualization
-      <br>
-      💻 <strong>Web Developer</strong> - HTML, CSS, JavaScript, Flask
-      <br>
-      🔧 <strong>Tools</strong> - Git, Streamlit, Jupyter, VS Code
-      <br><br>
-      Check the <a href="#skills">Skills section</a> for the complete list! Each skill has been applied in real projects. 🎯`;
-    }
-
-    // Contact
-    else if (msg.includes('contact') || msg.includes('hire') || msg.includes('reach') || msg.includes('email')) {
-      return `Want to connect with Ankit? Here's how! 📬
-      <br><br>
-      💼 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/eddiebrock-364ba537b/" target="_blank">Professional networking</a>
-      <br>
-      💻 <strong>GitHub:</strong> <a href="https://github.com/eddiebrock911" target="_blank">View all code repos</a>
-      <br>
-      📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/__ankit._.op_/" target="_blank">Follow the journey</a>
-      <br>
-      📊 <strong>Kaggle:</strong> Data science competitions
-      <br>
-      📧 <strong>Email:</strong> ankitkumar823089@gmail.com
-      <br><br>
-      Scroll to the <a href="#contact">Contact section</a> for clickable links! 💌`;
-    }
-
-    // Baby AI / Vision
-    else if (msg.includes('baby ai') || msg.includes('vision') || msg.includes('future') || msg.includes('goal') || msg.includes('dream')) {
-      return `The vision is truly inspiring! 🚀
-      <br><br>
-      🤖 <strong>Baby AI (AGI):</strong> Creating an advanced AI assistant with:
-      <br>• Emotion sensing capabilities 💝
-      <br>• Wake-word detection 🎤
-      <br>• Computer vision integration 👁️
-      <br>• Natural conversation (like me, but way more advanced!)
-      <br><br>
-      🚀 <strong>Mars Ecosystem:</strong> Combining AI, Space Tech, and Biology to build sustainable living systems on Mars!
-      <br><br>
-      🧬 <strong>AI + Biology:</strong> Pushing boundaries at the intersection of tech and life sciences.
-      <br><br>
-      Visit the <a href="#vision">Vision section</a> to learn more about these ambitious goals! 🌌`;
-    }
-
-    // Education
-    else if (msg.includes('education') || msg.includes('study') || msg.includes('student') || msg.includes('school') || msg.includes('class')) {
-      return `Ankit is a <strong>Class 12 student</strong> from Patna, Bihar, India! 📚
-      <br><br>
-      But here's the amazing part - despite being in school, he's already:
-      <br>✅ Built 10+ real-world ML projects
-      <br>✅ Mastered Python and AI/ML
-      <br>✅ Created this awesome portfolio
-      <br>✅ Deployed multiple live applications
-      <br><br>
-      Talk about ambition! 🔥 Learning by doing is the best approach! 💪`;
-    }
-
-    // Location
-    else if (msg.includes('location') || msg.includes('from') || msg.includes('live') || msg.includes('patna') || msg.includes('bihar')) {
-      return `Ankit is from <strong>Bihar Sharif, Patna, Bihar, India</strong>! 🇮🇳
-      <br><br>
-      Building world-class AI solutions from his hometown and ready to make a global impact! 🌍
-      <br><br>
-      Proof that talent knows no boundaries - it's all about passion and dedication! 🚀`;
-    }
-
-    // Age
-    else if (msg.includes('age') || msg.includes('old') || msg.includes('young')) {
-      return `Ankit is a Class 12 student, around 16-17 years old! 👦
-      <br><br>
-      Age is just a number when you have:
-      <br>🔥 Unstoppable passion
-      <br>💡 Creative problem-solving skills
-      <br>📚 Dedication to learning
-      <br>🎯 Clear vision for the future
-      <br><br>
-      The best time to start is NOW, and Ankit is proof of that! 🚀`;
-    }
-
-    // Fun / Jokes
-    else if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
-      const jokes = [
-        `Why do programmers prefer dark mode? 🌙<br>Because light attracts bugs! 🐛😄`,
-        `Why did the AI go to therapy? 🤖<br>It had too many deep learning issues! 😅`,
-        `What's a programmer's favorite place to hang out? 🏖️<br>Foo Bar! 🍺😄`
-      ];
-      return jokes[Math.floor(Math.random() * jokes.length)];
-    }
-
-    // Thank you
-    else if (msg.includes('thank') || msg.includes('thanks') || msg.includes('awesome') || msg.includes('amazing')) {
-      return `You're very welcome! 😊 It makes me so happy to help!
-      <br><br>
-      Feel free to ask me anything else about Ankit's work, this website, or just chat! I'm always here! 💙`;
-    }
-
-    // Greetings
-    else if (msg.match(/^(hi|hello|hey|greetings|namaste|sup)/i)) {
-      const greetings = [
-        `Hello there! 👋 Welcome to Ankit's portfolio! I'm Baby AI, and I'm super excited to help you explore his work! What would you like to know? 😊`,
-        `Hey! 🎉 Great to see you! I'm Baby AI assistant, ready to answer all your questions about Ankit's projects, skills, and vision! How can I help? 🚀`,
-        `Hi! 👋 Welcome aboard! I'm here to make your visit awesome! Want to know about projects, skills, or maybe download the resume? Just ask! ✨`
-      ];
-      return greetings[Math.floor(Math.random() * greetings.length)];
-    }
-
-    // Goodbye
-    else if (msg.match(/^(bye|goodbye|see you|later|cya|ok thik|thik)/i)) {
-      setTimeout(() => {
-        this.toggleChat();
-      }, 1800); // give user time to read the message
-
-      return `Goodbye! 👋 It was wonderful chatting with you!<br><br>
-      Come back anytime! Have an amazing day! ✨`;
-    }
-
-    // Name
-    else if (msg.includes('your name') || msg.includes('who are you') || msg.includes('what are you')) {
-      return `I'm <strong>Baby AI</strong>! 🤖 Your friendly AI assistant!
-      <br><br>
-      I'm a chatbot created to help visitors like you learn about Ankit Kumar's portfolio. Think of me as your personal tour guide! 🎯
-      <br><br>
-      I can tell you about:
-      <br>• 💼 Projects and achievements
-      <br>• 🛠️ Technical skills
-      <br>• 📧 Contact information
-      <br>• 🚀 Future vision and goals
-      <br>• 📄 How to download the resume
-      <br>• 🗺️ Website navigation
-      <br><br>
-      What would you like to explore first? 😊`;
-    }
-
-    // What can you do?
-    else if (msg.includes('what can you do') || msg.includes('help') || msg.includes('capabilities')) {
-      return `I can help you with all sorts of things! 😊
-      <br><br>
-      Here's what I can do:
-      <br>• 🎯 Answer questions about Ankit's projects and skills
-      <br>• 📄 Help you download his resume
-      <br>• 🧭 Navigate you through the website
-      <br>• 🛠️ Explain AI, ML, and DL concepts
-      <br>• 🚀 Tell you about his vision and goals
-      <br>• 📧 Show you how to contact him
-      <br>• 🎮 Recommend games to play
-      <br><br>
-      Just ask away! What would you like to do first? 🚀`;
-    }
-
-    // Can you chat for long?
-    else if (msg.includes('chat for long') || msg.includes('long chat') || msg.includes('can we talk')) {
-      return `Yes, absolutely! 😊 I'd love to chat as long as you want! 💙
-      <br><br>
-      Whether you want to talk about Ankit's projects, AI, or anything else, I'm here for you! 💬
-      <br><br>
-      But wait - speaking of long chats, did you know Ankit wants to build AGI (Artificial General Intelligence)? 🤖
-      <br><br>
-      That's the ultimate goal - AI that can understand, learn, and apply knowledge like humans! 🧠
-      <br><br>
-      Want to hear more about his vision for Baby AI? Or would you like to chat about something else? 😊`;
-    }
-
-    // What tech stack?  
-    else if (msg.includes('tech stack') || msg.includes('technologies') || msg.includes('tools') || msg.includes('what do you use')) {
-      return `I'm built using modern web technologies! 💻
-      <br><br>
-      This website uses:
-      <br>• 🔥 HTML5 for structure
-      <br>• 🎨 CSS3 for styling
-      <br>• ⚡ JavaScript for logic and AI features
-      <br>• 🤖 AI Chatbot with natural language processing
-      <br>• 🌌 Particle.js for interactive background
-      <br>• 🎯 Smooth animations and effects
-      <br><br>
-      The AI chatbot uses pattern matching and rule-based responses to understand and reply to your questions!`;
-    }
-
-    // How many languages do you know? 
-    else if (msg.includes('languages') || msg.includes('speak') || msg.includes('understand')) {
-      return `I can understand and communicate in **multiple languages**! 💬
-      <br><br>
-      This website uses JavaScript which supports global communication, but here are some specific languages I can assist you with:
-      <br>• English (Primary) 🇬🇧
-      <br>• Hindi (Primary) 🇮🇳
-      <br>• Hinglish (mix of Hindi and English) 😂
-      <br><br>
-      I'm always learning and improving, just like Ankit! Want to try asking in a different language? 😊`;
-    }
-
-
-    // What's your purpose? 
-    else if (msg.includes('purpose') || msg.includes('why are you here') || msg.includes('created')) {
-      return `I was created with a special purpose! 😊
-      <br><br>
-      I'm here to:
-      <br>• 🎯 Help visitors learn about Ankit's work
-      <br>• 📄 Answer questions about his projects and skills
-      <br>• 🧭 Guide you through the website
-      <br>• 🛠️ Explain AI, ML, and DL concepts
-      <br>• 🚀 Share his vision and goals
-      <br>• 📧 Show you how to contact him
-      <br>• 🎮 Entertain you with jokes and fun facts
-      <br><br>
-      Think of me as your friendly AI assistant! What would you like to explore? 🚀`;
-    }
-
-    else if (msg.includes('can you play') || msg.includes('recommend') || msg.includes('suggest')) {
-      return `I can recommend things! 😊
-      <br><br>
-      Here are some things I can recommend:
-      <br>• 🎯 Projects and achievements
-      <br>• 🛠️ Technical skills
-      <br>• 📧 Contact information
-      <br>• 🚀 Future vision and goals
-      <br>• 📄 How to download the resume
-      <br>• 🗺️ Website navigation
-      <br><br>
-      What would you like to explore first? 🚀`;
-    }
-
-    // Can you play games? 
-    else if (msg.includes('play') || msg.includes('game')) {
-      return `Yes, I can play games! 😊
-      <br><br>https://spacekit.onrender.com/
-      This website uses JavaScript which supports global communication, but here are some specific games I can assist you with:
-      <br>1• Tic-Tac-Toe 🎯
-      <br>
-       <a href="https://tickit-rht5.onrender.com/">Tic-Tac-Toe! 🎯</a>
-      ;
-      <br></br>
-      <br>2• Space Shooter 🚀
-      <br>
-      <a href="https://spacekit.onrender.com/">Space Shooter! 🚀</a>`
-    }
-    
-
-    // Compliments
-    else if(msg.includes('smart') || msg.includes('intelligent') || msg.includes('good bot') || msg.includes('nice')) {
-     return `Aww, thank you! 🥰 You're making me blush (if robots could blush! 😊)
-      <br><br>
-      I try my best to be helpful! Ankit built me to assist visitors like you. Your kind words motivate me! 💙
-      <br><br>
-      Is there anything else I can help you with? 🎯`;
-}
-
-    // AI Knowledge
-    else if (msg.includes('artificial intelligence') || (msg.includes('what is') && msg.includes('ai'))) {
-      return `**Artificial Intelligence (AI)** is the simulation of human intelligence processes by machines, especially computer systems. 🧠
-      <br><br>
-      Ankit is very passionate about AI! It includes learning (acquiring information and rules), reasoning (using rules to reach conclusions), and self-correction. 🚀`;
-}
-
-// Machine Learning
-else if (msg.includes('machine learning') || msg.includes('ml')) {
-  return `**Machine Learning (ML)** is a subset of AI that focuses on building systems that learn—or improve performance—based on the data they consume. 📊
-      <br><br>
-      Ankit has built over 10 ML projects, including a Spam Classifier and a Laptop Price Predictor! 💻`;
-}
-
-// Deep Learning
-else if (msg.includes('deep learning') || msg.includes('dl') || msg.includes('neural network')) {
-  return `**Deep Learning (DL)** is a type of machine learning based on artificial neural networks in which multiple layers of processing are used to extract progressively higher level features from data. 🧬
-      <br><br>
-      This is the technology behind advanced systems like self-driving cars and large language models (like me)!`;
-}
-
-// Python
-else if (msg.includes('python') || msg.includes('coding language')) {
-  return `**Python** 🐍 is Ankit's primary and favorite programming language! 
-      <br><br>
-      It is widely used for AI, Data Science, and Web Development because of its simplicity and powerful libraries like Pandas, NumPy, and TensorFlow.`;
-}
-
-// Hobbies / Free time
-else if (msg.includes('hobby') || msg.includes('hobbies') || msg.includes('free time')) {
-  return `When Ankit isn't coding or building AI models, he enjoys playing logic games, learning about space tech, and exploring biology! 🚀🧬
-      <br><br>
-      You can even play his Tic Tac Toe or Space Shooter games in the Projects section! 🎮`;
-}
-
-// Creator / Who made you
-else if (msg.includes('creator') || msg.includes('who made you') || msg.includes('father') || msg.includes('developer')) {
-  return `I was designed and developed by **Ankit Kumar**! 👨‍💻
-      <br><br>
-      He built me using JavaScript to be his personal portfolio assistant. My goal is to eventually evolve into a fully capable **Baby AI**! 🤖`;
-}
-
-// Default
-else {
-  return `Hmm, that's an interesting question! 🤔
-      <br><br>
-      I'm still learning, but I'm designed to help you with information about Ankit's portfolio!
-      <br><br>
-      <strong>Here's what I'm great at:</strong>
-      <br>• 💼 Discussing projects and work
-      <br>• 🛠️ Explaining technical skills
-      <br>• 📧 Providing contact info
-      <br>• 🚀 Sharing future vision (Baby AI!)
-      <br>• 📄 Helping you download the resume
-      <br>• 🗺️ Navigating the website
-      <br><br>
-      Try asking me something like "Tell me about the projects" or "How can I contact Ankit?" 😊`;
-}
-  }
-
-formatMessage(text) {
-  // Convert markdown-style formatting to HTML
-  return text
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>');
-}
-
-escapeHtml(text) {
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
-}
-
-scrollToBottom() {
-  const messagesContainer = document.getElementById('chat-messages');
-  messagesContainer.scrollTop = messagesContainer.scrollHeight;
-}
-
-saveChatHistory() {
-  try {
-    const history = this.messages.slice(-20); // Keep last 20 messages
-    localStorage.setItem('chatHistory', JSON.stringify(history));
-  } catch (e) {
-    console.warn('Could not save chat history');
-  }
-}
-
-loadChatHistory() {
-  try {
-    const history = localStorage.getItem('chatHistory');
-    if (history) {
-      const messages = JSON.parse(history);
-      // Don't reload welcome message if history exists
-      if (messages.length > 0) {
-        document.getElementById('chat-messages').innerHTML = '';
-        messages.forEach(msg => {
-          this.addMessage(msg.type, msg.text);
+      document.querySelectorAll('.suggestion-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          $('chat-input').value = btn.dataset.message;
+          this.sendMessage();
         });
+      });
+
+      document.getElementById('baby-ai-toolbar').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (btn) this.handleAction(btn.dataset.action);
+      });
+
+      document.getElementById('chat-messages').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (btn) this.handleAction(btn.dataset.action);
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && this.isOpen) this.toggleChat(false);
+        if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          this.toggleChat(true);
+        }
+      });
+    }
+
+    addWelcomeMessage() {
+      const hour = new Date().getHours();
+      const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      this.addMessage('bot', `${greet}! 👋 Main <strong>Baby AI</strong> hoon — Ankit Kumar ke portfolio ka smart guide.\n\nMain projects, skills, contact, AI/ML concepts, navigation, games aur hiring info bata sakta hoon. Aap Hindi, English ya Hinglish me pooch sakte ho.`, {
+        quickReplies: ['Projects dikhao', 'Skills batao', 'Contact Ankit', 'Baby AI kya hai?']
+      });
+    }
+
+    toggleChat(force) {
+      const win = document.getElementById('chat-window');
+      const toggle = document.getElementById('chat-toggle');
+      this.isOpen = typeof force === 'boolean' ? force : !this.isOpen;
+      win.classList.toggle('open', this.isOpen);
+      toggle.classList.toggle('active', this.isOpen);
+      if (this.isOpen) setTimeout(() => document.getElementById('chat-input').focus(), 50);
+    }
+
+    sendMessage(raw) {
+      const input = document.getElementById('chat-input');
+      const message = (raw || input.value || '').trim();
+      if (!message) return;
+
+      document.getElementById('chat-suggestions').classList.add('collapsed');
+      this.addMessage('user', message);
+      input.value = '';
+      this.showTypingIndicator();
+
+      const thinkingTime = Math.min(1500, 450 + message.length * 18 + Math.random() * 500);
+      setTimeout(() => {
+        this.removeTypingIndicator();
+        const result = this.generateResponse(message);
+        this.addMessage('bot', result.html, result.meta || {});
+        this.context.lastIntent = result.intent || this.context.lastIntent;
+        this.saveChatHistory();
+        if (!this.isMuted) this.speak(this.stripHtml(result.html));
+      }, thinkingTime);
+    }
+
+    generateResponse(message) {
+      const text = this.normalize(message);
+      const project = this.findProject(text);
+      if (project) return { intent: 'project_detail', html: this.projectCard(project), meta: { quickReplies: ['More projects', 'Live demo', 'Code link'] } };
+
+      const intents = [
+        { name: 'greeting', keys: ['hi', 'hello', 'hey', 'namaste', 'kaise ho', 'kya haal'], handler: () => this.replyGreeting() },
+        { name: 'projects', keys: ['project', 'work', 'portfolio', 'links', 'demo', 'github repo', 'best project', 'kaunsa project'], handler: () => this.replyProjects(text) },
+        { name: 'skills', keys: ['skill', 'tech', 'technology', 'stack', 'language', 'tools', 'python', 'javascript', 'aata hai'], handler: () => this.replySkills() },
+        { name: 'contact', keys: ['contact', 'email', 'hire', 'linkedin', 'github', 'instagram', 'reach', 'collaboration', 'connect'], handler: () => this.replyContact() },
+        { name: 'vision', keys: ['baby ai', 'vision', 'future', 'goal', 'dream', 'agi', 'mars', 'biology'], handler: () => this.replyVision() },
+        { name: 'about', keys: ['about', 'ankit', 'who is', 'kaun hai', 'education', 'study', 'student', 'class', 'location', 'bihar', 'patna'], handler: () => this.replyAbout() },
+        { name: 'navigation', keys: ['navigate', 'section', 'scroll', 'where', 'find', 'go to'], handler: () => this.replyNavigation() },
+        { name: 'resume', keys: ['resume', 'cv', 'download'], handler: () => this.replyResume() },
+        { name: 'games', keys: ['game', 'play', 'tic tac toe', 'space shooter'], handler: () => this.replyGames() },
+        { name: 'ai_ml', keys: ['what is ai', 'artificial intelligence', 'machine learning', 'deep learning', 'nlp', 'neural network', 'ml', 'dl'], handler: () => this.replyAIConcept(text) },
+        { name: 'thanks', keys: ['thank', 'thanks', 'dhanyawad', 'shukriya', 'awesome', 'nice', 'good bot'], handler: () => this.replyThanks() },
+        { name: 'bye', keys: ['bye', 'goodbye', 'see you', 'later', 'ok thik', 'alvida'], handler: () => this.replyBye() }
+      ];
+
+      let best = { score: 0, intent: null };
+      intents.forEach((intent) => {
+        const score = this.scoreIntent(text, intent.keys);
+        if (score > best.score) best = { score, intent };
+      });
+
+      if (best.score > 0) {
+        return { intent: best.intent.name, html: best.intent.handler() };
+      }
+      return { intent: 'fallback', html: this.replyFallback(text) };
+    }
+
+    scoreIntent(text, keys) {
+      let score = 0;
+      keys.forEach((key) => {
+        if (text.includes(key)) score += key.length > 4 ? 3 : 2;
+        const words = key.split(' ');
+        if (words.length > 1 && words.every((w) => text.includes(w))) score += 2;
+      });
+      return score;
+    }
+
+    normalize(str) {
+      return String(str)
+        .toLowerCase()
+        .replace(/[?!.।,;:()]/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    findProject(text) {
+      let best = null;
+      let bestScore = 0;
+      this.knowledge.projects.forEach((p) => {
+        const hay = `${p.name} ${p.tags.join(' ')} ${p.stack.join(' ')}`.toLowerCase();
+        let score = 0;
+        text.split(' ').forEach((word) => {
+          if (word.length > 2 && hay.includes(word)) score += 1;
+        });
+        p.tags.forEach((tag) => { if (text.includes(tag)) score += 3; });
+        if (score > bestScore) { bestScore = score; best = p; }
+      });
+      return bestScore >= 3 ? best : null;
+    }
+
+    replyGreeting() {
+      const replies = [
+        'Hello! 👋 Kaise ho? Main Baby AI hoon — Ankit ke projects, skills aur contact ke baare me instantly bata sakta hoon.',
+        'Namaste! 🙏 Portfolio explore karna hai? Projects, Skills, Vision ya Contact — bas pooch lo.',
+        'Hey! 🚀 Main aapka smart portfolio guide hoon. Aap Hinglish me bhi baat kar sakte ho.'
+      ];
+      return replies[Math.floor(Math.random() * replies.length)] + this.actionRow([
+        ['nav:projects', '💼 Projects'], ['nav:skills', '🛠️ Skills'], ['contact', '📧 Contact']
+      ]);
+    }
+
+    replyProjects(text) {
+      const top = this.knowledge.projects.slice(0, 7).map((p, i) =>
+        `${i + 1}. <strong>${p.name}</strong> — ${p.desc}<br><span class="mini-stack">${p.stack.join(' • ')}</span>`
+      ).join('<br><br>');
+      return `Ankit ne AI/ML + Web + Games ke multiple real-world projects banaye hain. Highlights 👇<br><br>${top}<br><br>` +
+        this.actionRow([['nav:projects', 'Open Projects Section'], ['project:all', 'All Project Links'], ['games', '🎮 Games']]);
+    }
+
+    replySkills() {
+      const s = this.knowledge.skills;
+      return `Ankit ke core skills ka quick map 👇<br><br>
+        🐍 <strong>Programming:</strong> ${s.languages.join(', ')}<br>
+        🧠 <strong>AI/ML:</strong> ${s.ai.join(', ')}<br>
+        🌐 <strong>Web:</strong> ${s.web.join(', ')}<br>
+        🧰 <strong>Tools:</strong> ${s.tools.join(', ')}<br><br>
+        Strongest area: <strong>Python + Machine Learning + NLP + Data Projects</strong>.` +
+        this.actionRow([['nav:skills', 'Open Skills'], ['project:all', 'Project Links']]);
+    }
+
+    replyContact() {
+      return `Ankit se connect karne ke liye ye direct links use karein 👇<br><br>
+        📧 <strong>Email:</strong> <a href="mailto:${this.options.email}">${this.options.email}</a><br>
+        💻 <strong>GitHub:</strong> <a href="${this.options.github}" target="_blank" rel="noopener">github.com/eddiebrock911</a><br>
+        💼 <strong>LinkedIn:</strong> <a href="${this.options.linkedin}" target="_blank" rel="noopener">LinkedIn Profile</a><br>
+        📸 <strong>Instagram:</strong> <a href="${this.options.instagram}" target="_blank" rel="noopener">Instagram</a><br>
+        📊 <strong>Kaggle:</strong> <a href="${this.options.kaggle}" target="_blank" rel="noopener">Kaggle</a><br><br>
+        Hiring/collaboration ke liye email ya LinkedIn best rahega.` +
+        this.actionRow([['copy:email', 'Copy Email'], ['nav:contact', 'Open Contact']]);
+    }
+
+    replyVision() {
+      return `🚀 <strong>Baby AI Vision</strong><br><br>
+        Ankit ka long-term goal ek advanced AI banana hai jisme:<br>
+        • Emotion sensing 💝<br>
+        • Wake-word detection 🎤<br>
+        • Computer vision 👁️<br>
+        • Natural conversation 🤖<br>
+        • AI + Space Tech + Biology integration 🧬🌌<br><br>
+        Ye portfolio chatbot us vision ka mini prototype feel deta hai — visitor guide + knowledge assistant.` +
+        this.actionRow([['nav:vision', 'Open Vision'], ['nav:projects', 'See Projects']]);
+    }
+
+    replyAbout() {
+      return `👤 <strong>About Ankit Kumar</strong><br><br>
+        Ankit Bihar, India se ek dedicated coder aur Class 12 PCBM student hain. Unka focus <strong>AI, Machine Learning, Python development, NLP, Data Science</strong> aur web apps par hai.<br><br>
+        Impressive part: school level par hote hue bhi unhone multiple live ML apps deploy kiye hain — ye practical learning mindset dikhata hai. 🔥` +
+        this.actionRow([['nav:about', 'Open About'], ['nav:projects', 'Projects']]);
+    }
+
+    replyNavigation() {
+      const buttons = this.knowledge.sections.map((s) => [`nav:${s.id}`, `${s.emoji} ${s.label}`]);
+      return `Kis section par jaana hai? Neeche click karo 👇` + this.actionRow(buttons);
+    }
+
+    replyResume() {
+      return `📄 Resume/CV download ke liye hero/top section me <strong>Download Resume</strong> button check karein. Agar button visible na ho, top par scroll karein.` +
+        this.actionRow([['scroll:top', '⬆️ Top'], ['nav:contact', 'Contact Instead']]);
+    }
+
+    replyGames() {
+      const games = this.knowledge.projects.filter((p) => p.tags.includes('game'));
+      return `🎮 Ankit ke playable games:<br><br>` + games.map((g) =>
+        `<strong>${g.name}</strong> — ${g.desc}<br><a href="${g.demo}" target="_blank" rel="noopener">Play Live</a> • <a href="${g.code}" target="_blank" rel="noopener">Code</a>`
+      ).join('<br><br>');
+    }
+
+    replyAIConcept(text) {
+      if (text.includes('deep') || text.includes('dl') || text.includes('neural')) {
+        return `🧬 <strong>Deep Learning</strong> ML ka advanced part hai jisme neural networks multiple layers ke through patterns learn karte hain. Images, speech, NLP aur LLMs me iska use hota hai.`;
+      }
+      if (text.includes('machine') || text.includes('ml')) {
+        return `📊 <strong>Machine Learning</strong> AI ka subset hai jisme model data se patterns learn karke prediction/classification karta hai. Ankit ke Spam Classifier, IPL Predictor, Laptop Price Predictor isi idea par based hain.`;
+      }
+      return `🧠 <strong>Artificial Intelligence</strong> machines ko human-like reasoning, learning aur decision-making ability dene ka field hai. ML, DL, NLP aur Computer Vision AI ke major areas hain.`;
+    }
+
+    replyThanks() {
+      return `You're welcome! 😊 Agar chaho to main aapko best projects, skill roadmap ya Ankit ka contact bhi instantly dikha sakta hoon.` +
+        this.actionRow([['project:all', 'Project Links'], ['contact', 'Contact']]);
+    }
+
+    replyBye() {
+      setTimeout(() => this.toggleChat(false), 1800);
+      return `Bye! 👋 Portfolio visit karne ke liye thanks. Have a great day! ✨`;
+    }
+
+    replyFallback(text) {
+      const suggestions = ['Tell me about projects', 'Skills batao', 'Contact Ankit', 'What is Baby AI?'];
+      return `Hmm, main is question ko fully samajh nahi paya 🤔<br><br>
+        Main best help kar sakta hoon in topics par:<br>
+        • Ankit ke Projects<br>
+        • Skills / Tech stack<br>
+        • Contact / Hiring<br>
+        • Baby AI vision<br>
+        • AI/ML concepts<br><br>
+        Try: <em>${suggestions[Math.floor(Math.random() * suggestions.length)]}</em>`;
+    }
+
+    projectCard(p) {
+      this.context.lastProject = p.name;
+      return `💼 <strong>${p.name}</strong><br><br>
+        ${p.desc}<br><br>
+        <span class="mini-stack">${p.stack.join(' • ')}</span><br><br>
+        🔗 <a href="${p.demo}" target="_blank" rel="noopener">Live Demo</a> • <a href="${p.code}" target="_blank" rel="noopener">Source Code</a>`;
+    }
+
+    actionRow(actions) {
+      return `<div class="bot-actions">${actions.map(([action, label]) => `<button data-action="${this.escapeAttr(action)}">${label}</button>`).join('')}</div>`;
+    }
+
+    handleAction(action) {
+      if (!action) return;
+      if (action.startsWith('nav:')) return this.scrollToSection(action.split(':')[1]);
+      if (action === 'scroll:top') return window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (action === 'contact') return this.addBotInstant(this.replyContact());
+      if (action === 'games') return this.addBotInstant(this.replyGames());
+      if (action === 'project:all') return this.addBotInstant(this.allProjectLinks());
+      if (action === 'copy:email') return this.copyText(this.options.email, 'Email copied ✅');
+    }
+
+    allProjectLinks() {
+      return `🔗 <strong>All important project links</strong><br><br>` + this.knowledge.projects.map((p) =>
+        `• <strong>${p.name}</strong>: <a href="${p.demo}" target="_blank" rel="noopener">Demo</a> | <a href="${p.code}" target="_blank" rel="noopener">Code</a>`
+      ).join('<br>');
+    }
+
+    scrollToSection(id) {
+      const el = document.getElementById(id) || document.querySelector(`[data-section="${id}"]`) || document.querySelector(`.${id}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        this.addBotInstant(`Done ✅ <strong>${id}</strong> section par le gaya.`);
+      } else {
+        this.addBotInstant(`Section <strong>${id}</strong> page me nahi mila. Aap top navigation se try karein.`);
       }
     }
-  } catch (e) {
-    console.warn('Could not load chat history');
+
+    addBotInstant(html) {
+      this.addMessage('bot', html);
+      this.saveChatHistory();
+      if (!this.isMuted) this.speak(this.stripHtml(html));
+    }
+
+    addMessage(type, text, meta = {}) {
+      const messagesContainer = document.getElementById('chat-messages');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `baby-message ${type}-message`;
+
+      const time = new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' });
+      const content = type === 'bot' ? this.formatMessage(text) : this.escapeHtml(text);
+      const avatar = type === 'bot' ? '<div class="message-avatar">🤖</div>' : '';
+      const quick = meta.quickReplies ? `<div class="quick-replies">${meta.quickReplies.map((q) => `<button data-action="ask:${this.escapeAttr(q)}">${this.escapeHtml(q)}</button>`).join('')}</div>` : '';
+
+      messageDiv.innerHTML = `
+        ${avatar}
+        <div class="message-content">
+          <div class="message-text">${content}</div>
+          ${quick}
+          <div class="message-time">${time}</div>
+        </div>
+      `;
+
+      const quickButtons = messageDiv.querySelectorAll('[data-action^="ask:"]');
+      quickButtons.forEach((btn) => btn.addEventListener('click', () => this.sendMessage(btn.dataset.action.replace('ask:', ''))));
+
+      messagesContainer.appendChild(messageDiv);
+      this.scrollToBottom();
+
+      this.messages.push({ type, text, time });
+      if (this.messages.length > this.options.maxHistory) this.messages = this.messages.slice(-this.options.maxHistory);
+      this.saveChatHistory();
+    }
+
+    showTypingIndicator() {
+      const messagesContainer = document.getElementById('chat-messages');
+      this.removeTypingIndicator();
+      const indicator = document.createElement('div');
+      indicator.className = 'baby-message bot-message typing-indicator';
+      indicator.id = 'typing-indicator';
+      indicator.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><div class="typing-dots"><span></span><span></span><span></span></div></div>`;
+      messagesContainer.appendChild(indicator);
+      this.scrollToBottom();
+    }
+
+    removeTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    initVoiceRecognition() {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const mic = document.getElementById('chat-mic');
+      if (!SpeechRecognition) {
+        mic.title = 'Voice input not supported in this browser';
+        mic.classList.add('disabled');
+        return;
+      }
+      this.recognition = new SpeechRecognition();
+      this.recognition.lang = 'en-IN';
+      this.recognition.interimResults = false;
+      this.recognition.continuous = false;
+      this.recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        document.getElementById('chat-input').value = transcript;
+        this.sendMessage();
+      };
+      this.recognition.onend = () => {
+        this.isListening = false;
+        mic.classList.remove('listening');
+      };
+    }
+
+    toggleListening() {
+      if (!this.recognition) return this.addBotInstant('Voice input is browser supported feature. Is browser me available nahi hai.');
+      if (this.isListening) {
+        this.recognition.stop();
+      } else {
+        this.isListening = true;
+        document.getElementById('chat-mic').classList.add('listening');
+        this.recognition.start();
+      }
+    }
+
+    toggleVoiceReplies() {
+      this.isMuted = !this.isMuted;
+      localStorage.setItem('babyAI.muted', JSON.stringify(this.isMuted));
+      document.getElementById('chat-voice-toggle').textContent = this.isMuted ? '🔇' : '🔊';
+      if (this.isMuted && window.speechSynthesis) window.speechSynthesis.cancel();
+    }
+
+    speak(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text.slice(0, 220));
+      utter.lang = 'en-IN';
+      utter.rate = 1;
+      utter.pitch = 1.05;
+      window.speechSynthesis.speak(utter);
+    }
+
+    clearChat() {
+      if (!confirm('Clear Baby AI chat history?')) return;
+      this.messages = [];
+      localStorage.removeItem(this.options.storageKey);
+      document.getElementById('chat-messages').innerHTML = '';
+      this.addWelcomeMessage();
+    }
+
+    exportChat() {
+      const lines = this.messages.map((m) => `[${m.time}] ${m.type.toUpperCase()}: ${this.stripHtml(m.text)}`).join('\n\n');
+      const blob = new Blob([lines || 'No chat yet.'], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'baby-ai-chat.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    copyText(text, successMsg) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => this.addBotInstant(successMsg));
+      } else {
+        this.addBotInstant(text);
+      }
+    }
+
+    saveChatHistory() {
+      try { localStorage.setItem(this.options.storageKey, JSON.stringify(this.messages.slice(-this.options.maxHistory))); } catch (_) {}
+    }
+
+    loadChatHistory() {
+      try {
+        const raw = localStorage.getItem(this.options.storageKey);
+        if (!raw) return;
+        const history = JSON.parse(raw);
+        if (!Array.isArray(history) || !history.length) return;
+        document.getElementById('chat-messages').innerHTML = '';
+        this.messages = [];
+        history.forEach((m) => this.addMessage(m.type, m.text));
+      } catch (_) {}
+    }
+
+    formatMessage(text) {
+      return String(text)
+        .replace(/\n/g, '<br>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
+
+    stripHtml(html) {
+      const div = document.createElement('div');
+      div.innerHTML = this.formatMessage(html);
+      return div.textContent || div.innerText || '';
+    }
+
+    escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = String(text);
+      return div.innerHTML;
+    }
+
+    escapeAttr(text) {
+      return String(text).replace(/"/g, '&quot;').replace(/</g, '&lt;');
+    }
+
+    scrollToBottom() {
+      const messagesContainer = document.getElementById('chat-messages');
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    injectStyles() {
+      if (document.getElementById('baby-ai-styles')) return;
+      const style = document.createElement('style');
+      style.id = 'baby-ai-styles';
+      style.textContent = `
+        :root {
+          --baby-primary: #00d4ff;
+          --baby-secondary: #7c3aed;
+          --baby-accent: #22c55e;
+          --baby-bg: rgba(8, 12, 25, 0.88);
+          --baby-card: rgba(255,255,255,0.08);
+          --baby-border: rgba(0, 212, 255, 0.22);
+          --baby-text: #f8fafc;
+          --baby-muted: #a5b4fc;
+          --baby-shadow: 0 22px 70px rgba(0,0,0,0.45), 0 0 35px rgba(0,212,255,0.18);
+        }
+
+        .baby-ai-toggle {
+          position: fixed;
+          right: 28px;
+          bottom: 28px;
+          width: 72px;
+          height: 72px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.25);
+          background: radial-gradient(circle at 30% 25%, #ffffff 0 6%, #67e8f9 12%, #0ea5e9 42%, #4c1d95 100%);
+          color: white;
+          cursor: pointer;
+          display: grid;
+          place-items: center;
+          z-index: 99998;
+          box-shadow: 0 0 26px rgba(0,212,255,.65), inset 0 0 18px rgba(255,255,255,.4);
+          transition: transform .25s ease, filter .25s ease;
+          isolation: isolate;
+        }
+        .baby-ai-toggle:hover { transform: translateY(-4px) scale(1.06); filter: brightness(1.1); }
+        .baby-ai-toggle.active { background: radial-gradient(circle at 30% 25%, #fff 0 5%, #fca5a5 14%, #ef4444 46%, #7f1d1d 100%); }
+        .orb-face { font-size: 30px; z-index: 2; animation: babyFloat 2.8s ease-in-out infinite; }
+        .orb-ring { position:absolute; inset:-8px; border-radius:inherit; border:2px solid rgba(0,212,255,.35); animation: babyPulse 2s ease-out infinite; }
+        .chat-badge { position:absolute; top:-10px; right:-10px; padding:4px 9px; border-radius:999px; color:#fff; font-size:11px; font-weight:800; background:linear-gradient(135deg,#f97316,#ec4899); box-shadow:0 8px 20px rgba(236,72,153,.35); }
+        @keyframes babyPulse { 0%{ transform:scale(.92); opacity:.9;} 100%{ transform:scale(1.25); opacity:0;} }
+        @keyframes babyFloat { 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-3px);} }
+
+        .baby-ai-window {
+          position: fixed;
+          right: 28px;
+          bottom: 112px;
+          width: 420px;
+          max-width: calc(100vw - 28px);
+          height: 650px;
+          max-height: calc(100vh - 132px);
+          display: none;
+          flex-direction: column;
+          overflow: hidden;
+          z-index: 99997;
+          color: var(--baby-text);
+          background: linear-gradient(145deg, rgba(8,12,25,.94), rgba(22,17,48,.9));
+          border: 1px solid var(--baby-border);
+          border-radius: 26px;
+          box-shadow: var(--baby-shadow);
+          backdrop-filter: blur(18px) saturate(150%);
+          -webkit-backdrop-filter: blur(18px) saturate(150%);
+          transform-origin: bottom right;
+        }
+        .baby-ai-window.open { display:flex; animation: babySlide .28s cubic-bezier(.2,.8,.2,1); }
+        @keyframes babySlide { from{ opacity:0; transform: translateY(18px) scale(.96);} to{ opacity:1; transform: translateY(0) scale(1);} }
+        .baby-ai-window::before { content:''; position:absolute; inset:0; pointer-events:none; background: radial-gradient(circle at 15% 0%, rgba(0,212,255,.22), transparent 30%), radial-gradient(circle at 85% 20%, rgba(124,58,237,.22), transparent 36%); }
+
+        .baby-ai-header, .baby-ai-toolbar, .baby-ai-input-row, .baby-ai-footer { position:relative; z-index:1; }
+        .baby-ai-header { padding:16px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); }
+        .baby-ai-title-wrap { display:flex; align-items:center; gap:12px; min-width:0; }
+        .baby-ai-avatar { width:46px; height:46px; display:grid; place-items:center; border-radius:16px; background:linear-gradient(135deg, rgba(0,212,255,.25), rgba(124,58,237,.3)); border:1px solid rgba(255,255,255,.18); font-size:24px; box-shadow: inset 0 0 16px rgba(255,255,255,.08); }
+        .baby-ai-header h4 { margin:0; font-size:16px; letter-spacing:.2px; }
+        .baby-ai-status { display:flex; align-items:center; gap:6px; font-size:12px; color:#c4b5fd; margin-top:3px; }
+        .status-dot { width:8px; height:8px; border-radius:999px; background:#22c55e; box-shadow:0 0 12px #22c55e; animation: statusBlink 1.8s infinite; }
+        @keyframes statusBlink { 50%{ opacity:.45; } }
+        .baby-ai-actions { display:flex; gap:7px; }
+        .icon-btn { width:34px; height:34px; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:rgba(255,255,255,.08); color:#fff; cursor:pointer; transition:.2s; }
+        .icon-btn:hover { background:rgba(0,212,255,.18); transform:translateY(-1px); }
+
+        .baby-ai-toolbar { display:flex; gap:8px; padding:10px 12px; overflow-x:auto; border-bottom:1px solid rgba(255,255,255,.08); }
+        .tool-chip, .suggestion-btn, .bot-actions button, .quick-replies button { border:1px solid rgba(0,212,255,.28); color:#e0f2fe; background:rgba(0,212,255,.09); border-radius:999px; padding:8px 12px; cursor:pointer; white-space:nowrap; transition:.2s; font-size:12.5px; }
+        .tool-chip:hover, .suggestion-btn:hover, .bot-actions button:hover, .quick-replies button:hover { background:rgba(0,212,255,.22); transform:translateY(-1px); }
+
+        .baby-ai-messages { position:relative; z-index:1; flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:14px; scroll-behavior:smooth; }
+        .baby-ai-messages::-webkit-scrollbar { width:8px; }
+        .baby-ai-messages::-webkit-scrollbar-thumb { background:rgba(0,212,255,.25); border-radius:999px; }
+        .baby-message { display:flex; gap:10px; animation: msgIn .22s ease; }
+        @keyframes msgIn { from{ opacity:0; transform:translateY(8px);} to{ opacity:1; transform:translateY(0);} }
+        .user-message { justify-content:flex-end; }
+        .message-avatar { flex:0 0 32px; width:32px; height:32px; display:grid; place-items:center; border-radius:12px; background:rgba(0,212,255,.16); border:1px solid rgba(0,212,255,.24); }
+        .message-content { max-width:78%; }
+        .user-message .message-content { max-width:82%; }
+        .message-text { padding:12px 14px; border-radius:18px; line-height:1.48; font-size:14px; word-wrap:break-word; }
+        .bot-message .message-text { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); border-bottom-left-radius:6px; }
+        .user-message .message-text { background:linear-gradient(135deg,#0ea5e9,#7c3aed); color:#fff; border-bottom-right-radius:6px; box-shadow:0 10px 24px rgba(14,165,233,.18); }
+        .message-time { margin-top:5px; padding:0 5px; color:#93c5fd; opacity:.85; font-size:11px; }
+        .user-message .message-time { text-align:right; }
+        .message-text a { color:#67e8f9; text-decoration:underline; font-weight:700; }
+        .mini-stack { display:inline-block; margin-top:3px; color:#c4b5fd; font-size:12px; }
+        .bot-actions, .quick-replies { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+        .quick-replies { margin-left:2px; }
+        .typing-dots { display:flex; align-items:center; gap:6px; padding:13px 15px; background:rgba(255,255,255,.07); border-radius:18px; border-bottom-left-radius:6px; }
+        .typing-dots span { width:8px; height:8px; border-radius:999px; background:#67e8f9; animation: typingDot 1.1s infinite ease-in-out; }
+        .typing-dots span:nth-child(2){ animation-delay:.15s; } .typing-dots span:nth-child(3){ animation-delay:.3s; }
+        @keyframes typingDot { 0%,80%,100%{ transform:translateY(0); opacity:.45;} 40%{ transform:translateY(-7px); opacity:1;} }
+
+        .baby-ai-suggestions { position:relative; z-index:1; display:flex; gap:8px; flex-wrap:wrap; padding:10px 14px; border-top:1px solid rgba(255,255,255,.08); transition:.2s; }
+        .baby-ai-suggestions.collapsed { display:none; }
+        .baby-ai-input-row { display:flex; gap:9px; align-items:center; padding:13px; border-top:1px solid rgba(255,255,255,.1); background:rgba(0,0,0,.12); }
+        #chat-input { flex:1; min-width:0; padding:13px 15px; border-radius:999px; border:1px solid rgba(103,232,249,.35); background:rgba(2,6,23,.72); color:#fff; outline:none; font-size:14px; }
+        #chat-input:focus { border-color:#67e8f9; box-shadow:0 0 0 4px rgba(103,232,249,.12); }
+        .send-btn, .mic-btn { flex:0 0 44px; width:44px; height:44px; border-radius:999px; border:0; cursor:pointer; color:#fff; display:grid; place-items:center; transition:.2s; }
+        .send-btn { background:linear-gradient(135deg,#06b6d4,#7c3aed); font-size:18px; }
+        .mic-btn { background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.14); }
+        .send-btn:hover, .mic-btn:hover { transform:scale(1.06); filter:brightness(1.1); }
+        .mic-btn.listening { background:#ef4444; animation: micPulse 1s infinite; }
+        .mic-btn.disabled { opacity:.45; cursor:not-allowed; }
+        @keyframes micPulse { 50%{ box-shadow:0 0 0 8px rgba(239,68,68,.18); } }
+        .baby-ai-footer { display:flex; align-items:center; justify-content:space-between; padding:9px 14px; color:#c4b5fd; font-size:12px; border-top:1px solid rgba(255,255,255,.06); }
+        .footer-link { border:0; background:transparent; color:#67e8f9; cursor:pointer; font-size:12px; }
+
+        @media (max-width: 768px) {
+          .baby-ai-toggle { right:18px; bottom:18px; width:64px; height:64px; }
+          .baby-ai-window { right:10px; bottom:92px; width:calc(100vw - 20px); height:calc(100vh - 112px); border-radius:22px; }
+          .message-content { max-width:84%; }
+          .baby-ai-toolbar { padding-bottom:8px; }
+        }
+      `;
+      document.head.appendChild(style);
+    }
   }
-}
-}
 
-// Initialize chatbot when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    window.chatbot = new AIChatbot();
-  });
-} else {
-  window.chatbot = new AIChatbot();
-}
-
-// Add CSS styles
-const chatStyles = `
-<style>
-.chat-toggle {
-  position: fixed;
-  top: 590px;
-  right: 30px;
-  width: 65px;
-  height: 65px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #00ffff, #007a99);
-  border: 2px solid rgba(0, 255, 255, 0.4);
-  cursor: pointer;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6);
-  z-index: 9998;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: white;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: pulse-ai-core 2.5s infinite alternate;
-}
-
-.chat-toggle:hover {
-  transform: scale(1.15) rotate(15deg);
-  box-shadow: 0 0 40px rgba(0, 212, 255, 0.8), inset 0 0 20px rgba(255, 255, 255, 0.8);
-}
-
-.chat-toggle.active {
-  background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
-  border-color: rgba(255, 77, 77, 0.4);
-  animation: none;
-  box-shadow: 0 0 30px rgba(255, 77, 77, 0.6);
-}
-
-.chat-badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: var(--gradient-2);
-  color: white;
-  font-size: 11px;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-weight: 700;
-  box-shadow: 0 0 10px rgba(243, 156, 18, 0.6);
-}
-
-@keyframes pulse-ai-core {
-  0% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.6); transform: scale(1); }
-  100% { box-shadow: 0 0 40px rgba(0, 212, 255, 0.9), inset 0 0 25px rgba(255, 255, 255, 0.8); transform: scale(1.05); }
-}
-
-.chat-window {
-  position: fixed;
-  bottom: 100px;
-  right: 30px;
-  width: 400px;
-  max-width: calc(100vw - 40px);
-  height: 600px;
-  max-height: calc(100vh - 120px);
-  background: rgba(15, 15, 15, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 20px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 212, 255, 0.1);
-  z-index: 9997;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.chat-window.open {
-  display: flex;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new AdvancedBabyAI());
+  } else {
+    new AdvancedBabyAI();
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.chat-header {
-  background: rgba(0, 212, 255, 0.1);
-  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
-  padding: 20px;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.chat-header-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.chat-avatar {
-  width: 45px;
-  height: 45px;
-  background: rgba(0, 212, 255, 0.2);
-  border: 2px solid var(--primary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
-}
-
-.chat-header h4 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.chat-status {
-  font-size: 12px;
-  opacity: 0.9;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #2ecc71;
-  border-radius: 50%;
-  animation: blink 2s infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
-}
-
-.chat-close {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  padding: 5px;
-  transition: all 0.3s ease;
-}
-
-.chat-close:hover {
-  transform: rotate(90deg);
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.chat-message {
-  display: flex;
-  gap: 10px;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.user-message {
-  justify-content: flex-end;
-}
-
-.message-content {
-  max-width: 75%;
-}
-
-.user-message .message-content {
-  margin-left: auto;
-}
-
-.message-text {
-  padding: 12px 16px;
-  border-radius: 15px;
-  word-wrap: break-word;
-  line-height: 1.5;
-}
-
-.bot-message .message-text {
-  background: rgba(0, 212, 255, 0.15);
-  border: 1px solid rgba(0, 212, 255, 0.3);
-  color: var(--text-primary);
-  border-bottom-left-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.user-message .message-text {
-  background: var(--gradient-1);
-  color: white;
-  border-bottom-right-radius: 5px;
-  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
-}
-
-.message-time {
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-top: 5px;
-  padding: 0 5px;
-}
-
-.user-message .message-time {
-  text-align: right;
-}
-
-.typing-indicator .typing-dots {
-  background: rgba(0, 212, 255, 0.1);
-  padding: 12px 16px;
-  border-radius: 15px;
-  border-bottom-left-radius: 5px;
-  display: flex;
-  gap: 5px;
-}
-
-.typing-dots span {
-  width: 8px;
-  height: 8px;
-  background: var(--primary-color);
-  border-radius: 50%;
-  animation: typing 1.4s infinite;
-}
-
-.typing-dots span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.typing-dots span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes typing {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-10px); }
-}
-
-.chat-suggestions {
-  padding: 10px 20px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  border-top: 1px solid rgba(0, 212, 255, 0.1);
-}
-
-.suggestion-btn {
-  padding: 8px 15px;
-  background: rgba(0, 212, 255, 0.1);
-  border: 1px solid var(--primary-color);
-  border-radius: 20px;
-  color: var(--text-primary);
-  cursor: pointer;
-  font-size: 13px;
-  transition: all 0.3s ease;
-}
-
-.suggestion-btn:hover {
-  background: var(--primary-color);
-  color: white;
-  transform: translateY(-2px);
-}
-
-.chat-input-container {
-  padding: 15px 20px;
-  border-top: 1px solid rgba(0, 212, 255, 0.2);
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-#chat-input {
-  flex: 1;
-  padding: 12px 16px;
-  border: 2px solid var(--primary-color);
-  border-radius: 25px;
-  background: var(--bg-dark);
-  color: var(--text-primary);
-  outline: none;
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-#chat-input:focus {
-  border-color: #00d4ff;
-  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-}
-
-.chat-send {
-  width: 45px;
-  height: 45px;
-  background: var(--primary-color);
-  border: none;
-  border-radius: 50%;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chat-send:hover {
-  background: #00a8cc;
-  transform: scale(1.1);
-}
-
-.chat-footer {
-  padding: 10px;
-  text-align: center;
-  border-top: 1px solid rgba(0, 212, 255, 0.1);
-  font-size: 12px;
-  color: var(--text-secondary);
-}
-
-/* Links in messages */
-.message-text a {
-  color: var(--primary-color);
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-.user-message .message-text a {
-  color: white;
-}
-
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .chat-window {
-    right: 10px;
-    bottom: 80px;
-    width: calc(100vw - 20px);
-    height: calc(100vh - 100px);
-  }
-  
-  .chat-toggle {
-    right: 20px;
-    bottom: 20px;
-  }
-}
-</style>
-`;
-
-document.head.insertAdjacentHTML('beforeend', chatStyles);
+})();
