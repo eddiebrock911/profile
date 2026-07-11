@@ -1,6 +1,6 @@
 // ========== Typing Animation ==========
 (function typingAnimation() {
-  const texts = ["Ankit Kumar 👋", "AI Developer 🤖", "Python Coder 🐍", "ML Engineer 🧠"];
+  const texts = ["Ankit Kumar", "AI Developer","ML Engineer"];
   let textIndex = 0;
   let charIndex = 0;
   let isDeleting = false;
@@ -17,7 +17,7 @@
       
       if (charIndex === currentText.length) {
         isDeleting = true;
-        setTimeout(type, 1200); // Pause at end
+        setTimeout(type, 2000); // Pause at end
         return;
       }
     } else {
@@ -30,11 +30,12 @@
       }
     }
     
-    setTimeout(type, isDeleting ? 80 : 140);
+    setTimeout(type, isDeleting ? 50 : 100);
   }
   
   type();
 })();
+
 
 // ========== Theme Toggle ==========
 function toggleTheme() {
