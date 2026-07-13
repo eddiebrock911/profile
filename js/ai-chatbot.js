@@ -9,7 +9,7 @@
       this.options = {
         storageKey: 'babyAI.chat.v2',
         themeKey: 'babyAI.theme',
-        maxHistory: 40,
+        maxHistory: 50,
         ownerName: 'Ankit Kumar',
         email: 'ankitkumar823089@gmail.com',
         github: 'https://github.com/eddiebrock911',
@@ -103,12 +103,21 @@
             code: 'https://github.com/eddiebrock911/Quora-Question-pair',
             stack: ['Python', 'NLP', 'Scikit-learn', 'Pandas']
           },
+
+          {
+            name: 'Whatsapp chat analyzer project',
+            tags: ['whatsapp', 'chat', 'nlp', 'classification'],
+            desc: 'Analyzer for Whatsapp chats using NLP techniques.',
+            demo: 'https://whatkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/WhatsApp-Chat-Analysis-Project',
+            stack: ['Python', 'NLP', 'matplotlib', 'Pandas']
+          },
           {
             name: 'Tic Tac Toe Game',
             tags: ['tic', 'toe', 'game', 'javascript'],
             desc: 'Fun Tic Tac Toe game built in JavaScript with AI opponent.',
             demo: 'https://tickiton.onrender.com/',
-            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe',
+            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe-Online-off-',
             stack: ['JavaScript', 'HTML5', 'CSS3']
           },
           {
@@ -121,7 +130,7 @@
           }
         ],
         skills: {
-          languages: ['Python', 'JavaScript', 'SQL'],
+          languages: ['Python', 'c++','JavaScript', 'SQL'],
           ai: ['Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Transformers'],
           web: ['HTML5', 'CSS3', 'Flask', 'Responsive Design'],
           tools: ['Git & GitHub', 'Pandas', 'NumPy', 'Streamlit', 'Data Visualization']
