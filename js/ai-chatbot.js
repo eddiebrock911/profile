@@ -41,93 +41,320 @@
         projects: [
           {
             name: 'Olympic Data Dashboard',
-            tags: ['olympic', 'dashboard', 'streamlit', 'data', 'analytics'],
-            desc: 'Interactive dashboard with ML/data visualization for Olympic data trends.',
+            category: 'ai',
+            status: 'live',
+            tags: ['olympic', 'olympics', 'dashboard', 'streamlit', 'data', 'analytics', 'eda'],
+            desc: 'Interactive Olympics analytics dashboard — medals, countries, athletes aur event trends ka full EDA + visualization.',
             demo: 'https://olympikit.onrender.com/',
             code: 'https://github.com/eddiebrock911/Olympics-analysis-app',
-            stack: ['Python', 'Streamlit', 'ML', 'Pandas', 'Data Visualization']
+            stack: ['Python', 'Streamlit', 'Pandas', 'EDA', 'Data Visualization']
           },
           {
             name: 'Spam Classifier AI',
-            tags: ['spam', 'classifier', 'nlp', 'email', 'sms'],
-            desc: 'NLP model that classifies messages as spam or ham.',
+            category: 'ai',
+            status: 'live',
+            tags: ['spam', 'classifier', 'nlp', 'email', 'sms', 'ham'],
+            desc: 'End-to-end SMS/Email spam detection using NLP — text preprocessing, Bag of Words & TF-IDF, model training aur evaluation.',
             demo: 'https://antispamkit.onrender.com/',
             code: 'https://github.com/eddiebrock911/sms-email-classification-',
-            stack: ['Python', 'NLP', 'Streamlit', 'Pandas', 'NumPy']
+            stack: ['Python', 'NLP', 'Scikit-learn', 'TF-IDF', 'Streamlit']
           },
           {
             name: 'Laptop Price Predictor',
-            tags: ['laptop', 'price', 'regression', 'predictor'],
-            desc: 'ML regression app for predicting laptop prices from specs.',
+            category: 'ai',
+            status: 'live',
+            tags: ['laptop', 'price', 'regression', 'predictor', 'specs'],
+            desc: 'ML regression web app jo brand, RAM, CPU, GPU jaise specs se laptop ka price predict karta hai.',
             demo: 'https://laptoprikit-vvle.onrender.com/',
             code: 'https://github.com/eddiebrock911/laptop-price-predictor-website-',
             stack: ['Python', 'Regression', 'Pandas', 'NumPy', 'Streamlit']
           },
           {
-            name: 'IPL Win Predictor',
-            tags: ['ipl', 'cricket', 'win', 'probability', 'classification'],
-            desc: 'Cricket match win-probability predictor using Logistic Regression.',
+            name: 'IPL Win Probability Predictor',
+            category: 'ai',
+            status: 'live',
+            tags: ['ipl', 'cricket', 'win', 'probability', 'match', 'classification'],
+            desc: 'Live match stats (runs left, wickets, balls remaining, team strength) se batting team ki win probability predict karta hai.',
             demo: 'https://iplwinprokit.onrender.com/',
             code: 'https://github.com/eddiebrock911/IPL-Win-Probability-Predictor-Project',
-            stack: ['Python', 'ML', 'Classification', 'Cricket', 'NumPy']
+            stack: ['Python', 'Logistic Regression', 'ML', 'Streamlit']
           },
           {
             name: 'Book Recommendation System',
-            tags: ['book', 'recommendation', 'recommender', 'collaborative'],
-            desc: 'Book recommender using collaborative filtering.',
+            category: 'ai',
+            status: 'live',
+            tags: ['book', 'books', 'recommendation', 'recommender', 'collaborative'],
+            desc: 'Collaborative filtering based book recommender jo aapki interest ke hisaab se books suggest karta hai.',
             demo: 'https://bookreckit.onrender.com/',
             code: 'https://github.com/eddiebrock911/Books-Recommender-Systems-',
-            stack: ['Python', 'Flask', 'Recommendation', 'Pandas']
+            stack: ['Python', 'Recommendation', 'TF-IDF', 'Scikit-learn', 'Pandas']
           },
           {
             name: 'Movie Recommendation System',
-            tags: ['movie', 'recommendation', 'tmdb', 'content'],
-            desc: 'Content-based movie recommendation system powered by TMDb data.',
+            category: 'ai',
+            status: 'live',
+            tags: ['movie', 'movies', 'recommendation', 'tmdb', 'content'],
+            desc: 'Content-based movie recommendation system — similarity scores se milte-julte movies instantly suggest karta hai.',
             demo: 'https://movieskit.onrender.com/',
             code: 'https://github.com/eddiebrock911/movies-recommendation-system-',
-            stack: ['Python', 'Content-Based Filtering', 'TMDb', 'Pandas']
+            stack: ['Python', 'Content-Based Filtering', 'TF-IDF', 'Streamlit']
           },
           {
-            name: 'AI Job Recommendation System',
-            tags: ['job', 'salary', 'recommendation', 'random forest'],
-            desc: 'AI job recommendation and salary prediction using Random Forest.',
+            name: 'AI Job Salary Prediction',
+            category: 'ai',
+            status: 'live',
+            tags: ['job', 'salary', 'career', 'random forest', 'prediction'],
+            desc: 'AI/Data jobs ki salary predict karne wala ML app — role, experience aur skills ke basis par estimate deta hai.',
             demo: 'https://aijobprekit.onrender.com/',
             code: 'https://github.com/eddiebrock911/AI-job-salary-prediction',
-            stack: ['Python', 'Random Forest', 'Pandas', 'ML']
+            stack: ['Python', 'Random Forest', 'Pandas', 'Streamlit']
           },
           {
             name: 'Quora Question Pair',
-            tags: ['question', 'pair', 'nlp', 'classification'],
-            desc: 'Question pair classification for Quora dataset.',
+            category: 'ai',
+            status: 'live',
+            tags: ['quora', 'question', 'pair', 'duplicate', 'nlp', 'similarity'],
+            desc: 'Do questions duplicate hain ya nahi — ye predict karne wala NLP model with fuzzy features, BOW aur t-SNE analysis.',
             demo: 'https://quorakit.onrender.com/',
             code: 'https://github.com/eddiebrock911/Quora-Question-pair',
-            stack: ['Python', 'NLP', 'Scikit-learn', 'Pandas']
+            stack: ['Python', 'NLP', 'NLTK', 'FuzzyWuzzy', 'Random Forest']
           },
-
           {
-            name: 'Whatsapp chat analyzer project',
-            tags: ['whatsapp', 'chat', 'nlp', 'classification'],
-            desc: 'Analyzer for Whatsapp chats using NLP techniques.',
+            name: 'WhatsApp Chat Analyzer',
+            category: 'ai',
+            status: 'live',
+            tags: ['whatsapp', 'chat', 'analyzer', 'analysis', 'wordcloud'],
+            desc: 'WhatsApp chat export upload karo aur poora analysis pao — top users, activity timeline, emoji stats aur wordcloud.',
             demo: 'https://whatkit.onrender.com/',
             code: 'https://github.com/eddiebrock911/WhatsApp-Chat-Analysis-Project',
-            stack: ['Python', 'NLP', 'matplotlib', 'Pandas']
+            stack: ['Python', 'NLP', 'Matplotlib', 'Pandas', 'Streamlit']
           },
           {
-            name: 'Tic Tac Toe Game',
-            tags: ['tic', 'toe', 'game', 'javascript'],
-            desc: 'Fun Tic Tac Toe game built in JavaScript with AI opponent.',
+            name: 'Student Mental Health Score',
+            category: 'ai',
+            status: 'live',
+            tags: ['student', 'mental', 'health', 'score', 'wellbeing', 'prediction'],
+            desc: 'ML app jo student lifestyle aur habits ke data se mental health score predict karta hai.',
+            demo: 'https://mentalkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Student-Mental-Health-Score',
+            stack: ['Python', 'Machine Learning', 'Pandas', 'Streamlit']
+          },
+          {
+            name: 'Cat vs Dog Classification',
+            category: 'ai',
+            status: 'sleeping',
+            tags: ['cat', 'dog', 'image', 'cnn', 'tensorflow', 'classification', 'vision'],
+            desc: 'Deep learning image classifier (CNN) jo photo dekh kar cat aur dog me difference batata hai.',
+            demo: 'https://imgclassifier-tilx.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Cat-vs-Dog-Classification',
+            stack: ['Python', 'TensorFlow', 'CNN', 'Deep Learning']
+          },
+          {
+            name: 'Language Detection Model',
+            category: 'ai',
+            status: 'code',
+            tags: ['language', 'detection', 'detect', 'multilingual', 'nlp'],
+            desc: 'NLP model jo diye gaye text ki language automatically detect karta hai.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Language-Detection-model',
+            stack: ['Python', 'NLP', 'Scikit-learn']
+          },
+          {
+            name: 'House Price Predictor',
+            category: 'ai',
+            status: 'code',
+            tags: ['house', 'home', 'property', 'price', 'regression'],
+            desc: 'Area, location aur rooms jaise features se ghar ki price predict karne wala ML model.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/hous-price-predictor-website-',
+            stack: ['Python', 'Regression', 'Pandas', 'Streamlit']
+          },
+          {
+            name: 'Titanic Survival Prediction',
+            category: 'ai',
+            status: 'code',
+            tags: ['titanic', 'survival', 'kaggle', 'classification'],
+            desc: 'Classic Kaggle Titanic problem — multiple classification algorithms train karke unki performance compare ki gayi hai.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Titanic-Machine-Learning',
+            stack: ['Python', 'Scikit-learn', 'Classification', 'Pandas']
+          },
+          {
+            name: 'AI Background Remover',
+            category: 'ai',
+            status: 'code',
+            tags: ['background', 'remove', 'remover', 'image', 'segmentation'],
+            desc: 'Deep learning based tool jo images ka background automatically detect karke hata deta hai — no manual masking.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/AI-BackgroundRemove',
+            stack: ['Python', 'Deep Learning', 'Image Processing']
+          },
+          {
+            name: 'Remove Background (Streamlit)',
+            category: 'ai',
+            status: 'code',
+            tags: ['background', 'remove', 'opencv', 'cnn', 'streamlit'],
+            desc: 'Streamlit app version of background removal tool built with OpenCV aur CNN based segmentation.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Remove-Background',
+            stack: ['Python', 'OpenCV', 'CNN', 'Streamlit']
+          },
+          {
+            name: 'Grammar and Spell Checker',
+            category: 'ai',
+            status: 'code',
+            tags: ['grammar', 'spell', 'checker', 'spelling', 'correction', 'nlp'],
+            desc: 'NLP based tool jo text me grammatical errors aur spelling mistakes detect karke correct karta hai.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Grammar-and-spell-checker',
+            stack: ['Python', 'NLP', 'Machine Learning']
+          },
+          {
+            name: 'Keyword Extraction with Python',
+            category: 'ai',
+            status: 'code',
+            tags: ['keyword', 'extraction', 'tfidf', 'text', 'nlp'],
+            desc: 'TF-IDF based intelligent keyword extraction system jo kisi bhi document se important keywords nikalta hai.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Keyword-Extraction-with-python',
+            stack: ['Python', 'TF-IDF', 'Scikit-learn', 'NLP']
+          },
+          {
+            name: 'Computer Vision with OpenCV',
+            category: 'ai',
+            status: 'code',
+            tags: ['computer vision', 'opencv', 'object detection', 'video', 'cv'],
+            desc: 'Real-time image aur video analysis project — object detection, image processing aur feature extraction.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Computer-Vision',
+            stack: ['Python', 'OpenCV', 'Deep Learning']
+          },
+          {
+            name: 'Baby AI Assistant',
+            category: 'ai',
+            status: 'code',
+            tags: ['baby ai', 'assistant', 'agi', 'vision', 'nlp'],
+            desc: 'Ankit ka flagship vision project — ek smart, lightweight AI assistant jo intuitive aur responsive ho. Ye portfolio chatbot uska mini prototype hai.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Baby-AI',
+            stack: ['NLP', 'Deep Learning', 'Neural Networks', 'AI']
+          },
+          {
+            name: 'Space Shooters Game',
+            category: 'game',
+            status: 'live',
+            tags: ['space', 'shooter', 'shooters', 'game', 'arcade', 'canvas'],
+            desc: 'Fast-paced browser arcade shooter — alien territory me spacecraft udao, enemies ko blast karo aur survive karo.',
+            demo: 'https://spacekit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Space-Shooters-Game',
+            stack: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Game Dev']
+          },
+          {
+            name: 'Tic Tac Toe Multiplayer (Online + Offline)',
+            category: 'game',
+            status: 'live',
+            tags: ['tic', 'toe', 'tictactoe', 'multiplayer', 'socket', 'online', 'game'],
+            desc: 'Real-time multiplayer Tic-Tac-Toe — room code se friends ke saath online khelo ya single device par offline.',
             demo: 'https://tickiton.onrender.com/',
             code: 'https://github.com/eddiebrock911/Tic-Tac-Toe-Online-off-',
+            stack: ['Node.js', 'Express', 'Socket.IO', 'JavaScript']
+          },
+          {
+            name: 'Tic Tac Toe Classic',
+            category: 'game',
+            status: 'live',
+            tags: ['tic', 'toe', 'tictactoe', 'classic', 'bootstrap', 'game'],
+            desc: 'Classic 3x3 Tic Tac Toe game — clean responsive UI ke saath do players ka turn-based match.',
+            demo: 'https://tickit-rht5.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe',
+            stack: ['JavaScript', 'Bootstrap', 'HTML5', 'CSS3']
+          },
+          {
+            name: 'AnkitAI Portfolio',
+            category: 'web',
+            status: 'live',
+            tags: ['portfolio', 'ankitai', 'personal', 'website', 'profile'],
+            desc: 'Ankit ka main personal portfolio — AI/ML projects, data visualization, games aur Baby AI assistant ek jagah.',
+            demo: 'https://ankitai.onrender.com/',
+            code: 'https://github.com/eddiebrock911/profile',
+            stack: ['JavaScript', 'HTML5', 'CSS3', 'Python']
+          },
+          {
+            name: 'GitProfile Developer Portfolio',
+            category: 'web',
+            status: 'live',
+            tags: ['gitprofile', 'portfolio', 'developer', 'typescript', 'github pages'],
+            desc: 'Dynamic developer portfolio jo GitHub data se auto-generate hota hai — ML, NLP aur Generative AI projects showcase.',
+            demo: 'https://eddiebrock911.github.io/gitprofile/',
+            code: 'https://github.com/eddiebrock911/gitprofile',
+            stack: ['TypeScript', 'React', 'GitHub Pages']
+          },
+          {
+            name: 'Zynero E-Commerce',
+            category: 'web',
+            status: 'live',
+            tags: ['zynero', 'ecommerce', 'e-com', 'shop', 'store', 'cart'],
+            desc: 'Modern e-commerce web experience — product listing, cart flow aur clean responsive storefront UI.',
+            demo: 'https://zynero.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Zynero-',
             stack: ['JavaScript', 'HTML5', 'CSS3']
           },
           {
-            name: 'Space Shooter Game',
-            tags: ['space', 'shooter', 'game', 'canvas'],
-            desc: 'Space Shooter game built with JavaScript and HTML5 Canvas.',
-            demo: 'https://spacekit.onrender.com/',
-            code: 'https://github.com/eddiebrock911/Space-Shooters-Game',
-            stack: ['JavaScript', 'Canvas', 'Game Dev','HTML5', 'CSS3']
+            name: 'Abhishek Developer Portfolio',
+            category: 'web',
+            status: 'live',
+            tags: ['abhishek', 'portfolio', 'client', 'dark theme', 'particle'],
+            desc: 'Sleek dark-themed developer portfolio — particle effects, 3D card tilt, custom cursor aur terminal-style about section.',
+            demo: 'https://abhishekkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Abhishek-profile',
+            stack: ['JavaScript', 'CSS3', 'HTML5', 'Animations']
+          },
+          {
+            name: 'Laukesh Kumar Portfolio',
+            category: 'web',
+            status: 'live',
+            tags: ['laukesh', 'portfolio', 'client', 'photo editor', 'bgmi', 'gamer'],
+            desc: 'Photo editor aur BGMI gamer ke liye banaya gaya visually stunning portfolio — work, highlights aur services showcase.',
+            demo: 'https://laukesh.onrender.com/',
+            code: 'https://github.com/eddiebrock911/laukeshKumar-Profile',
+            stack: ['HTML5', 'CSS3', 'Bootstrap', 'JavaScript']
+          },
+          {
+            name: 'Birthday Surprise Website',
+            category: 'fun',
+            status: 'code',
+            tags: ['birthday', 'surprise', 'babe', 'celebration', 'gift'],
+            desc: 'Magical animated birthday surprise website — music, animations aur personalised message reveal ke saath.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/babe-birthday',
+            stack: ['JavaScript', 'CSS3', 'HTML5', 'Firebase']
+          },
+          {
+            name: 'Naincy Birthday Website',
+            category: 'fun',
+            status: 'code',
+            tags: ['naincy', 'birthday', 'surprise', 'vite', 'celebration'],
+            desc: 'Vite se banaya gaya interactive birthday celebration website with smooth animations.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/Naincy-birthday',
+            stack: ['JavaScript', 'Vite', 'CSS3']
+          },
+          {
+            name: 'Babe Betu Surprise Site',
+            category: 'fun',
+            status: 'code',
+            tags: ['babe', 'betu', 'surprise', 'romantic', 'creative'],
+            desc: 'Creative surprise website project — animated sections aur playful interactive UI.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/babe-betu',
+            stack: ['CSS3', 'JavaScript', 'HTML5']
           }
+        ],
+        categories: [
+          { id: 'ai', label: 'AI / ML Projects' },
+          { id: 'game', label: 'Games' },
+          { id: 'web', label: 'Web & Portfolio' },
+          { id: 'fun', label: 'Fun & Creative' }
         ],
         skills: {
           languages: ['Python', 'c++','JavaScript', 'SQL'],
@@ -178,6 +405,7 @@
             <button class="tool-chip" data-action="nav:skills">🛠️ Skills</button>
             <button class="tool-chip" data-action="contact">📧 Contact</button>
             <button class="tool-chip" data-action="games">🎮 Games</button>
+            <button class="tool-chip" data-action="project:all">🔗 All Projects</button>
           </div>
 
           <main id="chat-messages" class="baby-ai-messages"></main>
@@ -187,7 +415,8 @@
             <button class="suggestion-btn" data-message="Ankit ke AI ML skills batao">🧠 AI/ML Skills</button>
             <button class="suggestion-btn" data-message="How can I hire Ankit?">🤝 Hire</button>
             <button class="suggestion-btn" data-message="Baby AI kya hai?">🤖 Baby AI</button>
-            <button class="suggestion-btn" data-message="Show project links">🔗 Links</button>
+            <button class="suggestion-btn" data-message="Sabhi project links dikhao">🔗 All Projects</button>
+            <button class="suggestion-btn" data-message="Live demo dikhao">⚡ Live Demos</button>
           </div>
 
           <form class="baby-ai-input-row" id="chat-form">
@@ -285,12 +514,25 @@
 
     generateResponse(message) {
       const text = this.normalize(message);
+
+      // High-priority phrases: list/overview intents must win over single-project matching
+      const listFirst = /\b(sab|sabhi|saare|sare|all|list|kitne|how many|har)\b/.test(text)
+        || /\ball project|project links|live demo|demos|kaun kaun/.test(text);
+      const gamesFirst = /\bgames?\b/.test(text) || /khel/.test(text);
+      const visionFirst = /baby ai (kya|kaun|what|about|vision)/.test(text) || /\bvision\b/.test(text);
+
+      if (listFirst) return { intent: 'projects', html: this.replyProjects(text) };
+      if (gamesFirst) return { intent: 'games', html: this.replyGames() };
+      if (visionFirst) return { intent: 'vision', html: this.replyVision() };
+
       const project = this.findProject(text);
-      if (project) return { intent: 'project_detail', html: this.projectCard(project), meta: { quickReplies: ['More projects', 'Live demo', 'Code link'] } };
+      if (project) return { intent: 'project_detail', html: this.projectCard(project), meta: { quickReplies: ['All projects', 'Live demos', 'Contact Ankit'] } };
 
       const intents = [
         { name: 'greeting', keys: ['hi', 'hello', 'hey', 'namaste', 'kaise ho', 'kya haal'], handler: () => this.replyGreeting() },
-        { name: 'projects', keys: ['project', 'work', 'portfolio', 'links', 'demo', 'github repo', 'best project', 'kaunsa project'], handler: () => this.replyProjects(text) },
+        { name: 'projects', keys: ['project', 'work', 'portfolio', 'links', 'demo', 'github repo', 'best project', 'kaunsa project', 'sabhi project', 'saare project', 'all project', 'live demo', 'repo', 'kitne project'], handler: () => this.replyProjects(text) },
+        { name: 'ai_projects', keys: ['ai project', 'ml project', 'machine learning project', 'data project', 'python project'], handler: () => this.replyCategory('ai') },
+        { name: 'web_projects', keys: ['web project', 'website project', 'frontend', 'ecommerce', 'e-commerce'], handler: () => this.replyCategory('web') },
         { name: 'skills', keys: ['skill', 'tech', 'technology', 'stack', 'language', 'tools', 'python', 'javascript', 'aata hai'], handler: () => this.replySkills() },
         { name: 'contact', keys: ['contact', 'email', 'hire', 'linkedin', 'github', 'instagram', 'reach', 'collaboration', 'connect'], handler: () => this.replyContact() },
         { name: 'vision', keys: ['baby ai', 'vision', 'future', 'goal', 'dream', 'agi', 'mars', 'biology'], handler: () => this.replyVision() },
@@ -360,11 +602,53 @@
     }
 
     replyProjects(text) {
-      const top = this.knowledge.projects.slice(0, 7).map((p, i) =>
-        `${i + 1}. <strong>${p.name}</strong> — ${p.desc}<br><span class="mini-stack">${p.stack.join(' • ')}</span>`
+      const all = this.knowledge.projects;
+      const live = all.filter((p) => p.demo);
+
+      if (/\b(all|sab|saare|sabhi|full|complete|list|links?)\b/.test(text)) {
+        return this.allProjectLinks();
+      }
+      if (/\b(live|demo|deploy)/.test(text)) return this.replyLiveDemos();
+
+      const highlight = live.slice(0, 6).map((p, i) =>
+        `${i + 1}. <strong>${p.name}</strong> \u2014 ${p.desc}<br>
+         <span class="mini-stack">${p.stack.join(' \u2022 ')}</span><br>\u{1F517} ${this.projectLinks(p)}`
       ).join('<br><br>');
-      return `Ankit ne AI/ML + Web + Games ke multiple real-world projects banaye hain. Highlights 👇<br><br>${top}<br><br>` +
-        this.actionRow([['nav:projects', 'Open Projects Section'], ['project:all', 'All Project Links'], ['games', '🎮 Games']]);
+
+      return `Ankit ke paas total <strong>${all.length} projects</strong> hain \u2014 jisme <strong>${live.length} live demo</strong> ke saath deployed hain \u{1F680}<br><br>
+        Top highlights \u{1F447}<br><br>${highlight}<br><br>
+        Category wise dekhna hai? Neeche click karo.` +
+        this.actionRow([
+          ['project:all', '\u{1F517} All Project Links'],
+          ['cat:ai', '\u{1F9E0} AI/ML'],
+          ['cat:game', '\u{1F3AE} Games'],
+          ['cat:web', '\u{1F310} Web'],
+          ['project:live', '\u26A1 Live Demos']
+        ]);
+    }
+
+    replyCategory(catId) {
+      const cat = this.knowledge.categories.find((c) => c.id === catId);
+      const list = this.knowledge.projects.filter((p) => p.category === catId);
+      if (!cat || !list.length) return this.allProjectLinks();
+
+      const body = list.map((p, i) =>
+        `${i + 1}. <strong>${p.name}</strong> ${this.statusBadge(p)}<br>${p.desc}<br>
+         <span class="mini-stack">${p.stack.join(' \u2022 ')}</span><br>\u{1F517} ${this.projectLinks(p)}`
+      ).join('<br><br>');
+
+      return `<strong>${cat.label}</strong> \u2014 ${list.length} projects \u{1F447}<br><br>${body}` +
+        this.actionRow([['project:all', 'All Projects'], ['nav:projects', 'Open Section']]);
+    }
+
+    replyLiveDemos() {
+      const live = this.knowledge.projects.filter((p) => p.demo);
+      const body = live.map((p, i) =>
+        `${i + 1}. <strong>${p.name}</strong> \u2014 <a href="${p.demo}" target="_blank" rel="noopener">Open Demo</a> | <a href="${p.code}" target="_blank" rel="noopener">Code</a>`
+      ).join('<br>');
+      return `\u26A1 <strong>${live.length} live demos</strong> \u2014 sab abhi online hain \u{1F447}<br><br>${body}<br><br>
+        <em>Note: free hosting par pehli baar khulne me 30-60 second lag sakta hai (cold start).</em>` +
+        this.actionRow([['project:all', 'All Projects'], ['nav:projects', 'Open Section']]);
     }
 
     replySkills() {
@@ -419,10 +703,10 @@
     }
 
     replyGames() {
-      const games = this.knowledge.projects.filter((p) => p.tags.includes('game'));
-      return `🎮 Ankit ke playable games:<br><br>` + games.map((g) =>
-        `<strong>${g.name}</strong> — ${g.desc}<br><a href="${g.demo}" target="_blank" rel="noopener">Play Live</a> • <a href="${g.code}" target="_blank" rel="noopener">Code</a>`
-      ).join('<br><br>');
+      const games = this.knowledge.projects.filter((p) => p.category === 'game');
+      return `\u{1F3AE} Ankit ke playable games \u2014 abhi browser me khel sakte ho:<br><br>` + games.map((g) =>
+        `<strong>${g.name}</strong> \u2014 ${g.desc}<br>${this.projectLinks(g).replace('\u{1F310} Live Demo', '\u{1F3AE} Play Now')}`
+      ).join('<br><br>') + this.actionRow([['project:all', 'All Projects'], ['cat:web', '\u{1F310} Web Projects']]);
     }
 
     replyAIConcept(text) {
@@ -457,12 +741,25 @@
         Try: <em>${suggestions[Math.floor(Math.random() * suggestions.length)]}</em>`;
     }
 
+    projectLinks(p) {
+      const parts = [];
+      if (p.demo) parts.push(`<a href="${p.demo}" target="_blank" rel="noopener">\u{1F310} Live Demo</a>`);
+      parts.push(`<a href="${p.code}" target="_blank" rel="noopener">\u{1F4BB} Source Code</a>`);
+      return parts.join(' \u2022 ');
+    }
+
+    statusBadge(p) {
+      if (p.status === 'live') return '<span class="mini-badge live">\u25CF Live</span>';
+      if (p.status === 'sleeping') return '<span class="mini-badge warm">\u25CF Live (cold start \u2014 30-60s)</span>';
+      return '<span class="mini-badge code">\u25CF Code only</span>';
+    }
+
     projectCard(p) {
       this.context.lastProject = p.name;
-      return `💼 <strong>${p.name}</strong><br><br>
+      return `\u{1F4BC} <strong>${p.name}</strong> ${this.statusBadge(p)}<br><br>
         ${p.desc}<br><br>
-        <span class="mini-stack">${p.stack.join(' • ')}</span><br><br>
-        🔗 <a href="${p.demo}" target="_blank" rel="noopener">Live Demo</a> • <a href="${p.code}" target="_blank" rel="noopener">Source Code</a>`;
+        <span class="mini-stack">${p.stack.join(' \u2022 ')}</span><br><br>
+        \u{1F517} ${this.projectLinks(p)}`;
     }
 
     actionRow(actions) {
@@ -476,13 +773,37 @@
       if (action === 'contact') return this.addBotInstant(this.replyContact());
       if (action === 'games') return this.addBotInstant(this.replyGames());
       if (action === 'project:all') return this.addBotInstant(this.allProjectLinks());
+      if (action.startsWith('cat:')) return this.addBotInstant(this.replyCategory(action.split(':')[1]));
+      if (action === 'project:live') return this.addBotInstant(this.replyLiveDemos());
       if (action === 'copy:email') return this.copyText(this.options.email, 'Email copied ✅');
     }
 
-    allProjectLinks() {
-      return `🔗 <strong>All important project links</strong><br><br>` + this.knowledge.projects.map((p) =>
-        `• <strong>${p.name}</strong>: <a href="${p.demo}" target="_blank" rel="noopener">Demo</a> | <a href="${p.code}" target="_blank" rel="noopener">Code</a>`
-      ).join('<br>');
+    allProjectLinks(filterCat) {
+      const cats = filterCat
+        ? this.knowledge.categories.filter((c) => c.id === filterCat)
+        : this.knowledge.categories;
+
+      const total = this.knowledge.projects.length;
+      const liveCount = this.knowledge.projects.filter((p) => p.demo).length;
+
+      let out = filterCat
+        ? ''
+        : `\u{1F517} <strong>All ${total} projects</strong> \u2014 ${liveCount} live demos \u{1F680}<br>`;
+
+      cats.forEach((c) => {
+        const list = this.knowledge.projects.filter((p) => p.category === c.id);
+        if (!list.length) return;
+        out += `<br><strong>${c.label} (${list.length})</strong><br>`;
+        out += list.map((p) => `\u2022 <strong>${p.name}</strong> \u2014 ${this.projectLinks(p)}`).join('<br>');
+        out += '<br>';
+      });
+
+      return out + this.actionRow([
+        ['nav:projects', 'Open Projects Section'],
+        ['cat:ai', '\u{1F9E0} AI/ML'],
+        ['cat:game', '\u{1F3AE} Games'],
+        ['cat:web', '\u{1F310} Web']
+      ]);
     }
 
     scrollToSection(id) {
@@ -769,6 +1090,10 @@
         .user-message .message-time { text-align:right; }
         .message-text a { color:#67e8f9; text-decoration:underline; font-weight:700; }
         .mini-stack { display:inline-block; margin-top:3px; color:#c4b5fd; font-size:12px; }
+        .mini-badge { display:inline-block; padding:2px 8px; border-radius:999px; font-size:10.5px; font-weight:700; vertical-align:middle; white-space:nowrap; }
+        .mini-badge.live { background:rgba(34,197,94,.16); color:#4ade80; border:1px solid rgba(34,197,94,.35); }
+        .mini-badge.warm { background:rgba(245,158,11,.16); color:#fbbf24; border:1px solid rgba(245,158,11,.35); }
+        .mini-badge.code { background:rgba(148,163,184,.16); color:#cbd5e1; border:1px solid rgba(148,163,184,.35); }
         .bot-actions, .quick-replies { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
         .quick-replies { margin-left:2px; }
         .typing-dots { display:flex; align-items:center; gap:6px; padding:13px 15px; background:rgba(255,255,255,.07); border-radius:18px; border-bottom-left-radius:6px; }
