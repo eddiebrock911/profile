@@ -37,33 +37,7 @@
 })();
 
 
-// ========== Theme Toggle ==========
-function toggleTheme() {
-  const body = document.body;
-  const themeIcon = document.querySelector('.theme-toggle i');
-  
-  body.classList.toggle('light-mode');
-  
-  if (body.classList.contains('light-mode')) {
-    themeIcon.className = 'fas fa-moon';
-    localStorage.setItem('theme', 'light');
-  } else {
-    themeIcon.className = 'fas fa-sun';
-    localStorage.setItem('theme', 'dark');
-  }
-}
-
-// Load saved theme on page load
-window.addEventListener('DOMContentLoaded', () => {
-  const savedTheme = localStorage.getItem('theme');
-  const body = document.body;
-  const themeIcon = document.querySelector('.theme-toggle i');
-  
-  if (savedTheme === 'light') {
-    body.classList.add('light-mode');
-    if (themeIcon) themeIcon.className = 'fas fa-moon';
-  }
-});
+// Theme toggle removed for permanent dark futuristic mode
 
 // ========== Mobile Menu Toggle ==========
 function toggleMobileMenu() {
@@ -168,7 +142,7 @@ if (window.innerWidth > 1024) {
         position: fixed;
         width: 40px;
         height: 40px;
-        border: 2px solid #ff274b;
+        border: 2px solid #00f3ff;
         border-radius: 50%;
         pointer-events: none;
         z-index: 10000;
@@ -184,12 +158,12 @@ if (window.innerWidth > 1024) {
         position: fixed;
         width: 8px;
         height: 8px;
-        background: #ff274b;
+        background: #00f3ff;
         border-radius: 50%;
         pointer-events: none;
         z-index: 10000;
         transform: translate(-50%, -50%);
-        box-shadow: 0 0 10px #ff274b;
+        box-shadow: 0 0 10px #00f3ff;
         mix-blend-mode: difference;
     `;
     document.body.appendChild(cursorDot);
@@ -244,11 +218,11 @@ if (window.innerWidth > 1024) {
             el.addEventListener('mouseleave', () => {
                 cursor.style.width = '40px';
                 cursor.style.height = '40px';
-                cursor.style.borderColor = '#ff274b';
+                cursor.style.borderColor = '#00f3ff';
                 cursorDot.style.width = '8px';
                 cursorDot.style.height = '8px';
-                cursorDot.style.background = '#ff274b';
-                cursorDot.style.boxShadow = '0 0 10px #ff274b';
+                cursorDot.style.background = '#00f3ff';
+                cursorDot.style.boxShadow = '0 0 10px #00f3ff';
             });
         });
     }, 1000);
@@ -501,96 +475,7 @@ rainbowStyle.textContent = `
 `;
 document.head.appendChild(rainbowStyle);
 
-// ========== Particle Network Background ==========
-const canvas = document.getElementById('particles-canvas');
-if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-    
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 1;
-            this.vy = (Math.random() - 0.5) * 1;
-            this.radius = Math.random() * 2 + 1;
-        }
-        
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
-            
-            if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-            if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
-        }
-        
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-            ctx.fillStyle = document.body.classList.contains('light-mode') 
-                ? 'rgba(0, 212, 255, 0.5)' 
-                : 'rgba(0, 212, 255, 0.3)';
-            ctx.fill();
-        }
-    }
-    
-    for (let i = 0; i < 80; i++) {
-        particles.push(new Particle());
-    }
-    
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-            
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 120) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.strokeStyle = document.body.classList.contains('light-mode')
-                        ? `rgba(0, 212, 255, ${0.2 - distance/600})`
-                        : `rgba(0, 212, 255, ${0.15 - distance/800})`;
-                    ctx.lineWidth = 1;
-                    ctx.stroke();
-                }
-            }
-            
-            // Connect to mouse if cursor is near
-            if (typeof mouseX !== 'undefined' && typeof mouseY !== 'undefined') {
-                const dx = particles[i].x - mouseX;
-                const dy = particles[i].y - mouseY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < 150) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(mouseX, mouseY);
-                    ctx.strokeStyle = document.body.classList.contains('light-mode')
-                        ? `rgba(243, 156, 18, ${0.3 - distance/500})`
-                        : `rgba(243, 156, 18, ${0.3 - distance/500})`;
-                    ctx.lineWidth = 1.5;
-                    ctx.stroke();
-                }
-            }
-        }
-        requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-}
+// Old Particle Background removed - Replaced by Three.js in 3d-scene.js
 
 // ========== 3D Tilt Effect ==========
 const cards = document.querySelectorAll('.project-card, .stat-card, .skill-card, .vision-card');
@@ -619,3 +504,366 @@ cards.forEach(card => {
 });
 
 // Scroll progress bar DOM updates are now handled by the Consolidated Scroll Handler.
+
+// ===================================================
+// CYBERPUNK SCI-FI INTERACTIVE MAP SYSTEM
+// ===================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initPortfolioMap();
+});
+
+function initPortfolioMap() {
+  const mapElement = document.getElementById('portfolio-map');
+  if (!mapElement || typeof L === 'undefined') return;
+
+  // Ankit Kumar HQ Coordinates (Bihar Sharif, Nalanda / Patna Region, Bihar)
+  const HQ_COORDS = [25.196759, 85.514895];
+  const DEFAULT_ZOOM = 13;
+
+  // Initialize Leaflet Map
+  const map = L.map('portfolio-map', {
+    center: HQ_COORDS,
+    zoom: DEFAULT_ZOOM,
+    zoomControl: false,
+    scrollWheelZoom: false,
+    attributionControl: true
+  });
+
+  // Enable scroll zoom on map focus / click
+  map.on('focus', () => map.scrollWheelZoom.enable());
+  map.on('click', () => map.scrollWheelZoom.enable());
+
+  // Tile Layers Definitions
+  const tileLayers = {
+    dark: L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }),
+    satellite: L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+      maxZoom: 18
+    }),
+    street: L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      maxZoom: 19
+    })
+  };
+
+  // Add Default Dark Layer
+  let currentLayer = tileLayers.dark.addTo(map);
+
+  // Custom Animated Radar Pin Icon
+  const customRadarIcon = L.divIcon({
+    className: 'custom-radar-marker-wrapper',
+    html: `
+      <div class="custom-radar-pin-container">
+        <div class="radar-wave-ring wave-1"></div>
+        <div class="radar-wave-ring wave-2"></div>
+        <div class="radar-wave-ring wave-3"></div>
+        <div class="marker-core-icon">
+          <i class="fas fa-laptop-code"></i>
+        </div>
+        <div class="marker-floating-label">Ankit Kumar • AI Base</div>
+      </div>
+    `,
+    iconSize: [60, 60],
+    iconAnchor: [30, 30],
+    popupAnchor: [0, -32]
+  });
+
+  // Marker Popup Content
+  const popupContent = `
+    <div class="cyber-popup-card">
+      <span class="popup-hud-tag"><i class="fas fa-satellite"></i> BASE HQ // ONLINE</span>
+      <h3 class="popup-title">Ankit Kumar</h3>
+      <p class="popup-loc"><i class="fas fa-map-pin" style="color:#00f3ff;"></i> Bihar Sharif / Patna, Bihar, India</p>
+      <p class="popup-desc">Aspiring AI Developer & Coder specializing in Machine Learning, Deep Learning, and Autonomous AI Systems.</p>
+      <div class="popup-stats-row">
+        <div class="popup-mini-stat">
+          <span>21+</span>
+          <label>Projects</label>
+        </div>
+        <div class="popup-mini-stat">
+          <span>Class 12</span>
+          <label>Innovator</label>
+        </div>
+        <div class="popup-mini-stat">
+          <span>AI / ML</span>
+          <label>Focus</label>
+        </div>
+      </div>
+      <div class="popup-cta-row">
+        <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer" class="popup-cta-btn primary">
+          <i class="fas fa-location-arrow"></i> Google Maps
+        </a>
+        <a href="#contact" class="popup-cta-btn secondary">
+          <i class="fas fa-paper-plane"></i> Contact
+        </a>
+      </div>
+    </div>
+  `;
+
+  // Add Marker to Map
+  const hqMarker = L.marker(HQ_COORDS, { icon: customRadarIcon }).addTo(map);
+  hqMarker.bindPopup(popupContent, { maxWidth: 300, minWidth: 260, className: 'cyber-leaflet-popup' });
+
+  // Map View Mode Switcher
+  const modeButtons = document.querySelectorAll('.map-mode-btn');
+  modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute('data-mode');
+      if (!tileLayers[mode]) return;
+
+      modeButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      map.removeLayer(currentLayer);
+      currentLayer = tileLayers[mode].addTo(map);
+      currentLayer.bringToBack();
+    });
+  });
+
+  // Custom Floating Map Controls
+  const recenterBtn = document.getElementById('btn-map-recenter');
+  if (recenterBtn) {
+    recenterBtn.addEventListener('click', () => {
+      map.flyTo(HQ_COORDS, DEFAULT_ZOOM, {
+        duration: 1.2,
+        easeLinearity: 0.25
+      });
+      hqMarker.openPopup();
+    });
+  }
+
+  const zoomInBtn = document.getElementById('btn-map-zoom-in');
+  if (zoomInBtn) {
+    zoomInBtn.addEventListener('click', () => map.zoomIn());
+  }
+
+  const zoomOutBtn = document.getElementById('btn-map-zoom-out');
+  if (zoomOutBtn) {
+    zoomOutBtn.addEventListener('click', () => map.zoomOut());
+  }
+
+  // Fullscreen Toggle
+  const fullscreenBtn = document.getElementById('btn-map-fullscreen');
+  const mapSection = document.getElementById('portfolio-map-section');
+  if (fullscreenBtn && mapSection) {
+    fullscreenBtn.addEventListener('click', () => {
+      mapSection.classList.toggle('map-fullscreen-active');
+      const isFullscreen = mapSection.classList.contains('map-fullscreen-active');
+      fullscreenBtn.innerHTML = isFullscreen ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
+      fullscreenBtn.title = isFullscreen ? 'Exit Fullscreen' : 'Toggle Fullscreen';
+      
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 300);
+    });
+
+    // Close fullscreen on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mapSection.classList.contains('map-fullscreen-active')) {
+        mapSection.classList.remove('map-fullscreen-active');
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        setTimeout(() => map.invalidateSize(), 300);
+      }
+    });
+  }
+
+  // Stat Card "View on Map" Button Smooth Scroll & Focus
+  const statMapBtn = document.getElementById('stat-view-map-btn');
+  if (statMapBtn) {
+    statMapBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      mapSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => {
+        map.flyTo(HQ_COORDS, 14, { duration: 1.2 });
+        hqMarker.openPopup();
+      }, 600);
+    });
+  }
+
+  // Copy GPS Coordinates with Animated Toast
+  const copyCoordsBtn = document.getElementById('btn-copy-coords');
+  const mapToast = document.getElementById('map-toast');
+  if (copyCoordsBtn) {
+    copyCoordsBtn.addEventListener('click', () => {
+      const coordsText = '25.196759, 85.514895';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(coordsText).then(showToast);
+      } else {
+        // Fallback for clipboard
+        const input = document.createElement('input');
+        input.value = coordsText;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast();
+      }
+    });
+  }
+
+  function showToast() {
+    if (!mapToast) return;
+    mapToast.classList.add('show');
+    setTimeout(() => {
+      mapToast.classList.remove('show');
+    }, 2500);
+  }
+
+  // Live IST Clock Updater
+  const liveClockEl = document.getElementById('map-live-clock');
+  function updateLiveClock() {
+    if (!liveClockEl) return;
+    const now = new Date();
+    const istOptions = {
+      timeZone: 'Asia/Kolkata',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    const timeString = new Intl.DateTimeFormat('en-US', istOptions).format(now);
+    liveClockEl.textContent = `Patna (IST) ${timeString}`;
+  }
+  updateLiveClock();
+  setInterval(updateLiveClock, 1000);
+
+  // ==========================================
+  // Interactive Distance Calculator Feature
+  // ==========================================
+  const calcDistanceBtn = document.getElementById('btn-calc-distance');
+  const distanceDisplay = document.getElementById('distance-info-display');
+  const distanceText = document.getElementById('distance-text');
+  const clearDistanceBtn = document.getElementById('btn-clear-distance');
+
+  let userMarker = null;
+  let flightPathLine = null;
+  let clickListenerActive = false;
+
+  // Haversine Distance Formula in KM
+  function calculateHaversineDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Earth radius in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  function drawDistancePath(userLat, userLng, locationLabel = 'Your Location') {
+    const distKm = calculateHaversineDistance(userLat, userLng, HQ_COORDS[0], HQ_COORDS[1]);
+    const distMiles = (distKm * 0.621371).toFixed(0);
+    const distKmFormatted = Math.round(distKm).toLocaleString();
+
+    // Remove existing user marker and path line
+    if (userMarker) map.removeLayer(userMarker);
+    if (flightPathLine) map.removeLayer(flightPathLine);
+
+    // Custom User Pin Icon
+    const userPinIcon = L.divIcon({
+      className: 'custom-user-marker-wrapper',
+      html: `
+        <div class="user-radar-pin">
+          <div class="user-core-icon">
+            <i class="fas fa-user-astronaut"></i>
+          </div>
+        </div>
+      `,
+      iconSize: [40, 40],
+      iconAnchor: [20, 20]
+    });
+
+    userMarker = L.marker([userLat, userLng], { icon: userPinIcon }).addTo(map);
+    userMarker.bindPopup(`<strong>${locationLabel}</strong><br>~${distKmFormatted} km to Base HQ`).openPopup();
+
+    // Draw glowing curved / dashed flight line
+    flightPathLine = L.polyline([[userLat, userLng], HQ_COORDS], {
+      color: '#00f3ff',
+      weight: 3,
+      opacity: 0.85,
+      dashArray: '8, 8',
+      lineCap: 'round'
+    }).addTo(map);
+
+    // Fit map bounds to show both points
+    const bounds = L.latLngBounds([[userLat, userLng], HQ_COORDS]);
+    map.fitBounds(bounds, { padding: [60, 60], maxZoom: 14 });
+
+    // Show distance banner
+    if (distanceDisplay && distanceText) {
+      distanceText.innerHTML = `<strong>${distKmFormatted} km</strong> (${distMiles} miles) away from Base HQ`;
+      distanceDisplay.style.display = 'flex';
+    }
+  }
+
+  function clearDistanceMeasurement() {
+    if (userMarker) {
+      map.removeLayer(userMarker);
+      userMarker = null;
+    }
+    if (flightPathLine) {
+      map.removeLayer(flightPathLine);
+      flightPathLine = null;
+    }
+    if (distanceDisplay) {
+      distanceDisplay.style.display = 'none';
+    }
+    map.flyTo(HQ_COORDS, DEFAULT_ZOOM, { duration: 1 });
+  }
+
+  if (clearDistanceBtn) {
+    clearDistanceBtn.addEventListener('click', clearDistanceMeasurement);
+  }
+
+  if (calcDistanceBtn) {
+    calcDistanceBtn.addEventListener('click', () => {
+      if (distanceDisplay && distanceText) {
+        distanceText.textContent = 'Locating your position...';
+        distanceDisplay.style.display = 'flex';
+      }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const { latitude, longitude } = pos.coords;
+            drawDistancePath(latitude, longitude, 'You Are Here');
+          },
+          (err) => {
+            // If user denies geolocation, enable click anywhere on map mode
+            if (distanceText) {
+              distanceText.innerHTML = '📍 Geolocation locked. <em>Click anywhere on the map</em> to measure distance!';
+            }
+            if (!clickListenerActive) {
+              clickListenerActive = true;
+              map.once('click', (e) => {
+                clickListenerActive = false;
+                drawDistancePath(e.latlng.lat, e.latlng.lng, 'Selected Location');
+              });
+            }
+          },
+          { timeout: 8000, maximumAge: 60000 }
+        );
+      } else {
+        if (distanceText) {
+          distanceText.innerHTML = '<em>Click anywhere on the map</em> to calculate distance!';
+        }
+        map.once('click', (e) => {
+          drawDistancePath(e.latlng.lat, e.latlng.lng, 'Selected Location');
+        });
+      }
+    });
+  }
+
+  // Handle Resize and Window Size Changes
+  window.addEventListener('resize', () => {
+    map.invalidateSize();
+  });
+}
+

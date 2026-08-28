@@ -34,8 +34,16 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
   <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- <script src="js/3d-scene.js" defer></script> -->
   <script src="script.js" defer></script>
 </head>
 
@@ -50,8 +58,8 @@
   <div class="aurora-blob orange-blob"></div>
   <div class="aurora-blob purple-blob"></div>
 
-  <!-- Particle Background -->
-  <canvas id="particles-canvas"></canvas>
+  <!-- 3D WebGL Background -->
+  <canvas id="webgl-canvas"></canvas>
 
   <!-- Navbar -->
   <nav class="navbar">
@@ -71,9 +79,6 @@
       <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
       <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
       <li><a href="#support" onclick="closeMobileMenu()">Support Me</a></li>
-      <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-          <i class="fas fa-moon"></i>
-        </button></li>
     </ul>
   </nav>
 
@@ -146,10 +151,137 @@
           <div class="stat-card">
             <i class="fas fa-map-marker-alt"></i>
             <h3>Bihar Sharif</h3>
-            <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" class="btn tertiary" target="_blank">View on Map</a>
+            <a href="#portfolio-map-section" class="btn tertiary" id="stat-view-map-btn">View on Map</a>
             <p>Bihar, India</p>
           </div>
         </div>
+
+        <!-- Cyberpunk Futuristic Interactive Map Section -->
+        <div id="portfolio-map-section" class="cyber-map-container">
+          <!-- Cyber HUD Window Header -->
+          <div class="map-hud-header">
+            <div class="map-hud-left">
+              <div class="hud-window-dots">
+                <span class="hud-dot red" title="Status: Active"></span>
+                <span class="hud-dot yellow" title="Sync: Live"></span>
+                <span class="hud-dot green" title="GPS: Locked"></span>
+              </div>
+              <div class="map-status-chip">
+                <span class="radar-live-dot"></span>
+                <span class="map-status-text">RADAR ACTIVE // BASE HQ</span>
+              </div>
+              <span class="hud-coord-badge"><i class="fas fa-crosshairs"></i> 25.1968° N, 85.5149° E</span>
+            </div>
+
+            <div class="map-hud-center">
+              <div class="map-time-chip">
+                <i class="far fa-clock"></i> <span id="map-live-clock">Patna (IST) --:--:--</span>
+              </div>
+            </div>
+
+            <div class="map-hud-right">
+              <div class="map-view-switcher" role="group" aria-label="Map View Mode">
+                <button type="button" class="map-mode-btn active" data-mode="dark" id="btn-mode-dark" title="Cyber Dark Mode">
+                  <i class="fas fa-moon"></i> <span>Cyber Dark</span>
+                </button>
+                <button type="button" class="map-mode-btn" data-mode="satellite" id="btn-mode-satellite" title="Satellite Orbital View">
+                  <i class="fas fa-satellite"></i> <span>Satellite</span>
+                </button>
+                <button type="button" class="map-mode-btn" data-mode="street" id="btn-mode-street" title="Navigation Street View">
+                  <i class="fas fa-map-marked-alt"></i> <span>Street</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Viewport Wrapper -->
+          <div class="map-viewport-wrapper">
+            <!-- HUD Sci-Fi Decorative Corner Brackets -->
+            <div class="hud-bracket top-left"></div>
+            <div class="hud-bracket top-right"></div>
+            <div class="hud-bracket bottom-left"></div>
+            <div class="hud-bracket bottom-right"></div>
+
+            <!-- Leaflet Map Canvas Container -->
+            <div id="portfolio-map" class="interactive-leaflet-map" tabindex="0" aria-label="Interactive Map of Ankit Kumar Base Location"></div>
+
+            <!-- Floating Cyber Location Card (Glassmorphism) -->
+            <div class="map-floating-card">
+              <div class="floating-card-header">
+                <div class="location-pulsing-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="location-details">
+                  <h4 class="location-title">Bihar Sharif / Patna</h4>
+                  <p class="location-subtitle"><i class="fas fa-location-dot"></i> Bihar, India • AI Developer Base</p>
+                </div>
+              </div>
+
+              <div class="location-tags">
+                <span class="tech-chip"><i class="fas fa-brain"></i> AI / ML HQ</span>
+                <span class="tech-chip"><i class="fas fa-signal"></i> Remote Ready</span>
+                <span class="tech-chip"><i class="fas fa-globe"></i> Global Collab</span>
+              </div>
+
+              <div class="map-action-buttons">
+                <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer" class="map-btn map-btn-nav">
+                  <i class="fas fa-directions"></i> Get Directions
+                </a>
+                <button type="button" id="btn-calc-distance" class="map-btn map-btn-distance" title="Calculate distance from your current location">
+                  <i class="fas fa-route"></i> Distance to Me
+                </button>
+                <button type="button" id="btn-copy-coords" class="map-btn map-btn-icon" title="Copy GPS Coordinates to Clipboard">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+
+              <div id="distance-info-display" class="distance-info-banner" style="display: none;">
+                <i class="fas fa-satellite-dish"></i>
+                <span id="distance-text">Calculating...</span>
+                <button type="button" id="btn-clear-distance" class="btn-clear-dist" title="Clear Distance Line">&times;</button>
+              </div>
+            </div>
+
+            <!-- Map Floating Action Tools (Recenter, Fullscreen, Custom Zoom) -->
+            <div class="map-floating-tools">
+              <button type="button" id="btn-map-recenter" class="tool-btn" title="Recenter Base Location">
+                <i class="fas fa-crosshairs"></i>
+              </button>
+              <button type="button" id="btn-map-fullscreen" class="tool-btn" title="Toggle Fullscreen">
+                <i class="fas fa-expand"></i>
+              </button>
+              <button type="button" id="btn-map-zoom-in" class="tool-btn" title="Zoom In">
+                <i class="fas fa-plus"></i>
+              </button>
+              <button type="button" id="btn-map-zoom-out" class="tool-btn" title="Zoom Out">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+
+            <!-- Toast Notification for Copied Coordinates -->
+            <div id="map-toast" class="map-toast">
+              <i class="fas fa-check-circle"></i> <span>Coordinates copied to clipboard!</span>
+            </div>
+          </div>
+
+          <!-- Map HUD Footer Info Strip -->
+          <div class="map-hud-footer">
+            <div class="hud-footer-item">
+              <i class="fas fa-satellite-dish"></i>
+              <span>Coordinates: <strong>25.196759° N, 85.514895° E</strong></span>
+            </div>
+            <div class="hud-footer-item">
+              <i class="fas fa-map-pin"></i>
+              <span>Region: <strong>Bihar Sharif (Nalanda) / Patna, Bihar</strong></span>
+            </div>
+            <div class="hud-footer-item footer-link">
+              <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Open Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1276,7 +1408,7 @@
           <p>Follow my data science journey</p>
         </a>
 
-        <a href="mailto:ankitkumar823089@gmail.com" class="contact-card email">
+        <a href="/cdn-cgi/l/email-protection#fa9b9491938e918f979b88c2c8c9cac2c3ba9d979b9396d4999597" class="contact-card email">
           <i class="fas fa-envelope"></i>
           <h3>Email</h3>
           <p>Drop me a message</p>
@@ -1326,7 +1458,7 @@
   </footer>
 
   <!---- <script src="js/advanced-animations.js"></script>    Theme Toggle Script -->
-  <script src="js/performance.js"></script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/performance.js"></script>
   <script src="js/ai-chatbot.js"></script>
   <script src="js/features.js"></script>
 
@@ -1344,6 +1476,6 @@
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
   -->
-</body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a32197868a25197f',t:'MTc4NzkwMjAyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 
 </html>
