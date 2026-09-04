@@ -43,7 +43,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <!-- Leaflet Map JS -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
   <!-- <script src="js/3d-scene.js" defer></script> -->
+
   <script src="script.js" defer></script>
 </head>
 
@@ -164,7 +166,7 @@
                 <span class="radar-live-dot"></span>
                 <span class="map-status-text">RADAR ACTIVE // BASE HQ</span>
               </div>
-              <span class="hud-coord-badge"><i class="fas fa-crosshairs"></i> 25.1968° N, 85.5149° E</span>
+              <span class="hud-coord-badge"><i class="fas fa-crosshairs"></i> 25.198089° N, 85.510573° E</span>
             </div>
 
             <div class="map-hud-center">
@@ -175,15 +177,19 @@
 
             <div class="map-hud-right">
               <div class="map-view-switcher" role="group" aria-label="Map View Mode">
+
                 <button type="button" class="map-mode-btn active" data-mode="dark" id="btn-mode-dark" title="Cyber Dark Mode">
                   <i class="fas fa-moon"></i> <span>Cyber Dark</span>
                 </button>
+
                 <button type="button" class="map-mode-btn" data-mode="satellite" id="btn-mode-satellite" title="Satellite Orbital View">
                   <i class="fas fa-satellite"></i> <span>Satellite</span>
-                </button>
+                </button>               
+
                 <button type="button" class="map-mode-btn" data-mode="street" id="btn-mode-street" title="Navigation Street View">
                   <i class="fas fa-map-marked-alt"></i> <span>Street</span>
                 </button>
+
               </div>
             </div>
           </div>
@@ -218,7 +224,7 @@
               </div>
 
               <div class="map-action-buttons">
-                <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer" class="map-btn map-btn-nav">
+                <a href="https://maps.app.goo.gl/e29BznN2PNgD3mj76" target="_blank" rel="noopener noreferrer" class="map-btn map-btn-nav">
                   <i class="fas fa-directions"></i> Get Directions
                 </a>
                 <button type="button" id="btn-calc-distance" class="map-btn map-btn-distance" title="Calculate distance from your current location">
@@ -262,14 +268,14 @@
           <div class="map-hud-footer">
             <div class="hud-footer-item">
               <i class="fas fa-satellite-dish"></i>
-              <span>Coordinates: <strong>25.196759° N, 85.514895° E</strong></span>
+              <span>Coordinates: <strong>25.198089° N, 85.510573° E</strong></span>
             </div>
             <div class="hud-footer-item">
               <i class="fas fa-map-pin"></i>
               <span>Region: <strong>Bihar Sharif (Nalanda) / Patna, Bihar</strong></span>
             </div>
             <div class="hud-footer-item footer-link">
-              <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer">
+              <a href="https://maps.app.goo.gl/e29BznN2PNgD3mj76" target="_blank" rel="noopener noreferrer">
                 <i class="fas fa-external-link-alt"></i> Open Google Maps
               </a>
             </div>

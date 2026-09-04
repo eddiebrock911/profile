@@ -517,8 +517,8 @@ function initPortfolioMap() {
   if (!mapElement || typeof L === 'undefined') return;
 
   // Ankit Kumar HQ Coordinates (Bihar Sharif, Nalanda / Patna Region, Bihar)
-  const HQ_COORDS = [25.196759, 85.514895];
-  const DEFAULT_ZOOM = 13;
+  const HQ_COORDS = [25.198089, 85.510573]; // your actual coordinates
+  const DEFAULT_ZOOM = 14;
 
   // Initialize Leaflet Map
   const map = L.map('portfolio-map', {
@@ -582,12 +582,12 @@ function initPortfolioMap() {
       <p class="popup-desc">Aspiring AI Developer & Coder specializing in Machine Learning, Deep Learning, and Autonomous AI Systems.</p>
       <div class="popup-stats-row">
         <div class="popup-mini-stat">
-          <span>21+</span>
+          <span>35+</span>
           <label>Projects</label>
         </div>
         <div class="popup-mini-stat">
           <span>Class 12</span>
-          <label>Innovator</label>
+          <label>Student</label>
         </div>
         <div class="popup-mini-stat">
           <span>AI / ML</span>
@@ -595,7 +595,7 @@ function initPortfolioMap() {
         </div>
       </div>
       <div class="popup-cta-row">
-        <a href="https://maps.app.goo.gl/WvnGAxx7Qu6cw9CK7" target="_blank" rel="noopener noreferrer" class="popup-cta-btn primary">
+        <a href="https://maps.app.goo.gl/e29BznN2PNgD3mj76" target="_blank" rel="noopener noreferrer" class="popup-cta-btn primary">
           <i class="fas fa-location-arrow"></i> Google Maps
         </a>
         <a href="#contact" class="popup-cta-btn secondary">
@@ -690,7 +690,7 @@ function initPortfolioMap() {
   const mapToast = document.getElementById('map-toast');
   if (copyCoordsBtn) {
     copyCoordsBtn.addEventListener('click', () => {
-      const coordsText = '25.196759, 85.514895';
+      const coordsText = '25.198089, 85.510573'; // Ankit Kumar HQ Coordinates
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(coordsText).then(showToast);
       } else {
