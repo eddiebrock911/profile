@@ -43,7 +43,8 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: "Kalam", cursive !important;
   background: var(--bg-dark);
   color: var(--text-primary);
   line-height: 1.6;
