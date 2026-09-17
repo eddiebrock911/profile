@@ -1,884 +1,1486 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="description" content="Ankit Kumar — Girlfriend Naincy's Little World 💕 | A special website made with love for my girlfriend Naincy.">
-<meta name="keywords" content="nainKit, naincy, Ankit Kumar, Naincy and Ankit, Girlfriend, Love, Special Website, Romantic, Personal Website, Love Story, Memories">
-<meta name="author" content="Ankit Kumar">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Ankit Kumar - Aspiring AI Developer & Coder from Patna, Bihar. Specializing in Machine Learning, Deep Learning, and Python Development.">
+  <meta name="keywords"
+    content="AI Developer, Machine Learning, Python, Deep Learning, Web Development, Ankit Kumar, Patna">
+  <meta name="author" content="Ankit Kumar">
 
-<meta property="og:title" content="Ankit and Naincy | nainKit 💝 | For Girlfriend 💕">
-<meta property="og:description" content="For My Beautiful Girlfriend 💕 — A little world made with love.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://naincykit.onrender.com">
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Ankit Kumar | AI Developer">
+  <meta property="og:description" content="Building the future with AI, ML & DL">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ankitai.onrender.com">
 
-<meta name="theme-color" content="#e91e63">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Ankit & Naincy">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="/images/icon.png">
+  <title>Ankit Kumar | AI Developer & Coder</title>
 
-<title>nainKit💕</title>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PB1SCMSZ4P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-PB1SCMSZ4P');
+  </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/ankitai logo.png">
 
-<link rel="icon" type="image/png" href="images\icon.png">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
 
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CKVS3DGNZ7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-CKVS3DGNZ7');
-</script>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <!-- Leaflet Map JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <!-- <script src="js/3d-scene.js" defer></script> -->
 
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
-<script src="pwa-init.js"></script>
-<script src="notifications.js" defer></script>
-<script src="dashboard.js" defer></script>
-<script src="live-chat.js" defer></script>
-<script src="script.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
+
 <body>
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar"></div>
+  </div>
 
-<!-- ===== CUSTOM ANIMATED CURSOR ===== -->
-<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
-<div class="cursor-particles" id="cursor-particles" aria-hidden="true"></div>
+  <!-- Cosmic Aurora Background Blobs -->
+  <div class="aurora-blob cyan-blob"></div>
+  <div class="aurora-blob orange-blob"></div>
+  <div class="aurora-blob purple-blob"></div>
 
-<!-- ===== PASSWORD SCREEN ===== -->
-<div id="password-screen">
-  <div class="pw-stars" id="pw-stars"></div>
-  <div class="pw-card" id="pw-card">
-    <span class="pw-lock-icon">🔐</span>
-    <h1 class="pw-title">Enter Our Secret</h1>
-    <p class="pw-subtitle">This little world was made just for you 💕</p>
-    <div class="pw-input-wrap">
-      <input
-        type="password"
-        class="pw-input"
-        id="pw-input"
-        placeholder="Enter password..."
-        autocomplete="off"
-        onkeydown="if(event.key==='Enter') checkPassword()"
-      />
-      <button class="pw-toggle" onclick="togglePwVisibility()" id="pw-toggle" type="button" aria-label="Show password">👁️</button>
+  <!-- 3D WebGL Background -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">Ankit<span>Kumar</span></div>
+
+    <!-- Hamburger Menu -->
+    <div class="hamburger" onclick="toggleMobileMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
-    <button class="pw-btn" onclick="checkPassword()" type="button">Open My World 💫</button>
-    <p class="pw-error" id="pw-error"></p>
-    <p class="pw-hint">Hint: it might be something special <b>me</b> between <b>you</b> 💌</p>
-  </div>
-</div>
 
-<!-- ===== ZOOM OVERLAY ===== -->
-<div class="zoom-overlay" id="zoom-overlay" onclick="closeZoom()">
-  <img src="" id="zoom-img" alt="Zoomed photo" />
-</div>
-
-<!-- ===== VIRTUAL HUG OVERLAY ===== -->
-<div class="hug-overlay" id="hug-overlay">
-  <div class="hug-hearts-burst" id="hug-hearts-burst"></div>
-  <div class="hug-message-card">
-    <span class="hug-emoji">🤗💕</span>
-    <h2 class="hug-title" id="hug-title">Sending you a warm hug!</h2>
-    <p class="hug-text" id="hug-text">You are loved, you are cherished, and you are never alone. I'm always here for you, my beautiful Naincy. 💕</p>
-    <button class="hug-close-btn" onclick="closeHug()">Thank you, my love 💕</button>
-  </div>
-</div>
-
-<!-- ===== MAIN CONTENT ===== -->
-<div id="main-content">
-
-  <!-- Cosmic Background -->
-  <div class="cosmic-bg" id="cosmic-bg">
-    <div class="orb" style="width:520px;height:520px;background:#9c27b0;top:-120px;left:-160px;--od:14s;--tx:40px;--ty:50px;--sc:1.15"></div>
-    <div class="orb" style="width:420px;height:420px;background:#e91e63;bottom:-120px;right:-120px;--od:18s;--tx:-30px;--ty:-45px;--sc:1.12"></div>
-    <div class="orb" style="width:320px;height:320px;background:#673ab7;top:38%;left:58%;--od:11s;--tx:25px;--ty:30px;--sc:1.2"></div>
-    <div class="orb" style="width:200px;height:200px;background:#ff6b9d;top:70%;left:15%;--od:16s;--tx:-15px;--ty:20px;--sc:1.1"></div>
-  </div>
-
-  <!-- Floating hearts -->
-  <div class="hearts-layer" id="hearts-layer"></div>
-
-  <!-- NAV -->
-  <nav class="nav">
-    <a class="nav-logo" href="#">NainKit💕</a>
-    <div class="nav-actions">
-      <button class="music-btn" id="music-btn" onclick="togglePlayerPanel()" type="button" aria-label="Open music player">
-        <span class="music-note" id="music-note">♪</span>
-        <span class="music-bars" aria-hidden="true">
-          <span></span><span></span><span></span><span></span>
-        </span>
-        <span id="music-label">Music</span>
-      </button>
-      <button class="theme-toggle" onclick="toggleTheme()" type="button" aria-label="Toggle Theme">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
+    <ul class="nav-menu">
+      <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+      <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+      <li><a href="#projects" onclick="closeMobileMenu()">Projects</a></li>
+      <li><a href="#vision" onclick="closeMobileMenu()">Vision</a></li>
+      <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+      <li><a href="#support" onclick="closeMobileMenu()">Support Me</a></li>
+    </ul>
   </nav>
 
-  <!-- Audio engine -->
-  <audio id="bg-music" preload="metadata"></audio>
-
-  <!-- ===== ROMANTIC MUSIC PLAYER ===== -->
-  <div class="player-panel" id="player-panel" aria-hidden="true">
-    <div class="player-glow"></div>
-
-    <div class="player-top">
-      <div class="player-badge">💕 Our Playlist</div>
-      <button class="player-close" onclick="togglePlayerPanel()" type="button" aria-label="Close player">✕</button>
-    </div>
-
-    <div class="player-now">
-      <div class="player-art" id="player-art">
-        <span class="player-art-icon" id="player-art-icon">💗</span>
-        <div class="player-vinyl" id="player-vinyl"></div>
-      </div>
-      <div class="player-meta">
-        <p class="player-now-label">Now Playing</p>
-        <h3 class="player-title" id="player-title">Soft Hearts</h3>
-        <p class="player-artist" id="player-artist">For Naincy 💕</p>
-      </div>
-    </div>
-
-    <!-- Progress -->
-    <div class="player-progress-wrap">
-      <span class="player-time" id="player-current">0:00</span>
-      <div class="player-progress" id="player-progress" role="slider" aria-label="Seek" tabindex="0">
-        <div class="player-progress-track">
-          <div class="player-progress-fill" id="player-progress-fill"></div>
-          <div class="player-progress-thumb" id="player-progress-thumb"></div>
-        </div>
-      </div>
-      <span class="player-time" id="player-duration">0:00</span>
-    </div>
-
-    <!-- Controls -->
-    <div class="player-controls">
-      <button class="pc-btn" onclick="toggleShuffle()" type="button" id="shuffle-btn" title="Shuffle" aria-label="Shuffle">
-        <i class="fas fa-random"></i>
-      </button>
-      <button class="pc-btn" onclick="prevTrack()" type="button" aria-label="Previous">
-        <i class="fas fa-step-backward"></i>
-      </button>
-      <button class="pc-btn pc-play" onclick="toggleMusic()" type="button" id="play-btn" aria-label="Play">
-        <i class="fas fa-play" id="play-icon"></i>
-      </button>
-      <button class="pc-btn" onclick="nextTrack()" type="button" aria-label="Next">
-        <i class="fas fa-step-forward"></i>
-      </button>
-      <button class="pc-btn" onclick="toggleRepeat()" type="button" id="repeat-btn" title="Repeat" aria-label="Repeat">
-        <i class="fas fa-redo"></i>
-      </button>
-    </div>
-
-    <!-- Volume -->
-    <div class="player-volume">
-      <button class="pc-btn pc-vol-icon" onclick="toggleMute()" type="button" id="vol-btn" aria-label="Mute">
-        <i class="fas fa-volume-up" id="vol-icon"></i>
-      </button>
-      <input
-        type="range"
-        class="volume-slider"
-        id="volume-slider"
-        min="0"
-        max="100"
-        value="65"
-        aria-label="Volume"
-      />
-      <span class="vol-pct" id="vol-pct">65%</span>
-    </div>
-
-    <!-- Playlist -->
-    <div class="player-playlist-head">
-      <span>Romantic Playlist</span>
-      <span class="playlist-count" id="playlist-count">6 songs</span>
-    </div>
-    <div class="player-playlist" id="player-playlist"></div>
-  </div>
-  <div class="player-backdrop" id="player-backdrop" onclick="togglePlayerPanel()"></div>
-
-  <div class="page-wrap">
-
-    <!-- HERO -->
-    <section class="hero">
-      <p class="hero-eyebrow">✦ Made just for you ✦</p>
-      <h1 class="hero-title">
-        You are my <em>beautiful</em><br>little world 🌸
-      </h1>
-      <p class="hero-quote">
-        "Some people make life beautiful just by being in it ✨<br>
-        You are that person, for me, every single day."
-      </p>
-
-      <div class="hero-photo-wrap">
-        <div class="hero-photo-frame">
-          <div class="hero-photo-inner" onclick="openZoom(this)" role="button" tabindex="0" aria-label="View photo">
-            <div class="upload-placeholder">
-              <img src="images/photo13.jpeg" alt="Naincy" />
-            </div>
-          </div>
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="container hero-flex fade-in">
+      <!-- Left side: Photo -->
+      <div class="hero-image">
+        <div class="hero-image-wrapper">
+          <div class="tech-ring ring-1"></div>
+          <div class="tech-ring ring-2"></div>
+          <img src="image\ankit_gim.png" alt="Ankit Kumar - AI Developer" loading="lazy">
         </div>
       </div>
 
-      <div class="scroll-cue">
-        <span>SCROLL</span>
-        <span class="scroll-arrow">↓</span>
-      </div>
-    </section>
-
-    <!-- DAYS TOGETHER COUNTER -->
-    <section class="counter-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ together since ✦</span>
-        <h2 class="section-title">Our <em>Beautiful</em> Journey</h2>
-      </div>
-
-      <div class="glass-card counter-card">
-        <div class="counter-grid">
-          <div class="counter-box">
-            <div class="counter-num" id="c-days">0</div>
-            <div class="counter-label">Days</div>
-          </div>
-          <div class="counter-box">
-            <div class="counter-num" id="c-hours">00</div>
-            <div class="counter-label">Hours</div>
-          </div>
-          <div class="counter-box">
-            <div class="counter-num" id="c-mins">00</div>
-            <div class="counter-label">Mins</div>
-          </div>
-          <div class="counter-box">
-            <div class="counter-num" id="c-secs">00</div>
-            <div class="counter-label">Secs</div>
-          </div>
-        </div>
-        <p class="counter-since">Since <b>May 29, 2026</b> · Friday · 8:17 PM 💕</p>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 🤗 VIRTUAL HUG BUTTON -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="hug-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ when you need me ✦</span>
-        <h2 class="section-title">Send Yourself a <em>Warm Hug</em></h2>
-      </div>
-
-      <div class="glass-card hug-card">
-        <p class="hug-card-desc">Whenever you feel low, lonely, or just need a hug — press this button and feel my love wrapping around you 🤗💕</p>
-        <button class="hug-btn" onclick="sendVirtualHug()" type="button">
-          <span class="hug-btn-icon">🤗</span>
-          <span class="hug-btn-text">Send Me a Hug 💕</span>
-        </button>
-        <div class="hug-counter-wrap">
-          <span class="hug-counter-label">Hugs sent with love:</span>
-          <span class="hug-counter-num" id="hug-count">0</span>
-        </div>
-      </div>
-    </section> -->
-
-     <!-- ════════════════════════════════════════════ -->
-    <!-- POLAROID GALLERY -->
-    <!--══════════════════════════════════════════════-->                              
-    <section class="gallery-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ memories ✦</span>
-        <h2 class="section-title">Our <em>Beautiful</em> Moments</h2>
-      </div>
-
-      <div class="polaroid-grid" id="polaroid-grid">
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo14.jpeg" alt="My favourite smile" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">My favourite smile 💕</p>
-          <span class="polaroid-heart">💖</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo15.jpeg" alt="Always glowing" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">Always glowing ✨</p>
-          <span class="polaroid-heart">💕</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo4.jpeg" alt="This day" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">This day 🥰</p>
-          <span class="polaroid-heart">💝</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo3.jpeg" alt="Pure magic" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">Pure magic 🌙</p>
-          <span class="polaroid-heart">🫰</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo16.jpeg" alt="You and sunshine" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">You & sunshine ☀️</p>
-          <span class="polaroid-heart">💘</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo6.jpeg" alt="Forever this" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">Forever this 💫</p>
-          <span class="polaroid-heart">😍</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo7.jpeg" alt="Our special moments" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">Our special moments 🎉</p>
-          <span class="polaroid-heart">🥰</span>
-        </div>
-
-        <div class="polaroid" onclick="openZoomFromPolaroid(this)">
-          <div class="polaroid-img">
-            <img src="images/photo10.jpeg" alt="Our special moments" loading="lazy" />
-          </div>
-          <p class="polaroid-caption">My Heart 🥰</p>
-          <span class="polaroid-heart">💫</span>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 💌 REASONS I LOVE YOU — RANDOM GENERATOR -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="reasons-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ from the heart ✦</span>
-        <h2 class="section-title">Reasons I <em>Love</em> You</h2>
-      </div>
-
-      <div class="glass-card reasons-card">
-        <div class="reasons-display" id="reasons-display">
-          <span class="reasons-emoji" id="reasons-emoji">💌</span>
-          <p class="reasons-text" id="reasons-text">Click the button below to discover a reason why I love you...</p>
-        </div>
-        <button class="reasons-btn" onclick="showRandomReason()" type="button">
-          <span>✨ Show Me a Reason 💕</span>
-        </button>
-        <div class="reasons-counter">
-          <span id="reasons-seen">0</span> reasons discovered so far
-        </div>
-      </div>
-    </section>  -->
-
-    <!-- LOVE TIMELINE -->
-    <section class="timeline-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ chapters ✦</span>
-        <h2 class="section-title">Our <em>Love</em> Timeline</h2>
-      </div>
-
-      <div class="timeline">
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">The Beginning</div>
-          <h3 class="timeline-title">When Our Eyes Met ✨</h3>
-          <p class="timeline-text">A moment that felt ordinary — until it rewrote everything.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">May 29, 2026</div>
-          <h3 class="timeline-title">We Became Us 💕</h3>
-          <p class="timeline-text">8:17 PM — the second my world found its favorite person.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Every Day After</div>
-          <h3 class="timeline-title">Little Moments 🌸</h3>
-          <p class="timeline-text">Laughs, late talks, quiet comfort — magic in ordinary days.</p>
-        </div>
-        <div class="timeline-item reveal">
-          <div class="timeline-dot"></div>
-          <div class="timeline-date">Forever Ahead</div>
-          <h3 class="timeline-title">Still Writing Our Story 🌙</h3>
-          <p class="timeline-text">This is only the beginning of a beautiful forever.</p>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-     <!-- SLIDESHOW -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <section class="slideshow-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ our story ✦</span>
-        <h2 class="section-title">A <em>Beautiful</em> Story</h2>
-      </div>
-
-      <div class="slideshow-wrap">
-        <div class="slideshow-frame">
-          <div class="slide active" id="slide-0">
-            <div>
-              <img src="images/photo13.jpeg" alt="The beginning of us" />
-            </div>
-            <div class="slide-caption-bar">The beginning of us 🌸</div>
-          </div>
-
-          <div class="slide" id="slide-1">
-            <div>
-              <img src="images/photo14.jpeg" alt="Every moment with you" />
-            </div>
-            <div class="slide-caption-bar">Every moment with you ✨</div>
-          </div>
-
-          <div class="slide" id="slide-2">
-            <div>
-              <img src="images/photo15.jpeg" alt="You make me smile" />
-            </div>
-            <div class="slide-caption-bar">You make me smile 💕</div>
-          </div>
-
-          <div class="slide" id="slide-3">
-            <div>
-              <img src="images/photo5.jpeg" alt="You and sunshine" />
-            </div>
-            <div class="slide-caption-bar">You and sunshine ☀️</div>
-          </div>
-
-
-          <div class="slide" id="slide-4">
-            <div>
-              <img src="images/photo12.jpeg" alt="Always and forever" />
-            </div>
-            <div class="slide-caption-bar">Always & forever 🌹</div>
-          </div>
-        </div>
-
-        <div class="slideshow-controls">
-          <button class="slide-btn" onclick="prevSlide()" type="button" aria-label="Previous slide">‹</button>
-          <div class="slide-dots" id="slide-dots">
-            <div class="slide-dot active" onclick="goSlide(0)" role="button" tabindex="0" aria-label="Slide 1"></div>
-            <div class="slide-dot" onclick="goSlide(1)" role="button" tabindex="0" aria-label="Slide 2"></div>
-            <div class="slide-dot" onclick="goSlide(2)" role="button" tabindex="0" aria-label="Slide 3"></div>
-            <div class="slide-dot" onclick="goSlide(3)" role="button" tabindex="0" aria-label="Slide 4"></div>
-            <div class="slide-dot" onclick="goSlide(4)" role="button" tabindex="0" aria-label="Slide 5"></div>
-          <button class="slide-btn" onclick="nextSlide()" type="button" aria-label="Next slide">›</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- ⚖️ FUTURE LAWYER NAINCY — MOTIVATIONAL SECTION -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="lawyer-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ your dream, my pride ✦</span>
-        <h2 class="section-title">Future <em>Lawyer</em> Naincy ⚖️</h2>
-      </div>
-
-      <div class="glass-card lawyer-card">
-        <div class="lawyer-hero">
-          <div class="lawyer-icon-wrap">
-            <span class="lawyer-big-icon">⚖️</span>
-          </div>
-          <h3 class="lawyer-heading">To the woman who will change the world</h3>
-          <p class="lawyer-intro">
-            Naincy, I know your dream is to become a <strong>lawyer</strong> — and I want you to know that
-            I believe in you more than words can ever say. Every late-night study session, every page you read,
-            every concept you master — it's all building the <em>incredible lawyer</em> you're going to be. 🌟
-          </p>
-        </div>
-
-        <div class="lawyer-qualities">
-          <div class="lawyer-quality">
-            <span class="lq-icon">🧠</span>
-            <h4>Brilliant Mind</h4>
-            <p>You have the sharpest mind I've ever known. The courtroom won't know what hit it!</p>
-          </div>
-          <div class="lawyer-quality">
-            <span class="lq-icon">💪</span>
-            <h4>Unstoppable Spirit</h4>
-            <p>No challenge is too big for you. You face everything with courage and grace.</p>
-          </div>
-          <div class="lawyer-quality">
-            <span class="lq-icon">❤️</span>
-            <h4>Heart of Justice</h4>
-            <p>You care deeply about what's right — that's what will make you an extraordinary lawyer.</p>
-          </div>
-          <div class="lawyer-quality">
-            <span class="lq-icon">🗣️</span>
-            <h4>Powerful Voice</h4>
-            <p>Your words have power. You'll use them to fight for those who can't fight for themselves.</p>
-          </div>
-        </div>
-
-        <div class="lawyer-promise">
-          <span class="lawyer-promise-icon">🤝</span>
-          <p class="lawyer-promise-text">
-            "I promise to always be your biggest cheerleader — during exam stress, during late-night revisions,
-            during moments of self-doubt. I'll bring you chai ☕, I'll listen to you practice arguments,
-            and I'll celebrate every small victory with you. You've got this, <em>Advocate Naincy</em>! 💕⚖️"
-          </p>
-          <span class="lawyer-promise-sign">— Your forever supporter, Ankit 💕</span>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 💪 DAILY MOTIVATION QUOTES -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="motivation-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ daily dose of inspiration ✦</span>
-        <h2 class="section-title">Daily <em>Motivation</em> for You</h2>
-      </div>
-
-      <div class="glass-card motivation-card">
-        <div class="motivation-icon" id="motivation-icon">💫</div>
-        <blockquote class="motivation-quote" id="motivation-quote">
-          "The only way to do great work is to love what you do."
-        </blockquote>
-        <p class="motivation-author" id="motivation-author">— Steve Jobs</p>
-        <div class="motivation-note" id="motivation-note">
-          <em>Remember Naincy: Every great lawyer started exactly where you are right now. Keep going! 💪⚖️</em>
-        </div>
-        <button class="motivation-btn" onclick="showNewQuote()" type="button">
-          <span>🔄 New Inspiration</span>
-        </button>
-      </div>
-    </section> -->
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 📚 STUDY TIMER (POMODORO) -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="study-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ study time ✦</span>
-        <h2 class="section-title">Study <em>Timer</em> for My Lawyer 📚</h2>
-      </div>
-
-      <div class="glass-card study-card">
-        <p class="study-desc">My love, use this timer for focused study sessions. I'll be cheering for you every minute! 💕📖</p>
-
-        <div class="study-timer-display">
-          <div class="study-timer-ring" id="study-timer-ring">
-            <span class="study-timer-time" id="study-timer-time">25:00</span>
-            <span class="study-timer-label" id="study-timer-label">Focus Time</span>
-          </div>
-        </div>
-
-        <div class="study-presets">
-          <button class="study-preset active" onclick="setStudyTime(25)" type="button" data-time="25">25 min</button>
-          <button class="study-preset" onclick="setStudyTime(15)" type="button" data-time="15">15 min</button>
-          <button class="study-preset" onclick="setStudyTime(45)" type="button" data-time="45">45 min</button>
-          <button class="study-preset" onclick="setStudyTime(60)" type="button" data-time="60">60 min</button>
-        </div>
-
-        <div class="study-controls">
-          <button class="study-ctrl-btn" onclick="startStudyTimer()" type="button" id="study-start-btn">
-            <i class="fas fa-play"></i> Start
-          </button>
-          <button class="study-ctrl-btn" onclick="pauseStudyTimer()" type="button" id="study-pause-btn" style="display:none;">
-            <i class="fas fa-pause"></i> Pause
-          </button>
-          <button class="study-ctrl-btn study-reset" onclick="resetStudyTimer()" type="button">
-            <i class="fas fa-redo"></i> Reset
-          </button>
-        </div>
-
-        <div class="study-message" id="study-message">
-          <span class="study-msg-icon">📖</span>
-          <span class="study-msg-text" id="study-msg-text">Ready to study, my love? You've got this! ⚖️💕</span>
-        </div>
-
-        <div class="study-sessions">
-          <span class="study-sessions-label">Sessions completed today:</span>
-          <span class="study-sessions-num" id="study-sessions-count">0</span>
-          <span class="study-sessions-emoji">🏆</span>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 🏆 DREAM BOARD -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="dream-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ your dreams matter ✦</span>
-        <h2 class="section-title">Naincy's <em>Dream</em> Board 🏆</h2>
-      </div>
-
-      <div class="dream-board">
-        <div class="dream-card glass-card">
-          <span class="dream-card-icon">📚</span>
-          <h4 class="dream-card-title">Law School</h4>
-          <p class="dream-card-text">Acing every exam, mastering every subject, making your mark</p>
-          <div class="dream-card-progress">
-            <div class="dream-progress-bar"><div class="dream-progress-fill" style="width:40%"></div></div>
-            <span class="dream-progress-label">In Progress ✨</span>
-          </div>
-        </div>
-
-        <div class="dream-card glass-card">
-          <span class="dream-card-icon">⚖️</span>
-          <h4 class="dream-card-title">First Case</h4>
-          <p class="dream-card-text">Walking into the courtroom for the very first time, ready to fight for justice</p>
-          <div class="dream-card-progress">
-            <div class="dream-progress-bar"><div class="dream-progress-fill" style="width:20%"></div></div>
-            <span class="dream-progress-label">Dreaming 🌙</span>
-          </div>
-        </div>
-
-        <div class="dream-card glass-card">
-          <span class="dream-card-icon">🎓</span>
-          <h4 class="dream-card-title">Graduation Day</h4>
-          <p class="dream-card-text">That cap and gown moment — I'll be there cheering the loudest!</p>
-          <div class="dream-card-progress">
-            <div class="dream-progress-bar"><div class="dream-progress-fill" style="width:30%"></div></div>
-            <span class="dream-progress-label">On the way 💪</span>
-          </div>
-        </div>
-
-        <div class="dream-card glass-card">
-          <span class="dream-card-icon">🏛️</span>
-          <h4 class="dream-card-title">Own Law Firm</h4>
-          <p class="dream-card-text">One day, "Advocate Naincy" will have her own firm — and I'll be your biggest client 😄</p>
-          <div class="dream-card-progress">
-            <div class="dream-progress-bar"><div class="dream-progress-fill" style="width:10%"></div></div>
-            <span class="dream-progress-label">Future Vision 🌟</span>
-          </div>
-        </div>
-
-        <div class="dream-card glass-card dream-card-special">
-          <span class="dream-card-icon">💕</span>
-          <h4 class="dream-card-title">Our Forever</h4>
-          <p class="dream-card-text">Building a beautiful life together — your dreams + my love = our happy ending</p>
-          <div class="dream-card-progress">
-            <div class="dream-progress-bar"><div class="dream-progress-fill dream-progress-love" style="width:100%"></div></div>
-            <span class="dream-progress-label">Already happening 💕</span>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 📝 LOVE LETTER (TYPEWRITER EFFECT) -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="letter-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ a letter for you ✦</span>
-        <h2 class="section-title">My <em>Love</em> Letter 💌</h2>
-      </div>
-
-      <div class="glass-card letter-card">
-        <div class="letter-paper">
-          <div class="letter-date">Written with love, just for you 💕</div>
-          <div class="letter-greeting">My Dearest Naincy,</div>
-          <div class="letter-body" id="letter-body">
-            <span class="letter-typed" id="letter-typed"></span><span class="letter-cursor" id="letter-cursor">|</span>
-          </div>
-          <div class="letter-sign">Forever & always yours,<br><span class="letter-sign-name">Ankit 💕</span></div>
-        </div>
-        <button class="letter-replay-btn" onclick="replayLetter()" type="button">
-          <span>🔄 Read Again</span>
-        </button>
-      </div>
-    </section> -->
-
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- 🌟 I BELIEVE IN YOU — PROMISES -->
-    <!-- ═══════════════════════════════════════════════════════ -->
-    <!-- <section class="promises-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ my promises to you ✦</span>
-        <h2 class="section-title">I <em>Believe</em> in You 🌟</h2>
-      </div>
-
-      <div class="promises-grid">
-        <div class="glass-card promise-card">
-          <span class="promise-icon">🤝</span>
-          <h4 class="promise-title">I Promise to Support You</h4>
-          <p class="promise-text">In every exam, every challenge, every dream — I'll be right beside you, always.</p>
-        </div>
-        <div class="glass-card promise-card">
-          <span class="promise-icon">☕</span>
-          <h4 class="promise-title">I Promise Late-Night Chai</h4>
-          <p class="promise-text">When you're studying late, I'll make sure you have chai, snacks, and my full attention.</p>
-        </div>
-        <div class="glass-card promise-card">
-          <span class="promise-icon">👂</span>
-          <h4 class="promise-title">I Promise to Listen</h4>
-          <p class="promise-text">Every vent, every worry, every excitement — I want to hear it all, always.</p>
-        </div>
-        <div class="glass-card promise-card">
-          <span class="promise-icon">🎉</span>
-          <h4 class="promise-title">I Promise to Celebrate You</h4>
-          <p class="promise-text">Every small win, every milestone — we'll celebrate together like it's the biggest thing ever.</p>
-        </div>
-        <div class="glass-card promise-card">
-          <span class="promise-icon">💪</span>
-          <h4 class="promise-title">I Promise to Motivate You</h4>
-          <p class="promise-text">When you doubt yourself, I'll remind you how incredible you are — because you truly are.</p>
-        </div>
-        <div class="glass-card promise-card">
-          <span class="promise-icon">💕</span>
-          <h4 class="promise-title">I Promise Forever Love</h4>
-          <p class="promise-text">Through law school, through career, through everything — my love for you will only grow stronger.</p>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- LOVE NOTES -->
-    <!-- <section class="notes-section reveal">
-      <div class="section-label">
-        <span class="section-eyebrow">✦ from the heart ✦</span>
-        <h2 class="section-title">Things I <em>Love</em> About You</h2>
-      </div>
-
-      <div class="notes-grid">
-        <div class="glass-card note-card">
-          <span class="note-icon">🌸</span>
-          <p class="note-text">"The way your eyes light up when you laugh — it's the most beautiful thing I've ever seen."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-        <div class="glass-card note-card">
-          <span class="note-icon">✨</span>
-          <p class="note-text">"You don't even try and yet you shine brighter than anyone in the room. Every single time."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-        <div class="glass-card note-card">
-          <span class="note-icon">💫</span>
-          <p class="note-text">"Your kindness, your warmth, your smile — you are a rare and wonderful kind of person."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-        <div class="glass-card note-card">
-          <span class="note-icon">🦋</span>
-          <p class="note-text">"With you, even ordinary days feel extraordinary. You make everything feel like magic."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-        <div class="glass-card note-card">
-          <span class="note-icon">🌙</span>
-          <p class="note-text">"I fall a little more in love with you every day, without even trying."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-        <div class="glass-card note-card">
-          <span class="note-icon">🌹</span>
-          <p class="note-text">"You are the calm in my chaos, the colour in my grey — my favourite everything."</p>
-          <span class="note-author">— Always yours</span>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- SPECIAL MESSAGE -->
-    <!-- <section class="message-section reveal">
-      <div class="glass-card message-card">
-        <span class="message-quote-mark">"</span>
-        <p class="message-text">
-          To my <em>special one</em> — I made this little world for you,<br>
-          because no single word, no single moment, no single gift<br>
-          could ever be <em>enough</em> to show you what you mean to me.<br><br>
-          You are my home. You are my peace.<br>
-          You are the most beautiful part of <em>my story</em>. 🌸
+      <!-- Right side: Text -->
+      <div class="hero-text">
+        <h1>Hi, I'm <span class="typing"></span></h1>
+        <p class="subtitle">AI | ML Developer | Python Specialist | Built 15+ ML Projects | Building Future with Baby AI
         </p>
-        <div class="message-sign">With all my love 💕</div>
+        <p class="location">📍 From Patna, Bihar | Class 12 Student | Python, ML & DL</p>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn primary">View My Projects</a>
+          <a href="#contact" class="btn secondary">Hire Me</a>
+          <!-- <a href="image/ankit resume.png" download="Ankit_Kumar_Resume.png" class="btn download-btn">
+            <i class="fas fa-download"></i> Download Resume
+          </a> -->
+          <a href="https://ankitresume.onrender.com" class="btn download-btn" target="_blank">View my Resume</a>
+
+          <a href="https://tickiton.onrender.com" class="btn tertiary" target="_blank">Play Game</a>
+        </div>
       </div>
-    </section> -->
+    </div>
 
-  </div><!-- /page-wrap -->
+    <!-- Scroll Down Indicator -->
+    <div class="scroll-down">
+      <a href="#about">
+        <i class="fas fa-chevron-down"></i>
+      </a>
+    </div>
+  </header>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <p class="footer-text">Our Little World — made <b>Us</b> 💕</p>
-    <p class="footer-hearts">🌸 💫 🌺 💕 ✨</p>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container slide-up">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <p>I am a dedicated coder from Patna, Bihar, currently pursuing Class 12 Student. I specialize in AI, Machine
+          Learning, and Python development, with a strong passion for creating intelligent systems.</p>
+        <p>My vision is to build advanced AI technologies, like <strong><b> Baby AI</b></strong>, and drive innovations
+          at the intersection of AI, Space Technology, and Biology, shaping the future of science and technology.</p>
+      
+
+        <!-- Stats -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Class 12</h3>
+            <p><strong> Student </strong><br>Physics | Chemistry | Biology | Math</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-project-diagram"></i>
+            <h3>30+</h3>
+            <a href="https://github.com/eddiebrock911/" class="btn tertiary" target="_blank">View</a>
+            <p>Projects Completed</p>
+          </div>
+          <div class="stat-card">
+            <i class="fas fa-brain"></i>
+            <h3>AI/ML</h3>
+            <p>Specialization</p>
+          </div>
+        </div>
+
+        <!-- Cyberpunk Futuristic Interactive Map Section -->
+        <div id="portfolio-map-section" class="cyber-map-container">
+          <!-- Cyber HUD Window Header -->
+          <div class="map-hud-header">
+            <div class="map-hud-left">
+              <div class="hud-window-dots">
+                <span class="hud-dot red" title="Status: Active"></span>
+                <span class="hud-dot yellow" title="Sync: Live"></span>
+                <span class="hud-dot green" title="GPS: Locked"></span>
+              </div>
+              <div class="map-status-chip">
+                <span class="radar-live-dot"></span>
+                <span class="map-status-text">RADAR ACTIVE // BASE HQ</span>
+              </div>
+              <span class="hud-coord-badge"><i class="fas fa-crosshairs"></i> 25.198089° N, 85.510573° E</span>
+            </div>
+
+            <div class="map-hud-center">
+              <div class="map-time-chip">
+                <i class="far fa-clock"></i> <span id="map-live-clock">Patna (IST) --:--:--</span>
+              </div>
+            </div>
+
+            <div class="map-hud-right">
+              <div class="map-view-switcher" role="group" aria-label="Map View Mode">
+
+                <button type="button" class="map-mode-btn active" data-mode="dark" id="btn-mode-dark" title="Cyber Dark Mode">
+                  <i class="fas fa-moon"></i> <span>Cyber Dark</span>
+                </button>
+
+                <button type="button" class="map-mode-btn" data-mode="satellite" id="btn-mode-satellite" title="Satellite Orbital View">
+                  <i class="fas fa-satellite"></i> <span>Satellite</span>
+                </button>               
+
+                <button type="button" class="map-mode-btn" data-mode="street" id="btn-mode-street" title="Navigation Street View">
+                  <i class="fas fa-map-marked-alt"></i> <span>Street</span>
+                </button>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Map Viewport Wrapper -->
+          <div class="map-viewport-wrapper">
+            <!-- HUD Sci-Fi Decorative Corner Brackets -->
+            <div class="hud-bracket top-left"></div>
+            <div class="hud-bracket top-right"></div>
+            <div class="hud-bracket bottom-left"></div>
+            <div class="hud-bracket bottom-right"></div>
+
+            <!-- Leaflet Map Canvas Container -->
+            <div id="portfolio-map" class="interactive-leaflet-map" tabindex="0" aria-label="Interactive Map of Ankit Kumar Base Location"></div>
+
+            <!-- Floating Cyber Location Card (Glassmorphism) -->
+            <div class="map-floating-card">
+              <div class="floating-card-header">
+                <div class="location-pulsing-icon">
+                  <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="location-details">
+                  <h4 class="location-title">Bihar Sharif / Patna</h4>
+                  <p class="location-subtitle"><i class="fas fa-location-dot"></i> Bihar, India • AI Developer Base</p>
+                </div>
+              </div>
+
+              <div class="location-tags">
+                <span class="tech-chip"><i class="fas fa-brain"></i> AI / ML HQ</span>
+                <span class="tech-chip"><i class="fas fa-signal"></i> Remote Ready</span>
+                <span class="tech-chip"><i class="fas fa-globe"></i> Global Collab</span>
+              </div>
+
+              <div class="map-action-buttons">
+                <a href="https://maps.app.goo.gl/e29BznN2PNgD3mj76" target="_blank" rel="noopener noreferrer" class="map-btn map-btn-nav">
+                  <i class="fas fa-directions"></i> Get Directions
+                </a>
+                <button type="button" id="btn-calc-distance" class="map-btn map-btn-distance" title="Calculate distance from your current location">
+                  <i class="fas fa-route"></i> Distance to Me
+                </button>
+                <button type="button" id="btn-copy-coords" class="map-btn map-btn-icon" title="Copy GPS Coordinates to Clipboard">
+                  <i class="fas fa-copy"></i>
+                </button>
+              </div>
+
+              <div id="distance-info-display" class="distance-info-banner" style="display: none;">
+                <i class="fas fa-satellite-dish"></i>
+                <span id="distance-text">Calculating...</span>
+                <button type="button" id="btn-clear-distance" class="btn-clear-dist" title="Clear Distance Line">&times;</button>
+              </div>
+            </div>
+
+            <!-- Map Floating Action Tools (Recenter, Fullscreen, Custom Zoom) -->
+            <div class="map-floating-tools">
+              <button type="button" id="btn-map-recenter" class="tool-btn" title="Recenter Base Location">
+                <i class="fas fa-crosshairs"></i>
+              </button>
+              <button type="button" id="btn-map-fullscreen" class="tool-btn" title="Toggle Fullscreen">
+                <i class="fas fa-expand"></i>
+              </button>
+              <button type="button" id="btn-map-zoom-in" class="tool-btn" title="Zoom In">
+                <i class="fas fa-plus"></i>
+              </button>
+              <button type="button" id="btn-map-zoom-out" class="tool-btn" title="Zoom Out">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+
+            <!-- Toast Notification for Copied Coordinates -->
+            <div id="map-toast" class="map-toast">
+              <i class="fas fa-check-circle"></i> <span>Coordinates copied to clipboard!</span>
+            </div>
+          </div>
+
+          <!-- Map HUD Footer Info Strip -->
+          <div class="map-hud-footer">
+            <div class="hud-footer-item">
+              <i class="fas fa-satellite-dish"></i>
+              <span>Coordinates: <strong>25.198089° N, 85.510573° E</strong></span>
+            </div>
+            <div class="hud-footer-item">
+              <i class="fas fa-map-pin"></i>
+              <span>Region: <strong>Bihar Sharif (Nalanda) / Patna, Bihar</strong></span>
+            </div>
+            <div class="hud-footer-item footer-link">
+              <a href="https://maps.app.goo.gl/e29BznN2PNgD3mj76" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Open Google Maps
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section bg-dark">
+    <div class="container slide-up">
+      <h2 class="section-title">Skills & Technologies</h2>
+
+      <div class="skills-container">
+        <!-- Programming Languages -->
+        <div class="skill-category">
+          <h3><i class="fas fa-code"></i> Programming Languages</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-js"></i>
+              <span>JavaScript</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI & ML -->
+        <div class="skill-category">
+          <h3><i class="fas fa-brain"></i> AI & Machine Learning</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <i class="fas fa-robot"></i>
+              <span>Machine Learning</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-layer-group"></i>
+              <span>Deep Learning</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-chart-line"></i>
+              <span>Data Science</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-comment-dots"></i>
+              <span>NLP & AI Models</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-brain"></i>
+              <span>Transformers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Web Development -->
+        <div class="skill-category">
+          <h3><i class="fas fa-globe"></i> Web Development</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <i class="fab fa-html5"></i>
+              <span>HTML5</span>
+            </div>
+            <div class="skill-card">
+              <i class="fab fa-css3-alt"></i>
+              <span>CSS3</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-server"></i>
+              <span>Flask</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-mobile-alt"></i>
+              <span>Responsive Design</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools & Others -->
+        <div class="skill-category">
+          <h3><i class="fas fa-tools"></i> Tools & Others</h3>
+          <div class="skill-grid">
+            <div class="skill-card">
+              <i class="fab fa-git-alt"></i>
+              <span>Git & GitHub</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-chart-bar"></i>
+              <span>Data Visualization</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-gamepad"></i>
+              <span>Game Development</span>
+            </div>
+            <div class="skill-card">
+              <i class="fas fa-lightbulb"></i>
+              <span>Problem Solving</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container slide-up">
+      <h2 class="section-title">My Projects</h2>
+      <div class="project-grid">
+
+        <!-- Project 1 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="olympic-project-svg">
+              <defs>
+                <linearGradient id="ol-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#050a12" />
+                  <stop offset="100%" stop-color="#0f2038" />
+                </linearGradient>
+                <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffe066" />
+                  <stop offset="100%" stop-color="#f39c12" />
+                </linearGradient>
+                <linearGradient id="cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#005b7f" />
+                </linearGradient>
+                <filter id="glow-gold" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ol-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="300" y1="0" x2="300" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="500" y1="0" x2="500" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Bar Chart Visual -->
+              <g fill="rgba(0, 212, 255, 0.15)" stroke="#00d4ff" stroke-width="2">
+                <rect x="150" y="280" width="40" height="100" rx="4" />
+                <rect x="220" y="220" width="40" height="160" rx="4" />
+                <rect x="290" y="150" width="40" height="230" rx="4" fill="rgba(0, 212, 255, 0.3)" />
+                <rect x="360" y="100" width="40" height="280" rx="4" fill="rgba(243, 156, 18, 0.3)" stroke="#f39c12" />
+              </g>
+              <!-- Gold Medal Graphic -->
+              <g transform="translate(560, 200)" filter="url(#glow-gold)">
+                <!-- Ribbon -->
+                <path d="M -30 -100 L 0 -40 L 30 -100 Z" fill="#e74c3c" />
+                <path d="M -15 -100 L 0 -40 L 15 -100 Z" fill="#ffffff" />
+                <!-- Medal -->
+                <circle cx="0" cy="0" r="50" fill="url(#gold-grad)" stroke="#fff" stroke-width="2" />
+                <circle cx="0" cy="0" r="40" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 2" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="24" fill="#fff" text-anchor="middle">1st</text>
+                <!-- Laurels -->
+                <path d="M -25 10 Q -35 -10 -20 -25" fill="none" stroke="#fff" stroke-width="2" />
+                <path d="M 25 10 Q 35 -10 20 -25" fill="none" stroke="#fff" stroke-width="2" />
+              </g>
+              <!-- Title Text overlay -->
+              <text x="50" y="80" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff">OLYMPIC DATA</text>
+              <text x="50" y="115" font-family="'Poppins', sans-serif" font-weight="600" font-size="16" fill="#00d4ff">ANALYSIS DASHBOARD</text>
+            </svg>
+          </div>
+          <h3>Olympic Data Dashboard</h3>
+          <p>Interactive dashboard with data visualization & ML models for analyzing Olympic data trends.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+          </div>
+          <div class="project-links">
+            <a href="https://olympikit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/Olympics-analysis-app" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="spam-project-svg">
+              <defs>
+                <linearGradient id="spam-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0b0505" />
+                  <stop offset="100%" stop-color="#1e0c0c" />
+                </linearGradient>
+                <linearGradient id="red-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff4d4d" />
+                  <stop offset="100%" stop-color="#b30000" />
+                </linearGradient>
+                <linearGradient id="green-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2ecc71" />
+                  <stop offset="100%" stop-color="#27ae60" />
+                </linearGradient>
+                <filter id="glow-red" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-green" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#spam-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Left Side: Red Spam Card -->
+              <g transform="translate(120, 150)">
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(255, 77, 77, 0.05)" />
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 10, 10, 0.85)" stroke="url(#red-glow)" stroke-width="2" filter="url(#glow-red)" />
+                <path d="M 30 40 L 110 90 L 190 40" fill="none" stroke="url(#red-glow)" stroke-width="2" />
+                <rect x="30" y="30" width="160" height="90" rx="4" fill="none" stroke="url(#red-glow)" stroke-width="2" />
+                <circle cx="110" cy="110" r="18" fill="#ff4d4d" />
+                <text x="110" y="115" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff" text-anchor="middle">SPAM</text>
+              </g>
+              <!-- Center: Scanning / Classification divider -->
+              <g transform="translate(400, 225)">
+                <circle cx="0" cy="0" r="45" fill="rgba(0,0,0,0.5)" stroke="rgba(255,255,255,0.1)" stroke-width="2" />
+                <path d="M -20 -15 L 20 15 M 20 -15 L -20 15" stroke="#ffe066" stroke-width="3" stroke-linecap="round" />
+                <text x="0" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="10" fill="#ffe066" text-anchor="middle">CLASSIFIED</text>
+              </g>
+              <!-- Right Side: Green Ham Card -->
+              <g transform="translate(460, 150)">
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(46, 204, 113, 0.05)" />
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(10, 15, 10, 0.85)" stroke="url(#green-glow)" stroke-width="2" filter="url(#glow-green)" />
+                <path d="M 30 40 L 110 90 L 190 40" fill="none" stroke="url(#green-glow)" stroke-width="2" />
+                <rect x="30" y="30" width="160" height="90" rx="4" fill="none" stroke="url(#green-glow)" stroke-width="2" />
+                <circle cx="110" cy="110" r="18" fill="#2ecc71" />
+                <path d="M 102 110 L 107 115 L 118 104" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" />
+              </g>
+            </svg>
+          </div>
+          <h3>Spam Classifier AI</h3>
+          <p>NLP model to classify spam vs. ham messages using machine learning algorithms.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://antispamkit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/sms-email-classification-" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="laptop-project-svg">
+              <defs>
+                <linearGradient id="laptop-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0715" />
+                  <stop offset="100%" stop-color="#140d2d" />
+                </linearGradient>
+                <linearGradient id="purple-cyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#00d4ff" />
+                </linearGradient>
+                <filter id="glow-pc" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#laptop-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Floating Laptop wireframe -->
+              <g transform="translate(250, 110)" filter="url(#glow-pc)">
+                <!-- Screen -->
+                <rect x="20" y="20" width="260" height="160" rx="10" fill="rgba(15,10,35,0.85)" stroke="url(#purple-cyan)" stroke-width="2" />
+                <!-- Keyboard Base -->
+                <path d="M 0 180 L 300 180 L 320 210 L -20 210 Z" fill="rgba(15,10,35,0.95)" stroke="url(#purple-cyan)" stroke-width="2" />
+                <!-- Trackpad -->
+                <rect x="110" y="190" width="80" height="15" rx="3" fill="none" stroke="url(#purple-cyan)" stroke-width="1" />
+                <!-- Price tag prediction visual on screen -->
+                <path d="M 40 140 L 90 90 L 140 120 L 200 60 L 250 80" fill="none" stroke="#ffe066" stroke-width="3" />
+                <circle cx="200" cy="60" r="5" fill="#ffe066" />
+                <text x="130" y="50" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#00d4ff">PREDICTED: $1,299</text>
+              </g>
+            </svg>
+          </div>
+          <h3>Student Mental Health Predictor</h3>
+          <p>A machine learning model to predict student mental health based on various factors.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Regression</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://mentalkit.onrender.com/" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/Student-Mental-Health-Score" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="ipl-project-svg">
+              <defs>
+                <linearGradient id="ipl-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#050a1b" />
+                  <stop offset="100%" stop-color="#0b1638" />
+                </linearGradient>
+                <linearGradient id="stadium-lights" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#00d4ff" />
+                </linearGradient>
+                <filter id="glow-gold2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ipl-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Cricket Bat & Ball -->
+              <g transform="translate(240, 220) rotate(-35)" filter="url(#glow-gold2)">
+                <!-- Bat -->
+                <rect x="-10" y="-120" width="20" height="180" rx="3" fill="#ffe066" stroke="#f39c12" stroke-width="2" />
+                <rect x="-6" y="-180" width="12" height="60" rx="2" fill="#fff" stroke="#f39c12" stroke-width="1.5" />
+              </g>
+              <!-- Cricket Ball -->
+              <circle cx="340" cy="220" r="24" fill="#e74c3c" stroke="#fff" stroke-width="2" filter="url(#glow-gold2)" />
+              <path d="M 326 202 Q 340 220 354 202" fill="none" stroke="#fff" stroke-dasharray="2 2" stroke-width="2" />
+              <path d="M 326 238 Q 340 220 354 238" fill="none" stroke="#fff" stroke-dasharray="2 2" stroke-width="2" />
+              <!-- Win Probability Gauge -->
+              <g transform="translate(560, 220)">
+                <circle cx="0" cy="0" r="70" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="10" />
+                <!-- Arc for 78% -->
+                <path d="M 0 -70 A 70 70 0 1 1 -52 46" fill="none" stroke="url(#stadium-lights)" stroke-width="10" stroke-linecap="round" filter="url(#glow-gold2)" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff" text-anchor="middle">78%</text>
+                <text x="0" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="10" fill="#00d4ff" letter-spacing="1" text-anchor="middle">WIN PROBABILITY</text>
+              </g>
+            </svg>
+          </div>
+          <h3>IPL Win Predictor</h3>
+          <p>IPL Win Predictor using ML (Logistic Regression) to predict match outcomes.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Classification</span>
+            <span class="tech-tag">Cricket</span>
+            <span class="tech-tag">Streamlit</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://iplwinprokit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/IPL-Win-Probability-Predictor-Project" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="book-project-svg">
+              <defs>
+                <linearGradient id="book-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0b12" />
+                  <stop offset="100%" stop-color="#141c2d" />
+                </linearGradient>
+                <linearGradient id="orange-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#e67e22" />
+                </linearGradient>
+                <filter id="glow-book" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#book-bg)" />
+              <!-- Background grid lines -->
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- 3D Stack of books -->
+              <g transform="translate(180, 150)" filter="url(#glow-book)">
+                <!-- Book 3 (Bottom) -->
+                <path d="M 0 100 L 180 80 L 220 100 L 40 120 Z" fill="rgba(155, 89, 182, 0.85)" stroke="#9b59b6" stroke-width="1.5" />
+                <rect x="180" y="80" width="40" height="20" fill="#fff" />
+                <!-- Book 2 (Middle) -->
+                <path d="M 10 70 L 190 50 L 230 70 L 50 90 Z" fill="rgba(0, 212, 255, 0.85)" stroke="#00d4ff" stroke-width="1.5" />
+                <rect x="190" y="50" width="40" height="20" fill="#fff" />
+                <!-- Book 1 (Top) -->
+                <path d="M 20 40 L 200 20 L 240 40 L 60 60 Z" fill="url(#orange-glow)" stroke="#f39c12" stroke-width="1.5" />
+                <rect x="200" y="20" width="40" height="20" fill="#fff" />
+              </g>
+              <!-- Recommendation arrows/nodes -->
+              <g transform="translate(560, 220)" filter="url(#glow-book)">
+                <circle cx="0" cy="0" r="50" fill="rgba(0, 212, 255, 0.05)" stroke="#00d4ff" stroke-width="2" />
+                <text x="0" y="8" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#00d4ff" text-anchor="middle">RECOMMEND</text>
+                <!-- Outer Recommended Nodes -->
+                <circle cx="100" cy="-60" r="12" fill="#f39c12" />
+                <line x1="35" y1="-21" x2="88" y2="-52" stroke="#f39c12" stroke-width="2" stroke-dasharray="3 3" />
+                <circle cx="110" cy="20" r="12" fill="#9b59b6" />
+                <line x1="50" y1="7" x2="98" y2="17" stroke="#9b59b6" stroke-width="2" stroke-dasharray="3 3" />
+              </g>
+            </svg>
+          </div>
+          <h3>NYC-Airbnb Room Finder</h3>
+          <p>Find the perfect Airbnb room in NYC using collaborative filtering and ML.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Recommendation</span>
+            <span class="tech-tag">FastAPI</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://nyc-airbnb-room-type-predictor-jr3i.onrender.com/" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/NYC-Airbnb-Room-Type-Predictor-" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="movie-project-svg">
+              <defs>
+                <linearGradient id="movie-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0101" />
+                  <stop offset="100%" stop-color="#240505" />
+                </linearGradient>
+                <linearGradient id="cinema-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#e74c3c" />
+                  <stop offset="100%" stop-color="#962d22" />
+                </linearGradient>
+                <filter id="glow-red2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#movie-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Clapperboard Graphic -->
+              <g transform="translate(180, 120)" filter="url(#glow-red2)">
+                <!-- Lower Board -->
+                <rect x="0" y="60" width="220" height="120" rx="8" fill="rgba(20,20,20,0.95)" stroke="url(#cinema-glow)" stroke-width="2.5" />
+                <!-- Upper Clapper (Open) -->
+                <g transform="rotate(-20, 0, 60)">
+                  <rect x="0" y="20" width="220" height="36" fill="rgba(20,20,20,0.95)" stroke="url(#cinema-glow)" stroke-width="2.5" />
+                  <!-- Diagonal stripes -->
+                  <path d="M 20 20 L 40 56 M 60 20 L 80 56 M 100 20 L 120 56 M 140 20 L 160 56 M 180 20 L 200 56" stroke="#fff" stroke-width="6" />
+                </g>
+                <circle cx="110" cy="120" r="28" fill="#e74c3c" />
+                <!-- Play symbol inside clapperboard -->
+                <path d="M 102 106 L 124 120 L 102 134 Z" fill="#fff" />
+              </g>
+              <!-- Connected Recommendation Movies (Right side) -->
+              <g transform="translate(480, 180)">
+                <rect x="0" y="0" width="200" height="120" rx="12" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" />
+                <text x="20" y="40" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff">RECOMMENDED</text>
+                <text x="20" y="70" font-family="'Poppins', sans-serif" font-weight="500" font-size="12" fill="#00d4ff">★ Interstellar (98%)</text>
+                <text x="20" y="95" font-family="'Poppins', sans-serif" font-weight="500" font-size="12" fill="#00d4ff">★ Inception (94%)</text>
+              </g>
+            </svg>
+          </div>
+          <h3>Movie Recommendation System</h3>
+          <p>Movie Recommendation System using content-based filtering and ML.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Content-Based</span>
+            <span class="tech-tag">TMDb</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://movieskit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/movies-recommendation-system-" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 7 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="job-project-svg">
+              <defs>
+                <linearGradient id="job-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#040b08" />
+                  <stop offset="100%" stop-color="#0a1d14" />
+                </linearGradient>
+                <linearGradient id="green-glow2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#2ecc71" />
+                  <stop offset="100%" stop-color="#1abc9c" />
+                </linearGradient>
+                <filter id="glow-green2" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#job-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Left side: Candidate Resume Concept -->
+              <g transform="translate(100, 130)">
+                <rect x="0" y="0" width="220" height="180" rx="16" fill="rgba(15, 25, 20, 0.85)" stroke="url(#green-glow2)" stroke-width="2" filter="url(#glow-green2)" />
+                <circle cx="50" cy="50" r="24" fill="rgba(46, 204, 113, 0.15)" />
+                <!-- Abstract avatar lines -->
+                <path d="M 40 85 Q 50 75 60 85" stroke="url(#green-glow2)" stroke-width="2.5" fill="none" />
+                <circle cx="50" cy="48" r="8" fill="none" stroke="url(#green-glow2)" stroke-width="2.5" />
+                <!-- Resume textual mock lines -->
+                <line x1="90" y1="40" x2="190" y2="40" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
+                <line x1="90" y1="55" x2="170" y2="55" stroke="rgba(255,255,255,0.4)" stroke-width="4" stroke-linecap="round" />
+                <line x1="30" y1="105" x2="190" y2="105" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+                <line x1="30" y1="125" x2="150" y2="125" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+                <line x1="30" y1="145" x2="180" y2="145" stroke="rgba(255,255,255,0.2)" stroke-width="2" stroke-linecap="round" />
+              </g>
+              <!-- Connected Job Cards with matching scores -->
+              <g transform="translate(460, 130)" filter="url(#glow-green2)">
+                <rect x="0" y="0" width="240" height="180" rx="16" fill="rgba(15, 25, 20, 0.85)" stroke="url(#green-glow2)" stroke-width="2" />
+                <text x="25" y="40" font-family="'Poppins', sans-serif" font-weight="bold" font-size="14" fill="#fff">RECOMMENDED JOBS</text>
+                <text x="25" y="75" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ AI Developer - 95% Match</text>
+                <text x="25" y="110" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ ML Engineer - 91% Match</text>
+                <text x="25" y="145" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#2ecc71">★ Data Scientist - 88% Match</text>
+              </g>
+            </svg>
+          </div>
+          <h3>AI Job Recommendation System</h3>
+          <p>AI Job Recommendation System using Random Forest algorithm.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">ML</span>
+            <span class="tech-tag">Random Forest</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://aijobprekit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/AI-job-salary-prediction" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 8 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="quora-project-svg">
+              <defs>
+                <!-- Background Gradient -->
+                <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0a0b10" />
+                  <stop offset="100%" stop-color="#141724" />
+                </linearGradient>
+                
+                <!-- Neon Gradients -->
+                <linearGradient id="cyan-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#007a99" />
+                </linearGradient>
+                <linearGradient id="orange-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f39c12" />
+                  <stop offset="100%" stop-color="#d35400" />
+                </linearGradient>
+                <linearGradient id="purple-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#8e44ad" />
+                </linearGradient>
+
+                <!-- Glowing Filters -->
+                <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-orange" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-badge" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="8" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Background Rect -->
+              <rect width="100%" height="100%" fill="url(#bg-grad)" />
+
+              <!-- Abstract Tech Grid Lines -->
+              <g stroke="rgba(255, 255, 255, 0.03)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="100" x2="800" y2="100" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="400" x2="800" y2="400" stroke="rgba(255,255,255,0.02)" />
+                
+                <line x1="100" y1="0" x2="100" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="200" y1="0" x2="200" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="300" y1="0" x2="300" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="500" y1="0" x2="500" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="600" y1="0" x2="600" y2="450" stroke="rgba(255,255,255,0.02)" />
+                <line x1="700" y1="0" x2="700" y2="450" stroke="rgba(255,255,255,0.02)" />
+              </g>
+
+              <!-- Neural Network Connections Background -->
+              <g stroke="rgba(0, 212, 255, 0.1)" stroke-width="1.5" fill="none">
+                <path d="M 150 150 Q 250 80 400 150" stroke-dasharray="5 5" />
+                <path d="M 400 150 Q 550 80 650 150" stroke-dasharray="5 5" />
+                <path d="M 150 300 Q 250 370 400 300" stroke-dasharray="5 5" />
+                <path d="M 400 300 Q 550 370 650 300" stroke-dasharray="5 5" />
+              </g>
+
+              <!-- Dynamic Connection Line between the Questions -->
+              <path d="M 280 225 C 340 180, 460 180, 520 225" fill="none" stroke="url(#cyan-grad)" stroke-width="3" filter="url(#glow-cyan)" />
+              <path d="M 280 225 C 340 270, 460 270, 520 225" fill="none" stroke="url(#orange-grad)" stroke-width="3" filter="url(#glow-orange)" />
+              
+              <!-- Neural Nodes on the connection curve -->
+              <circle cx="340" cy="205" r="4" fill="#00d4ff" filter="url(#glow-cyan)" />
+              <circle cx="460" cy="205" r="4" fill="#00d4ff" filter="url(#glow-cyan)" />
+              <circle cx="340" cy="245" r="4" fill="#f39c12" filter="url(#glow-orange)" />
+              <circle cx="460" cy="245" r="4" fill="#f39c12" filter="url(#glow-orange)" />
+
+              <!-- Question 1 Bubble (Left Side) -->
+              <g transform="translate(40, 150)">
+                <!-- Glow behind card -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(0, 212, 255, 0.03)" />
+                <!-- Main Card Body -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 15, 20, 0.85)" stroke="url(#cyan-grad)" stroke-width="2" filter="url(#glow-cyan)" />
+                
+                <!-- User/Question Header -->
+                <circle cx="28" cy="28" r="12" fill="rgba(0, 212, 255, 0.2)" />
+                <text x="28" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#00d4ff" text-anchor="middle">Q1</text>
+                <text x="48" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="11" fill="rgba(255,255,255,0.7)">User_A</text>
+                
+                <!-- Separator -->
+                <line x1="15" y1="52" x2="205" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                
+                <!-- Question Text -->
+                <text x="15" y="78" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">How do I learn</text>
+                <text x="15" y="98" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">Machine Learning</text>
+                <text x="15" y="118" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">effectively?</text>
+              </g>
+
+              <!-- Question 2 Bubble (Right Side) -->
+              <g transform="translate(540, 150)">
+                <!-- Glow behind card -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(243, 156, 18, 0.03)" />
+                <!-- Main Card Body -->
+                <rect x="0" y="0" width="220" height="150" rx="16" fill="rgba(15, 15, 20, 0.85)" stroke="url(#orange-grad)" stroke-width="2" filter="url(#glow-orange)" />
+                
+                <!-- User/Question Header -->
+                <circle cx="28" cy="28" r="12" fill="rgba(243, 156, 18, 0.2)" />
+                <text x="28" y="32" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#f39c12" text-anchor="middle">Q2</text>
+                <text x="48" y="32" font-family="'Poppins', sans-serif" font-weight="600" font-size="11" fill="rgba(255,255,255,0.7)">User_B</text>
+                
+                <!-- Separator -->
+                <line x1="15" y1="52" x2="205" y2="52" stroke="rgba(255,255,255,0.1)" stroke-width="1" />
+                
+                <!-- Question Text -->
+                <text x="15" y="78" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">What is the best way</text>
+                <text x="15" y="98" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">to study ML and NLP</text>
+                <text x="15" y="118" font-family="'Poppins', sans-serif" font-size="12" fill="#fff" font-weight="500">efficiently?</text>
+              </g>
+
+              <!-- Similarity/NLP Match Badge in the Center -->
+              <g transform="translate(400, 225)">
+                <!-- Outer Glow Circle -->
+                <circle cx="0" cy="0" r="54" fill="rgba(15, 15, 20, 0.9)" stroke="rgba(255,255,255,0.05)" stroke-width="3" />
+                
+                <!-- Dashed Ring -->
+                <circle cx="0" cy="0" r="46" fill="none" stroke="#9b59b6" stroke-width="2.5" stroke-dasharray="6 4" filter="url(#glow-badge)" />
+                
+                <!-- Glowing Status Ring -->
+                <circle cx="0" cy="0" r="38" fill="rgba(0, 212, 255, 0.05)" />
+                
+                <!-- Match Percentage Text -->
+                <text x="0" y="-10" font-family="'Poppins', sans-serif" font-weight="bold" font-size="9" fill="rgba(255, 255, 255, 0.6)" letter-spacing="1" text-anchor="middle">SIMILARITY</text>
+                <text x="0" y="10" font-family="'Poppins', sans-serif" font-weight="bold" font-size="18" fill="#00d4ff" filter="url(#glow-cyan)" text-anchor="middle">97.8%</text>
+                <text x="0" y="24" font-family="'Poppins', sans-serif" font-weight="800" font-size="8" fill="#5cb85c" letter-spacing="0.5" text-anchor="middle">DUPLICATE</text>
+              </g>
+            </svg>
+          </div>
+          <h3>Quora Question Pair</h3>
+          <p>Quora Question Pair classification using NLP techniques.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">NLP</span>
+            <span class="tech-tag">Machine Learning</span>
+            <span class="tech-tag">Data Visualization</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+          </div>
+          <div class="project-links">
+            <a href="https://quorakit.onrender.com/" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/Quora-Question-pair" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 9 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="web-project-svg">
+              <defs>
+                <linearGradient id="web-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#060515" />
+                  <stop offset="100%" stop-color="#120c29" />
+                </linearGradient>
+                <linearGradient id="pink-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ec4899" />
+                  <stop offset="100%" stop-color="#8b5cf6" />
+                </linearGradient>
+                <filter id="glow-pink" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#web-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="200" x2="800" y2="200" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Wireframe Web Window -->
+              <g transform="translate(180, 110)" filter="url(#glow-pink)">
+                <rect x="0" y="0" width="440" height="250" rx="16" fill="rgba(15,10,35,0.85)" stroke="url(#pink-purple)" stroke-width="2" />
+                <!-- Web Header Bar -->
+                <rect x="0" y="0" width="440" height="40" rx="16" fill="rgba(255,255,255,0.05)" />
+                <circle cx="20" cy="20" r="6" fill="#ef4444" />
+                <circle cx="40" cy="20" r="6" fill="#f59e0b" />
+                <circle cx="60" cy="20" r="6" fill="#10b981" />
+                <!-- Text mocks / layouts inside wireframe -->
+                <rect x="30" y="65" width="200" height="25" rx="5" fill="rgba(255,255,255,0.1)" />
+                <rect x="30" y="105" width="380" height="15" rx="3" fill="rgba(255,255,255,0.05)" />
+                <rect x="30" y="130" width="280" height="15" rx="3" fill="rgba(255,255,255,0.05)" />
+                <!-- Glassmorphic Grid blocks representing modern cards -->
+                <rect x="30" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+                <rect x="165" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+                <rect x="300" y="165" width="110" height="60" rx="8" fill="rgba(255,255,255,0.08)" stroke="url(#pink-purple)" stroke-width="1" />
+              </g>
+            </svg>
+          </div>
+          <h3>Build landing page</h3>
+          <p>Build a responsive landing page using modern web technologies.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Responsive Design</span>
+          </div>
+          <div class="project-links">
+            <a href="https://laukesh.onrender.com/" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+            <a href="https://github.com/eddiebrock911/laukeshKumar-Profile/" target="_blank"
+              class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 10 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="ttt-project-svg">
+              <defs>
+                <linearGradient id="ttt-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#080c14" />
+                  <stop offset="100%" stop-color="#141c2c" />
+                </linearGradient>
+                <linearGradient id="cyan-glow-g" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="100%" stop-color="#0088cc" />
+                </linearGradient>
+                <linearGradient id="pink-glow-g" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ff007f" />
+                  <stop offset="100%" stop-color="#b30059" />
+                </linearGradient>
+                <filter id="glow-x" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="glow-o" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#ttt-bg)" />
+              
+              <!-- Game Grid lines -->
+              <g stroke="rgba(255, 255, 255, 0.1)" stroke-width="4" stroke-linecap="round">
+                <line x1="330" y1="80" x2="330" y2="370" />
+                <line x1="470" y1="80" x2="470" y2="370" />
+                <line x1="200" y1="170" x2="600" y2="170" />
+                <line x1="200" y1="280" x2="600" y2="280" />
+              </g>
+              
+              <!-- X Symbols (Winning state for X along the diagonal) -->
+              <!-- Top Left X -->
+              <path d="M 235 95 L 295 155 M 295 95 L 235 155" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              <!-- Center X -->
+              <path d="M 370 195 L 430 255 M 430 195 L 370 255" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              <!-- Bottom Right X -->
+              <path d="M 505 295 L 565 355 M 565 295 L 505 355" stroke="url(#cyan-glow-g)" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+              
+              <!-- O Symbols -->
+              <!-- Top Right O -->
+              <circle cx="535" cy="125" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              <!-- Center Left O -->
+              <circle cx="265" cy="225" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              <!-- Bottom Left O -->
+              <circle cx="265" cy="325" r="30" fill="none" stroke="url(#pink-glow-g)" stroke-width="8" filter="url(#glow-o)" />
+              
+              <!-- Winning strike-through diagonal line (Pulsing neon line) -->
+              <line x1="210" y1="70" x2="590" y2="380" stroke="#ffe066" stroke-width="8" stroke-linecap="round" filter="url(#glow-x)" />
+            </svg>
+          </div>
+          <h3>Tic Tac Toe Game</h3>
+          <p>Fun Tic Tac Toe game built with JavaScript featuring AI opponent.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+          </div>
+          <div class="project-links">
+            <a href="https://tickit-rht5.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-gamepad"></i> Live Play
+            </a>
+            <a href="https://github.com/eddiebrock911/Tic-Tac-Toe" target="_blank" class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 11 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="space-project-svg">
+              <defs>
+                <linearGradient id="space-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#020108" />
+                  <stop offset="100%" stop-color="#0a0522" />
+                </linearGradient>
+                <linearGradient id="laser-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#39ff14" />
+                  <stop offset="100%" stop-color="#198a08" />
+                </linearGradient>
+                <filter id="glow-laser" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#space-bg)" />
+              <!-- Starfield particles -->
+              <g fill="#fff">
+                <circle cx="80" cy="60" r="1.5" opacity="0.8" />
+                <circle cx="150" cy="180" r="1" opacity="0.5" />
+                <circle cx="280" cy="90" r="2" opacity="0.9" />
+                <circle cx="430" cy="240" r="1" opacity="0.6" />
+                <circle cx="560" cy="110" r="1.5" opacity="0.7" />
+                <circle cx="680" cy="310" r="1.5" opacity="0.4" />
+                <circle cx="720" cy="150" r="2.5" opacity="0.9" />
+                <circle cx="310" cy="340" r="1" opacity="0.8" />
+                <circle cx="90" cy="290" r="2" opacity="0.5" />
+              </g>
+              <!-- Player Space Ship -->
+              <g transform="translate(400, 360)">
+                <path d="M 0 -45 L -25 15 L -10 10 L 0 25 L 10 10 L 25 15 Z" fill="#00d4ff" stroke="#fff" stroke-width="1.5" />
+                <circle cx="0" cy="-5" r="8" fill="#fff" />
+                <!-- Jet Flame -->
+                <path d="M -10 25 L 0 50 L 10 25 Z" fill="#ff4d4d" />
+              </g>
+              <!-- Laser Beams -->
+              <line x1="390" y1="310" x2="390" y2="180" stroke="url(#laser-grad)" stroke-width="4" stroke-linecap="round" filter="url(#glow-laser)" />
+              <line x1="410" y1="310" x2="410" y2="180" stroke="url(#laser-grad)" stroke-width="4" stroke-linecap="round" filter="url(#glow-laser)" />
+              <!-- Enemy Space Ship / Asteroids -->
+              <g transform="translate(400, 100)">
+                <path d="M 0 35 L -35 -10 L -15 -5 L 0 -20 L 15 -5 L 35 -10 Z" fill="#e74c3c" stroke="#fff" stroke-width="1.5" />
+                <circle cx="-10" cy="0" r="3" fill="#fff" />
+                <circle cx="10" cy="0" r="3" fill="#fff" />
+                <!-- Shield warning grid -->
+                <circle cx="0" cy="5" r="45" fill="none" stroke="rgba(231,76,60,0.3)" stroke-width="1.5" stroke-dasharray="4 2" />
+              </g>
+            </svg>
+          </div>
+          <h3>Space Shooter Game</h3>
+          <p>Fun Space Shooter game built with JavaScript and HTML5 Canvas.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Canvas</span>
+            <span class="tech-tag">Game Dev</span>
+          </div>
+          <div class="project-links">
+            <a href="https://spacekit.onrender.com" target="_blank" class="btn btn-small">
+              <i class="fas fa-gamepad"></i> Live Play
+            </a>
+            <a href="https://github.com/eddiebrock911/Space-Shooters-Game" target="_blank" class="btn btn-small github">
+              <i class="fab fa-github"></i> Code
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 12 -->
+        <div class="project-card">
+          <div class="project-image-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" class="custom-app-svg">
+              <defs>
+                <linearGradient id="custom-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#03040c" />
+                  <stop offset="100%" stop-color="#0c0e21" />
+                </linearGradient>
+                <linearGradient id="neon-spiral" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#00d4ff" />
+                  <stop offset="50%" stop-color="#9b59b6" />
+                  <stop offset="100%" stop-color="#ff007f" />
+                </linearGradient>
+                <filter id="glow-spiral" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              <rect width="100%" height="100%" fill="url(#custom-bg)" />
+              <g stroke="rgba(255, 255, 255, 0.02)" stroke-width="1">
+                <line x1="0" y1="50" x2="800" y2="50" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="250" x2="800" y2="250" stroke="rgba(255,255,255,0.02)" />
+                <line x1="0" y1="350" x2="800" y2="350" stroke="rgba(255,255,255,0.02)" />
+              </g>
+              <!-- Sleek High-tech interface visualizer -->
+              <g transform="translate(400, 225)" filter="url(#glow-spiral)">
+                <!-- Rotating core rings -->
+                <circle cx="0" cy="0" r="100" fill="none" stroke="url(#neon-spiral)" stroke-width="2" stroke-dasharray="10 5 2 5" />
+                <circle cx="0" cy="0" r="75" fill="none" stroke="url(#neon-spiral)" stroke-width="1.5" stroke-dasharray="5 15" />
+                <circle cx="0" cy="0" r="50" fill="none" stroke="url(#neon-spiral)" stroke-width="3" stroke-dasharray="40 10" />
+                <!-- Core sphere -->
+                <circle cx="0" cy="0" r="25" fill="rgba(0, 212, 255, 0.15)" stroke="#00d4ff" stroke-width="1.5" />
+                <text x="0" y="5" font-family="'Poppins', sans-serif" font-weight="bold" font-size="12" fill="#fff" text-anchor="middle">AGI</text>
+              </g>
+              <text x="50" y="80" font-family="'Poppins', sans-serif" font-weight="bold" font-size="28" fill="#fff">CUSTOM WEB</text>
+              <text x="50" y="115" font-family="'Poppins', sans-serif" font-weight="600" font-size="16" fill="#00d4ff">APPLICATION LAYER</text>
+            </svg>
+          </div>
+          <h3>Custom Web Application</h3>
+          <p>Custom web application built with modern technologies and design principles.</p>
+          <div class="tech-stack">
+            <span class="tech-tag">Web Dev</span>
+            <span class="tech-tag">Modern UI</span>
+            <span class="tech-tag">Responsive</span>
+            <span class="tech-tag">Used gamma.site</span>
+          </div>
+          <div class="project-links">
+            <a href="https://ankit-kumar-ai-7jv0kvq.gamma.site/" target="_blank" class="btn btn-small">
+              <i class="fas fa-external-link-alt"></i> Live Demo
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section id="vision" class="section bg-dark">
+    <div class="container slide-up">
+      <h2 class="section-title">Future Vision 🚀</h2>
+      <div class="vision-content">
+        <div class="vision-card">
+          <i class="fas fa-robot vision-icon"></i>
+          <h3>Baby AI</h3>
+          <p>Creating advanced AI with emotion sensing, wake-word detection, and camera vision capabilities, it means
+            <b>AGI</b>.
+          </p>
+        </div>
+        <div class="vision-card">
+          <i class="fas fa-rocket vision-icon"></i>
+          <h3>Mars Ecosystem</h3>
+          <p>Developing a living ecosystem on Mars by combining AI, Space Technology, and Biology.</p>
+        </div>
+        <div class="vision-card">
+          <i class="fas fa-dna vision-icon"></i>
+          <h3>AI + Biology</h3>
+          <p>Driving innovations at the intersection of AI, Space Technology, and Biology.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container slide-up">
+      <h2 class="section-title">Let's Connect!</h2>
+      <p class="contact-subtitle">📧 Feel free to reach out for collaborations or opportunities!</p>
+
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/eddiebrock-364ba537b/" target="_blank" class="contact-card linkedin">
+          <i class="fab fa-linkedin"></i>
+          <h3>LinkedIn</h3>
+          <p>Let's connect professionally</p>
+        </a>
+
+        <a href="https://github.com/eddiebrock911" target="_blank" class="contact-card github">
+          <i class="fab fa-github"></i>
+          <h3>GitHub</h3>
+          <p>Check out my code</p>
+        </a>
+
+        <a href="https://www.instagram.com/__ankit._.op_/" target="_blank" class="contact-card instagram">
+          <i class="fab fa-instagram"></i>
+          <h3>Instagram</h3>
+          <p>Follow my journey</p>
+        </a>
+
+        <a href="https://www.kaggle.com/ankitkumar8252" target="_blank" class="contact-card kaggle">
+          <i class="fab fa-kaggle"></i>
+          <h3>Kaggle</h3>
+          <p>Follow my data science journey</p>
+        </a>
+
+        <a href="/cdn-cgi/l/email-protection#fa9b9491938e918f979b88c2c8c9cac2c3ba9d979b9396d4999597" class="contact-card email">
+          <i class="fas fa-envelope"></i>
+          <h3>Email</h3>
+          <p>Drop me a message</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donation Section -->
+  <section id="support" class="donation-section">
+    <div class="donation-container">
+      <div class="donation-header">
+        <h2 class="donation-title">☕ Support My Work</h2>
+        <p class="donation-subtitle">
+          If you enjoy my projects and want to support my journey in AI & ML development, consider buying me a coffee!
+        </p>
+      </div>
+
+      <div class="donation-card">
+        <div class="coffee-icon">☕</div>
+        
+        <p class="donation-message">
+          Your support helps me continue creating <strong>open-source projects</strong>, 
+          learning new technologies, and building innovative AI solutions. 
+          Every coffee counts! 🚀
+        </p>
+
+        <div class="coffee-btn-container">
+          <a href="https://www.buymeacoffee.com/Eddie.Brock" target="_blank" class="coffee-btn">
+            <i class="fas fa-mug-hot"></i>
+            <span>Buy Me a Coffee</span>
+          </a>
+        </div>
+      </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <p>&copy; 2025 Ankit Kumar | Developer By Ankit ❤️ </p>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
   </footer>
 
-</div><!-- /main-content -->
+  <!---- <script src="js/advanced-animations.js"></script>    Theme Toggle Script -->
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="js/performance.js"></script>
+  <script src="js/ai-chatbot.js"></script>
+  <script src="js/features.js"></script>
 
-<!-- Live Chat Toggle -->
-<div class="chat-toggle-btn" onclick="toggleChat()" role="button" tabindex="0" aria-label="Open live chat">
-  <span id="chat-toggle-icon">💬</span>
-</div>
-
-<div class="chat-box" id="chat-box">
-  <div class="chat-header">
-    <span class="chat-avatar">💕</span>
-    <div>
-      <p class="chat-title">Live Chat</p>
-      <p class="chat-status"><span class="status-dot"></span> <span id="online-status">connecting...</span></p>
-    </div>
-    <button class="chat-header-btn" id="chat-premium-btn" onclick="togglePremiumMenu()" type="button" aria-label="Open chat settings" title="Chat Settings">⚙️</button>
-    <button class="chat-close" onclick="toggleChat()" type="button" aria-label="Close chat">✕</button>
-  </div>
-
-  <div class="chat-messages" id="chat-messages"></div>
-
-  <!-- Quick Romantic Replies -->
-  <div class="chat-quick-replies" id="chat-quick-replies">
-    <button type="button" class="chat-quick-btn" onclick="quickReply('I love you 💕')">I love you 💕</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('Miss you 🥺')">Miss you 🥺</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('Good morning ☀️')">Good morning ☀️</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('Good night 🌙')">Good night 🌙</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('You are the best 🥰')">You're the best 🥰</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('Thinking of you 💭')">Thinking of you 💭</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('Hugs 🤗')">Hugs 🤗</button>
-    <button type="button" class="chat-quick-btn" onclick="quickReply('😘😘😘')">😘😘😘</button>
-  </div>
-
-  <!-- ✅ FIXED: Send button now uses Font Awesome icon + proper class -->
-  <div class="chat-input-row">
-    <button type="button" class="chat-extra-btn" id="chat-emoji-toggle" onclick="toggleEmojiPicker()" title="Emoji">😊</button>
-    <input type="text" id="chat-input" placeholder="Type a sweet message..." maxlength="500" onkeydown="if(event.key==='Enter') sendMessage()" />
-    <button class="chat-send-btn" onclick="sendMessage()" type="button" aria-label="Send">
-      <i class="fas fa-paper-plane"></i>
-    </button>
-  </div>
-</div>
-
-<!-- Floating Contacts -->
-<a href="https://bdaykit.onrender.com/" target="_blank" class="floating-contact-bday" rel="noopener noreferrer">
-   <i class="fa fa-birthday-cake" style="font-size:25px;color:rgb(229, 189, 69)"></i>
-  <span>B'day Surprise</span>
-</a>
-
-<a href="https://www.instagram.com/__ankit._.op_/" target="_blank" class="floating-contact-betu" rel="noopener noreferrer">
-  <i class="fab fa-instagram"></i>
-  <span>Betu ❤️</span>
-</a>
-
-<a href="https://www.instagram.com/naincy__raman_/" target="_blank" class="floating-contact-babe" rel="noopener noreferrer">
-  <i class="fab fa-instagram"></i>
-  <span>Babe 💕</span>
-</a>
-
-<!-- Back to Top -->
-<button class="back-to-top" onclick="scrollToTop()" type="button" aria-label="Back to Top">
-  <i class="fas fa-arrow-up"></i>
-</button>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
-  <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Close">
-    <i class="fas fa-times"></i>
+  <!-- Back to Top Button -->
+  <button class="back-to-top" onclick="scrollToTop()" aria-label="Back to Top">
+    <i class="fas fa-arrow-up"></i>
   </button>
-  <div class="lightbox-content" id="lightboxContent"></div>
-</div>
 
-</body>
+  <!-- Google AdSense 
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9451497256140203"
+    crossorigin="anonymous"></script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9451497256140203" data-ad-slot="3684716870"
+    data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+  -->
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a32197868a25197f',t:'MTc4NzkwMjAyOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
 </html>
