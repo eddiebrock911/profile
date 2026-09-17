@@ -1,10 +1,10 @@
 # render.yaml
 services:
   - type: web
-    name: ankit-portfolio
+    name: ankitai
     env: static
     plan: free
-    repo: https://github.com/yourusername/ankit-portfolio  # GitHub repo link
+    repo: https://github.com/eddiebrock911/profile # GitHub repo link
     branch: main
     buildCommand: ""      # Static site ke liye kuch build nahi karna
     staticPublishPath: /
