@@ -16,6 +16,7 @@
         linkedin: 'https://www.linkedin.com/in/eddiebrock-364ba537b/',
         instagram: 'https://www.instagram.com/__ankit._.op_/',
         kaggle: 'https://www.kaggle.com/ankitkumar8252',
+        buymeacoffee: 'https://buymeacoffee.com/eddie.brock',
         ...options
       };
 
@@ -48,6 +49,19 @@
             demo: 'https://olympikit.onrender.com/',
             code: 'https://github.com/eddiebrock911/Olympics-analysis-app',
             stack: ['Python', 'Streamlit', 'Pandas', 'EDA', 'Data Visualization']
+          },
+          {
+            name: 'Emotion-detector-AI',
+            category: 'ai',
+            status: 'live',
+            tags: ['emotion', 'detection', 'ai', 'deep-learning'],
+            desc: 'AI-powered emotion detection system using computer vision techniques.',
+            demo: 'https://emotiondetektor.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Emotion-Detector-AI',
+            stack: ['Python', 'OpenCV', 'TensorFlow', 'Keras'],
+            demo: 'https://emotionkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Emotion-detector-Anly-',
+            stack: ['Python', 'FastAPI', 'Deep Learning', 'EDA', 'Keras']
           },
           {
             name: 'Spam Classifier AI',
@@ -260,7 +274,7 @@
             stack: ['Node.js', 'Express', 'Socket.IO', 'JavaScript']
           },
           {
-            name: 'Tic Tac Toe Classic',
+            name: 'Tic Tac Toe Classic (Offline)',
             category: 'game',
             status: 'live',
             tags: ['tic', 'toe', 'tictactoe', 'classic', 'bootstrap', 'game'],
@@ -270,7 +284,7 @@
             stack: ['JavaScript', 'Bootstrap', 'HTML5', 'CSS3']
           },
           {
-            name: 'AnkitAI Portfolio',
+            name: 'Ankit ka Portfolio',
             category: 'web',
             status: 'live',
             tags: ['portfolio', 'ankitai', 'personal', 'website', 'profile'],
@@ -348,6 +362,16 @@
             demo: null,
             code: 'https://github.com/eddiebrock911/babe-betu',
             stack: ['CSS3', 'JavaScript', 'HTML5']
+          },
+          {
+            name: 'Girlfriend ka doha',
+            category: 'fun',
+            status: 'code',
+            tags: ['nainkitdoha', 'doha', 'surprise', 'romantic', 'creative'],
+            desc: 'Romantic surprise website with animated doha and interactive elements for a special occasion.',
+            demo: 'https://nainkitdohe.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Girlfriend-Ke-Dohe',
+            stack: ['CSS3', 'JavaScript', 'HTML5']
           }
         ],
         categories: [
@@ -357,8 +381,8 @@
           { id: 'fun', label: 'Fun & Creative' }
         ],
         skills: {
-          languages: ['Python', 'c++','JavaScript', 'SQL'],
-          ai: ['Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Transformers'],
+          languages: ['Python', 'c++','JavaScript', 'SQL', 'HTML', 'CSS', 'FastAPI'],
+          ai: ['Machine Learning', 'Deep Learning', 'Data Science', 'NLP', 'Transformers','Computer Vision', 'OpenCV', 'TensorFlow', 'Keras', 'Scikit-learn'],
           web: ['HTML5', 'CSS3', 'Flask', 'Responsive Design'],
           tools: ['Git & GitHub', 'Pandas', 'NumPy', 'Streamlit', 'Data Visualization']
         },
@@ -505,6 +529,7 @@
       setTimeout(() => {
         this.removeTypingIndicator();
         const result = this.generateResponse(message);
+        if (result.action) this.executeSiteAction(result.action);
         this.addMessage('bot', result.html, result.meta || {});
         this.context.lastIntent = result.intent || this.context.lastIntent;
         this.saveChatHistory();
@@ -514,6 +539,50 @@
 
     generateResponse(message) {
       const text = this.normalize(message);
+
+      if (/\b(toggle|switch|change)\b.*\b(theme|mode|mood)\b|\b(theme|mode|mood)\b.*\b(toggle|switch|change)\b/.test(text)) {
+        return {
+          intent: 'theme',
+          action: 'theme:toggle',
+          html: 'Theme toggle kar diya. 🌗' + this.actionRow([
+            ['theme:light', '☀️ Light Mode'], ['theme:dark', '🌙 Dark Mode']
+          ])
+        };
+      }
+
+      const hasTheme = /\b(theme|mode|mood)\b/.test(text);
+      const wantsLight = /\b(light|bright|white|day)\b/.test(text);
+      const wantsDark = /\b(dark|night)\b/.test(text);
+      if (hasTheme && (wantsLight || wantsDark)) {
+        const turnsOff = /\b(off|disable|band|hatao|remove)\b/.test(text);
+        const mode = wantsLight ? (turnsOff ? 'dark' : 'light') : (turnsOff ? 'light' : 'dark');
+        const label = mode === 'light' ? 'Light' : 'Dark';
+        return {
+          intent: 'theme',
+          action: `theme:${mode}`,
+          html: `${label} mode on kar diya. ✨` + this.actionRow([
+            [mode === 'light' ? 'theme:dark' : 'theme:light', `Switch to ${mode === 'light' ? 'Dark' : 'Light'} Mode`]
+          ])
+        };
+      }
+
+      if (/\b(command|commands|palette|panel|pannel)\b/.test(text)
+        && /\b(open|show|launch|start|khol|kholo|dikhao|dikha|please)\b|\bctrl\s*k\b/.test(text)) {
+        return {
+          intent: 'command_palette',
+          action: 'palette:open',
+          html: 'Command palette khol diya. Ab command select ya search kar sakte ho. ⌨️'
+        };
+      }
+
+      if (/\b(what can you do|how can you help|help|madad|kya kar sakte|kya karoge)\b/.test(text)) {
+        return {
+          intent: 'help'|'helps'|'madhat',
+          html: 'Hey! mera naam Baby hai. Main portfolio sections navigate kar sakta hoon, projects aur skills dikha sakta hoon, theme badal sakta hoon, aur command palette khol sakta hoon. Bataye mai aapke liye kya kar sakta hoon.' + this.actionRow([
+            ['theme:light', '☀️ Light Mode'], ['theme:dark', '🌙 Dark Mode'], ['palette:open', '⌘ Commands']
+          ])
+        };
+      }
 
       // High-priority phrases: list/overview intents must win over single-project matching
       const listFirst = /\b(sab|sabhi|saare|sare|all|list|kitne|how many|har)\b/.test(text)
@@ -555,6 +624,14 @@
         return { intent: best.intent.name, html: best.intent.handler() };
       }
       return { intent: 'fallback', html: this.replyFallback(text) };
+    }
+
+    executeSiteAction(action) {
+      if (action.startsWith('theme:')) {
+        window.toggleTheme?.(action.split(':')[1]);
+      } else if (action === 'palette:open') {
+        window.commandPalette?.open();
+      }
     }
 
     scoreIntent(text, keys) {
@@ -768,6 +845,7 @@
 
     handleAction(action) {
       if (!action) return;
+      if (action.startsWith('theme:') || action === 'palette:open') return this.executeSiteAction(action);
       if (action.startsWith('nav:')) return this.scrollToSection(action.split(':')[1]);
       if (action === 'scroll:top') return window.scrollTo({ top: 0, behavior: 'smooth' });
       if (action === 'contact') return this.addBotInstant(this.replyContact());

@@ -7,12 +7,13 @@ class CommandPalette {
       { name: 'Go to Projects', action: () => this.scrollTo('#projects'), icon: '💼', category: 'Navigation' },
       { name: 'Go to Vision', action: () => this.scrollTo('#vision'), icon: '🚀', category: 'Navigation' },
       { name: 'Go to Contact', action: () => this.scrollTo('#contact'), icon: '📧', category: 'Navigation' },
-      { name: 'Toggle Dark/Light Mode', action: () => toggleTheme(), icon: '🌓', category: 'Settings' },
+      { name: 'Toggle Light/Dark Mode', action: () => toggleTheme(), icon: '🌓', category: 'Settings' },
       { name: 'Scroll to Top', action: () => scrollToTop(), icon: '⬆️', category: 'Navigation' },
+      { name: 'Show Keyboard Shortcuts', action: () => showKeyboardHints(), icon: '⌨️', category: 'Tools' },
       { name: 'Open Chatbot', action: () => this.openChatbot(), icon: '💬', category: 'Tools' },
       { name: 'Visit GitHub', action: () => window.open('https://github.com/eddiebrock911', '_blank'), icon: '💻', category: 'Links' },
       { name: 'Visit LinkedIn', action: () => window.open('https://www.linkedin.com/in/eddiebrock-364ba537b/', '_blank'), icon: '💼', category: 'Links' },
-      { name: 'Play Tic Tac Toe', action: () => window.open('https://tickit-rht5.onrender.com', '_blank'), icon: '🎮', category: 'Fun' }
+      { name: 'Play Tic Tac Toe', action: () => window.open('https://tickiton.onrender.com/', '_blank'), icon: '🎮', category: 'Fun' }
     ];
     
     this.selectedIndex = 0;
@@ -123,8 +124,8 @@ class CommandPalette {
     list.innerHTML = Object.entries(grouped).map(([category, commands]) => `
       <div class="command-category">
         <div class="category-label">${category}</div>
-        ${commands.map((cmd, index) => `
-          <div class="command-item ${index === this.selectedIndex ? 'selected' : ''}" 
+        ${commands.map(cmd => `
+          <div class="command-item ${this.filteredCommands.indexOf(cmd) === this.selectedIndex ? 'selected' : ''}" 
                data-index="${this.filteredCommands.indexOf(cmd)}">
             <span class="command-icon">${cmd.icon}</span>
             <span class="command-name">${this.highlightMatch(cmd.name, filter)}</span>
@@ -135,7 +136,7 @@ class CommandPalette {
     `).join('');
     
     // Attach click handlers
-    list.querySelectorAll('.command-item').forEach((item, index) => {
+    list.querySelectorAll('.command-item').forEach(item => {
       item.addEventListener('click', () => {
         this.executeCommand(parseInt(item.dataset.index));
       });
@@ -166,7 +167,8 @@ class CommandPalette {
   highlightMatch(text, query) {
     if (!query) return text;
     
-    const regex = new RegExp(`(${query})`, 'gi');
+    const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${escapedQuery})`, 'gi');
     return text.replace(regex, '<mark>$1</mark>');
   }
   
@@ -182,8 +184,8 @@ class CommandPalette {
   
   updateSelection() {
     const items = document.querySelectorAll('.command-item');
-    items.forEach((item, index) => {
-      item.classList.toggle('selected', index === this.selectedIndex);
+    items.forEach(item => {
+      item.classList.toggle('selected', Number(item.dataset.index) === this.selectedIndex);
     });
     
     // Scroll into view
@@ -234,14 +236,36 @@ class CommandPalette {
   }
   
   openChatbot() {
-    if (window.chatbot) {
-      window.chatbot.toggleChat();
-    }
+    const chatbot = window.BabyAI || window.chatbot;
+    if (chatbot?.toggleChat) chatbot.toggleChat(true);
+  }
+}
+
+function toggleTheme(mode = 'toggle') {
+  const currentlyLight = document.body.classList.contains('light-mode');
+  const isLight = mode === 'light' ? true : mode === 'dark' ? false : !currentlyLight;
+  document.body.classList.toggle('light-mode', isLight);
+  document.documentElement.style.colorScheme = isLight ? 'light' : 'dark';
+  try {
+    localStorage.setItem('ankit_portfolio_theme', isLight ? 'light' : 'dark');
+  } catch (error) {
+    // Theme switching still works for the current page when storage is unavailable.
+  }
+}
+
+function initializeTheme() {
+  try {
+    const isLight = localStorage.getItem('ankit_portfolio_theme') === 'light';
+    document.body.classList.toggle('light-mode', isLight);
+    document.documentElement.style.colorScheme = isLight ? 'light' : 'dark';
+  } catch (error) {
+    // Keep the default dark theme when storage is unavailable.
   }
 }
 
 // Initialize
 window.addEventListener('DOMContentLoaded', () => {
+  initializeTheme();
   window.commandPalette = new CommandPalette();
 });
 
@@ -254,24 +278,37 @@ class VisitorCounter {
   }
   
   init() {
-    // Check if already counted today
-    if (sessionStorage.getItem(this.sessionKey)) {
-      this.displayCount();
-      return;
+    try {
+      if (sessionStorage.getItem(this.sessionKey)) {
+        this.displayCount();
+        return;
+      }
+
+      this.incrementCount();
+      sessionStorage.setItem(this.sessionKey, 'true');
+    } catch (error) {
+      // Storage may be disabled; keep the page features available regardless.
     }
-    
-    this.incrementCount();
-    sessionStorage.setItem(this.sessionKey, 'true');
+
     this.displayCount();
   }
   
   getCount() {
-    return parseInt(localStorage.getItem(this.storageKey) || '0');
+    try {
+      const count = Number.parseInt(localStorage.getItem(this.storageKey) || '0', 10);
+      return Number.isFinite(count) ? count : 0;
+    } catch (error) {
+      return 0;
+    }
   }
   
   incrementCount() {
     const count = this.getCount() + 1;
-    localStorage.setItem(this.storageKey, count.toString());
+    try {
+      localStorage.setItem(this.storageKey, count.toString());
+    } catch (error) {
+      // The counter remains displayable when local storage is unavailable.
+    }
   }
   
   displayCount() {
@@ -314,9 +351,10 @@ class ContextMenu {
     const items = [
       { icon: '🏠', label: 'Home', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
       { icon: '📧', label: 'Contact', action: () => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) },
-      { icon: '🌓', label: 'Toggle Theme', action: () => toggleTheme() },
+      { icon: '🌓', label: 'Toggle Light/Dark Mode', action: () => toggleTheme() },
+      { icon: '⌨️', label: 'Keyboard Shortcuts', action: () => showKeyboardHints() },
       { icon: '💼', label: 'Projects', action: () => document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' }) },
-      { icon: '💬', label: 'Chat', action: () => window.chatbot?.toggleChat() },
+      { icon: '💬', label: 'Chat', action: () => (window.BabyAI || window.chatbot)?.toggleChat(true) },
       { divider: true },
       { icon: '⌘', label: 'Commands', action: () => window.commandPalette?.open(), hint: 'Ctrl+K' }
     ];
@@ -426,6 +464,29 @@ document.addEventListener('keydown', (e) => {
 // ========== Add Styles ==========
 const featuresStyles = `
 <style>
+body.light-mode {
+  --primary-color: #007f8b;
+  --secondary-color: #c62845;
+  --accent-color: #68339a;
+  --bg-dark: #f4f8fa;
+  --bg-light: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: rgba(230, 240, 244, 0.98);
+  --glass-border: 1px solid rgba(0, 96, 110, 0.2);
+  --text-primary: #17252d;
+  --text-secondary: #455a64;
+  --gradient-1: linear-gradient(135deg, #007f8b, #68339a);
+  --gradient-2: linear-gradient(135deg, #c62845, #68339a);
+  --gradient-3: linear-gradient(135deg, #f4f8fa, #e7eef2);
+  --shadow: 0 8px 32px rgba(22, 50, 60, 0.12);
+  --shadow-hover: 0 8px 32px rgba(115, 34, 56, 0.2);
+  color-scheme: light;
+}
+
+body.light-mode .navbar {
+  background: rgba(255, 255, 255, 0.95);
+}
+
 /* Command Palette */
 .command-palette-overlay {
   position: fixed;
