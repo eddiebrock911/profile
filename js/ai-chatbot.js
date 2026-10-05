@@ -284,6 +284,18 @@
             stack: ['JavaScript', 'Bootstrap', 'HTML5', 'CSS3']
           },
           {
+            name: 'Car Racing Game (Endless Runner)',
+            category: 'game',
+            status: 'live',
+            tags: ['car', 'racing', 'race', 'game', 'arcade', 'canvas'],
+            desc: 'Exciting car racing game — speed, competition aur fun ke saath!',
+            demo: 'https://carracing-dveu.onrender.com/',
+            code: 'https://github.com/eddiebrock911/car-race-game',
+            stack: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Game Dev'],
+            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe',
+            stack: ['JavaScript', 'Bootstrap', 'HTML5', 'CSS3']
+          },
+          {
             name: 'Ankit ka Portfolio',
             category: 'web',
             status: 'live',
