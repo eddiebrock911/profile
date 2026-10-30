@@ -41,6 +41,16 @@
       return {
         projects: [
           {
+            name: 'Credit-Risk-using-SHAP Predictor',
+            category: 'ai',
+            status: 'live',
+            tags: ['credit', 'risk', 'shap', 'machine-learning', 'predictive-modeling'],
+            desc: 'Credit risk prediction using SHAP values — model interpretability aur feature importance ke saath end-to-end ML pipeline.',
+            demo: 'https://creditriskkit.onrender.com/',
+            code: 'https://github.com/eddiebrock911/Credit-Risk-using-SHAP',
+            stack: ['Python', 'SHAP', 'Scikit-learn', 'EDA', 'FastAPI']
+          },
+          {
             name: 'Olympic Data Dashboard',
             category: 'ai',
             status: 'live',
@@ -291,9 +301,7 @@
             desc: 'Exciting car racing game — speed, competition aur fun ke saath!',
             demo: 'https://carracing-dveu.onrender.com/',
             code: 'https://github.com/eddiebrock911/car-race-game',
-            stack: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Game Dev'],
-            code: 'https://github.com/eddiebrock911/Tic-Tac-Toe',
-            stack: ['JavaScript', 'Bootstrap', 'HTML5', 'CSS3']
+            stack: ['JavaScript', 'HTML5 Canvas', 'CSS3', 'Game Dev']
           },
           {
             name: 'Ankit ka Portfolio',
@@ -366,19 +374,29 @@
             stack: ['JavaScript', 'Vite', 'CSS3']
           },
           {
-            name: 'Babe Betu Surprise Site',
+            name: 'NainKit Website',
             category: 'fun',
             status: 'code',
-            tags: ['babe', 'betu', 'surprise', 'romantic', 'creative'],
+            tags: ['babe', 'nainkit', 'surprise', 'romantic', 'creative'],
             desc: 'Creative surprise website project — animated sections aur playful interactive UI.',
             demo: null,
             code: 'https://github.com/eddiebrock911/babe-betu',
             stack: ['CSS3', 'JavaScript', 'HTML5']
           },
           {
-            name: 'Girlfriend ka doha',
+            name: 'NiluKit Website',
             category: 'fun',
             status: 'code',
+            tags: ['nilukit', 'nilu', 'surprise', 'romantic', 'creative'],
+            desc: 'Romantic surprise website with animated sections and interactive elements for a special occasion.',
+            demo: null,
+            code: 'https://github.com/eddiebrock911/niluKit-',
+            stack: ['CSS3', 'JavaScript', 'HTML5']
+          },
+          {
+            name: 'Girlfriend ka doha',
+            category: 'fun',
+            status: 'live',
             tags: ['nainkitdoha', 'doha', 'surprise', 'romantic', 'creative'],
             desc: 'Romantic surprise website with animated doha and interactive elements for a special occasion.',
             demo: 'https://nainkitdohe.onrender.com/',
