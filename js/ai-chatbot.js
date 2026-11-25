@@ -41,6 +41,16 @@
       return {
         projects: [
           {
+            name: 'ASCII-Art-Studio',
+            category: 'ai',
+            status: 'live',
+            tags: ['ascii', 'art', 'image-processing', 'generator'],
+            desc: 'ascii art generator jo kisi bhi image ko ascii art me convert karta hai — custom character sets aur color support ke saath.',
+            demo: 'https://ascii-art-studio.onrender.com/',
+            code: 'https://github.com/eddiebrock911/ASCII-Art-Studio',
+            stack: ['streamlit','image-processing','Python','PIL','OpenCV']
+          },
+          {
             name: 'Credit-Risk-using-SHAP Predictor',
             category: 'ai',
             status: 'live',
