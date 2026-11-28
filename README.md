@@ -205,7 +205,7 @@ profile/
 |----------|------|
 | 🌐 Portfolio | [ankitai.onrender.com](https://ankitai.onrender.com/) |
 | 💼 LinkedIn | [ankit-kumar-364ba537b](https://www.linkedin.com/in/ankit-kumar-364ba537b/) |
-| 📸 Instagram | [@__ankit._.op_](https://www.instagram.com/__ankit._.op_/) |
+| 📸 Instagram | [@__ankit._.op_](https://www.instagram.com/__ankit._.op/) |
 | 🐱 GitHub | [eddiebrock911](https://github.com/eddiebrock911) |
 
 *Open to collaborations, internships, and exciting AI/ML projects!*
