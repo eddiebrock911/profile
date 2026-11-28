@@ -14,7 +14,7 @@
         email: 'ankitkumar823089@gmail.com',
         github: 'https://github.com/eddiebrock911',
         linkedin: 'https://www.linkedin.com/in/eddiebrock-364ba537b/',
-        instagram: 'https://www.instagram.com/__ankit._.op_/',
+        instagram: 'https://www.instagram.com/__ankit._.op/',
         kaggle: 'https://www.kaggle.com/ankitkumar8252',
         buymeacoffee: 'https://buymeacoffee.com/eddie.brock',
         ...options
