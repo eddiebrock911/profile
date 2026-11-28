@@ -10,7 +10,7 @@
 <!-- Social Badges -->
 [![Portfolio](https://img.shields.io/badge/🌐%20Portfolio-ankitai.onrender.com-6d28d9?style=for-the-badge&logoColor=white)](https://ankitai.onrender.com/)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ankit-kumar-364ba537b/)
-[![Instagram](https://img.shields.io/badge/Instagram-E1306C?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/__ankit._.op_/)
+[![Instagram](https://img.shields.io/badge/Instagram-E1306C?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/__ankit._.op/)
 [![GitHub](https://img.shields.io/badge/GitHub-eddiebrock911-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/eddiebrock911)
 
 <br/>
